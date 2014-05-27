@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "JsonParser.h"
 
 @interface FirstViewController ()
 
@@ -18,6 +19,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    // JsonParser *parser = [[JsonParser alloc] init];
+    // NSDictionary *dict = [parser parse:[NSURL URLWithString:@"localhost:3000/user/get/1"]];
+    // NSLog(dict);
 }
 
 - (void)didReceiveMemoryWarning

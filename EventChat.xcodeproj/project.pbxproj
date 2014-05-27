@@ -23,6 +23,13 @@
 		AB724EA019340A8100F29EC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7C19340A8000F29EC8 /* UIKit.framework */; };
 		AB724EA819340A8100F29EC8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB724EA619340A8100F29EC8 /* InfoPlist.strings */; };
 		AB724EAA19340A8100F29EC8 /* EventChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724EA919340A8100F29EC8 /* EventChatTests.m */; };
+		ABDC793F1934131100607CE3 /* JsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC793E1934131100607CE3 /* JsonParser.m */; };
+		ABDC7946193436E600607CE3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC7945193436E600607CE3 /* User.m */; };
+		ABDC79491934380900607CE3 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79481934380900607CE3 /* Post.m */; };
+		ABDC794C1934381500607CE3 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC794B1934381500607CE3 /* Comment.m */; };
+		ABDC794F1934382100607CE3 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC794E1934382100607CE3 /* Event.m */; };
+		ABDC79521934382F00607CE3 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79511934382F00607CE3 /* Message.m */; };
+		ABDC79551934384900607CE3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79541934384900607CE3 /* Notification.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +65,20 @@
 		AB724EA519340A8100F29EC8 /* EventChatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EventChatTests-Info.plist"; sourceTree = "<group>"; };
 		AB724EA719340A8100F29EC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB724EA919340A8100F29EC8 /* EventChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventChatTests.m; sourceTree = "<group>"; };
+		ABDC793D1934131100607CE3 /* JsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonParser.h; sourceTree = "<group>"; };
+		ABDC793E1934131100607CE3 /* JsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonParser.m; sourceTree = "<group>"; };
+		ABDC7944193436E600607CE3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		ABDC7945193436E600607CE3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		ABDC79471934380900607CE3 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		ABDC79481934380900607CE3 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		ABDC794A1934381500607CE3 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		ABDC794B1934381500607CE3 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		ABDC794D1934382100607CE3 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		ABDC794E1934382100607CE3 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		ABDC79501934382F00607CE3 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		ABDC79511934382F00607CE3 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		ABDC79531934384900607CE3 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		ABDC79541934384900607CE3 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +138,8 @@
 		AB724E7E19340A8000F29EC8 /* EventChat */ = {
 			isa = PBXGroup;
 			children = (
+				ABDC79431934364800607CE3 /* entity */,
+				ABDC793C193412DD00607CE3 /* util */,
 				AB724E8719340A8000F29EC8 /* AppDelegate.h */,
 				AB724E8819340A8000F29EC8 /* AppDelegate.m */,
 				AB724E8A19340A8000F29EC8 /* Main_iPhone.storyboard */,
@@ -158,6 +181,34 @@
 				AB724EA619340A8100F29EC8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ABDC793C193412DD00607CE3 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				ABDC793D1934131100607CE3 /* JsonParser.h */,
+				ABDC793E1934131100607CE3 /* JsonParser.m */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
+		ABDC79431934364800607CE3 /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				ABDC7944193436E600607CE3 /* User.h */,
+				ABDC7945193436E600607CE3 /* User.m */,
+				ABDC79471934380900607CE3 /* Post.h */,
+				ABDC79481934380900607CE3 /* Post.m */,
+				ABDC794A1934381500607CE3 /* Comment.h */,
+				ABDC794B1934381500607CE3 /* Comment.m */,
+				ABDC794D1934382100607CE3 /* Event.h */,
+				ABDC794E1934382100607CE3 /* Event.m */,
+				ABDC79501934382F00607CE3 /* Message.h */,
+				ABDC79511934382F00607CE3 /* Message.m */,
+				ABDC79531934384900607CE3 /* Notification.h */,
+				ABDC79541934384900607CE3 /* Notification.m */,
+			);
+			name = entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,10 +309,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDC79551934384900607CE3 /* Notification.m in Sources */,
+				ABDC7946193436E600607CE3 /* User.m in Sources */,
+				ABDC794F1934382100607CE3 /* Event.m in Sources */,
 				AB724E9519340A8000F29EC8 /* SecondViewController.m in Sources */,
 				AB724E8919340A8000F29EC8 /* AppDelegate.m in Sources */,
+				ABDC793F1934131100607CE3 /* JsonParser.m in Sources */,
 				AB724E9219340A8000F29EC8 /* FirstViewController.m in Sources */,
 				AB724E8519340A8000F29EC8 /* main.m in Sources */,
+				ABDC794C1934381500607CE3 /* Comment.m in Sources */,
+				ABDC79521934382F00607CE3 /* Message.m in Sources */,
+				ABDC79491934380900607CE3 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
