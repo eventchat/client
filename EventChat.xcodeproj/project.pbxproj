@@ -23,6 +23,7 @@
 		AB724EA019340A8100F29EC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7C19340A8000F29EC8 /* UIKit.framework */; };
 		AB724EA819340A8100F29EC8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB724EA619340A8100F29EC8 /* InfoPlist.strings */; };
 		AB724EAA19340A8100F29EC8 /* EventChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724EA919340A8100F29EC8 /* EventChatTests.m */; };
+		E8D860CF1934125E0068DCE5 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D860CE1934125E0068DCE5 /* EventCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		AB724EA519340A8100F29EC8 /* EventChatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EventChatTests-Info.plist"; sourceTree = "<group>"; };
 		AB724EA719340A8100F29EC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB724EA919340A8100F29EC8 /* EventChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventChatTests.m; sourceTree = "<group>"; };
+		E8D860CE1934125E0068DCE5 /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 		AB724E7E19340A8000F29EC8 /* EventChat */ = {
 			isa = PBXGroup;
 			children = (
+				E8D860CD193412230068DCE5 /* Views */,
 				AB724E8719340A8000F29EC8 /* AppDelegate.h */,
 				AB724E8819340A8000F29EC8 /* AppDelegate.m */,
 				AB724E8A19340A8000F29EC8 /* Main_iPhone.storyboard */,
@@ -158,6 +161,14 @@
 				AB724EA619340A8100F29EC8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E8D860CD193412230068DCE5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E8D860CE1934125E0068DCE5 /* EventCell.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +250,7 @@
 				AB724E8F19340A8000F29EC8 /* Main_iPad.storyboard in Resources */,
 				AB724E9719340A8000F29EC8 /* Images.xcassets in Resources */,
 				AB724E8C19340A8000F29EC8 /* Main_iPhone.storyboard in Resources */,
+				E8D860CF1934125E0068DCE5 /* EventCell.xib in Resources */,
 				AB724E8319340A8000F29EC8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,3 +6,16 @@
 #
 # Pods/
 
+*.tmp
+*.swp
+.DS_Store
+
+xcuserdata
+build/
+*.lock
+*~.nib
+.Trashes
+
+*.pbxuser
+*.perspective
+*.perspectivev3
