@@ -7,6 +7,8 @@
 //
 
 #import "FirstViewController.h"
+#import "JsonParser.h"
+#import "Constants.h"
 
 @interface FirstViewController ()
 
@@ -18,6 +20,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    JsonParser *parser = [[JsonParser alloc] init];
+    NSDictionary *dict = [parser parse:[NSURL URLWithString:@"http://eventchat.herokuapp.com/users/538797bb940bf30200bdb649"]];
+    NSString *name = [dict valueForKey:@"name"];
+    NSLog(@"%@", name);
+    NSLog(@"%@", NAME);
 }
 
 - (void)didReceiveMemoryWarning

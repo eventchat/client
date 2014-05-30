@@ -82,10 +82,10 @@
         <tabBarController definesPresentationContext="YES" id="tZx-VE-zHP">
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
-            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <tabBar key="tabBar" contentMode="scaleToFill" selectedItem="FhA-z2-pFT" id="aW1-i2-mb7">
+            <tabBar key="tabBar" contentMode="scaleToFill" id="aW1-i2-mb7">
                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

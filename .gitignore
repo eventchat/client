@@ -6,9 +6,12 @@
 #
 # Pods/
 
+.DS_Store
+xcdebugger
+
+# Added on May 30
 *.tmp
 *.swp
-.DS_Store
 
 xcuserdata
 build/
@@ -18,4 +21,3 @@ build/
 
 *.pbxuser
 *.perspective
-*.perspectivev3
