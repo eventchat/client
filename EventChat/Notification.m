@@ -16,4 +16,8 @@
 @synthesize mIsRead;
 @synthesize mCreatedAt;
 
+- (NSDictionary *) toDictionary {
+    return nil;
+}
+
 @end

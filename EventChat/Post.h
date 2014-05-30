@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 #import "Comment.h"
+#import "ModelProtocol.h"
 
-@interface Post : NSObject {
-    NSInteger mId;
+@interface Post : NSObject <ModelProtocol> {
+    NSString *mId;
     NSString *mTitle;
     NSString *mType;
     NSString *mBody;
@@ -20,7 +21,7 @@
     NSMutableArray *mComments;
 }
 
-@property (nonatomic, readwrite) NSInteger mId;
+@property (nonatomic, readwrite) NSString *mId;
 @property (nonatomic, readwrite) NSString *mTitle;
 @property (nonatomic, readwrite) NSString *mBody;
 @property (nonatomic, readwrite) NSString *mCreatedAt;

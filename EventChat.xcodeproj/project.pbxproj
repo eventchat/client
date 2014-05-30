@@ -23,6 +23,8 @@
 		AB724EA019340A8100F29EC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7C19340A8000F29EC8 /* UIKit.framework */; };
 		AB724EA819340A8100F29EC8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB724EA619340A8100F29EC8 /* InfoPlist.strings */; };
 		AB724EAA19340A8100F29EC8 /* EventChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724EA919340A8100F29EC8 /* EventChatTests.m */; };
+		ABB5E1161937D16A008113C6 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB5E1151937D16A008113C6 /* Constants.m */; };
+		ABCF7DD81937DEB400C49CA0 /* ApiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCF7DD71937DEB300C49CA0 /* ApiUtil.m */; };
 		ABDC793F1934131100607CE3 /* JsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC793E1934131100607CE3 /* JsonParser.m */; };
 		ABDC7946193436E600607CE3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC7945193436E600607CE3 /* User.m */; };
 		ABDC79491934380900607CE3 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79481934380900607CE3 /* Post.m */; };
@@ -65,6 +67,11 @@
 		AB724EA519340A8100F29EC8 /* EventChatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EventChatTests-Info.plist"; sourceTree = "<group>"; };
 		AB724EA719340A8100F29EC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB724EA919340A8100F29EC8 /* EventChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventChatTests.m; sourceTree = "<group>"; };
+		ABB5E1141937D16A008113C6 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		ABB5E1151937D16A008113C6 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		ABCF7DD61937DEB300C49CA0 /* ApiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiUtil.h; sourceTree = "<group>"; };
+		ABCF7DD71937DEB300C49CA0 /* ApiUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiUtil.m; sourceTree = "<group>"; };
+		ABCF7DD91938079F00C49CA0 /* ModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelProtocol.h; sourceTree = "<group>"; };
 		ABDC793D1934131100607CE3 /* JsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonParser.h; sourceTree = "<group>"; };
 		ABDC793E1934131100607CE3 /* JsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonParser.m; sourceTree = "<group>"; };
 		ABDC7944193436E600607CE3 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -188,6 +195,10 @@
 			children = (
 				ABDC793D1934131100607CE3 /* JsonParser.h */,
 				ABDC793E1934131100607CE3 /* JsonParser.m */,
+				ABB5E1141937D16A008113C6 /* Constants.h */,
+				ABB5E1151937D16A008113C6 /* Constants.m */,
+				ABCF7DD61937DEB300C49CA0 /* ApiUtil.h */,
+				ABCF7DD71937DEB300C49CA0 /* ApiUtil.m */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -207,6 +218,7 @@
 				ABDC79511934382F00607CE3 /* Message.m */,
 				ABDC79531934384900607CE3 /* Notification.h */,
 				ABDC79541934384900607CE3 /* Notification.m */,
+				ABCF7DD91938079F00C49CA0 /* ModelProtocol.h */,
 			);
 			name = entity;
 			sourceTree = "<group>";
@@ -310,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABDC79551934384900607CE3 /* Notification.m in Sources */,
+				ABCF7DD81937DEB400C49CA0 /* ApiUtil.m in Sources */,
 				ABDC7946193436E600607CE3 /* User.m in Sources */,
 				ABDC794F1934382100607CE3 /* Event.m in Sources */,
 				AB724E9519340A8000F29EC8 /* SecondViewController.m in Sources */,
@@ -320,6 +333,7 @@
 				ABDC794C1934381500607CE3 /* Comment.m in Sources */,
 				ABDC79521934382F00607CE3 /* Message.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
+				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

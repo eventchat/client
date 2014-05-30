@@ -17,4 +17,8 @@
 @synthesize mEndTime;
 @synthesize mDesc;
 
+- (NSDictionary *) toDictionary {
+    return nil;
+}
+
 @end

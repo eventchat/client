@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ModelProtocol.h"
 
-@interface User : NSObject {
-    NSInteger mId;
+@interface User : NSObject <ModelProtocol> {
+    NSString *mId;
     NSString *mName;
     NSString *mEmail;
     NSString *mInfo;
     NSString *mAvatarUrl;
 }
 
-@property (nonatomic, readwrite) NSInteger mId;
+@property (nonatomic, readwrite) NSString *mId;
 @property (nonatomic, readwrite) NSString *mName;
 @property (nonatomic, readwrite) NSString *mEmail;
 @property (nonatomic, readwrite) NSString *mInfo;

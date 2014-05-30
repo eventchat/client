@@ -16,4 +16,8 @@
 @synthesize mName;
 @synthesize mAvatarUrl;
 
+- (NSDictionary *) toDictionary {
+    return nil;
+}
+
 @end

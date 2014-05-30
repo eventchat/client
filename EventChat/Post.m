@@ -17,4 +17,8 @@
 @synthesize mCreatedAt;
 @synthesize mComments;
 
+- (NSDictionary *) toDictionary {
+    return nil;
+}
+
 @end

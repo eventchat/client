@@ -15,4 +15,8 @@
 @synthesize mBody;
 @synthesize mCreatedAt;
 
+- (NSDictionary *) toDictionary {
+    return nil;
+}
+
 @end

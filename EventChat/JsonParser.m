@@ -11,11 +11,16 @@
 @implementation JsonParser
 
 - (NSDictionary *) parse:(NSURL *) url {
+    NSLog(@"%@", url);
     NSError *error = nil;
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSData * response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    
+    NSURLResponse *response = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
     return dict;
 }
 

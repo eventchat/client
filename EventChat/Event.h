@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ModelProtocol.h"
 
-@interface Event : NSObject {
-    NSInteger mId;
+@interface Event : NSObject <ModelProtocol> {
+    NSString *mId;
     NSString *mName;
     double mLongitude;
     double mLatitude;
@@ -18,7 +19,7 @@
     NSString *mDesc;
 }
 
-@property (nonatomic, readwrite) NSInteger mId;
+@property (nonatomic, readwrite) NSString *mId;
 @property (nonatomic, readwrite) double mLongitude;
 @property (nonatomic, readwrite) double mLatitude;
 @property (nonatomic, readwrite) NSString *mStartTime;

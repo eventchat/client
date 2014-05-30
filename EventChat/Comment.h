@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "User.h"
+#import "ModelProtocol.h"
 
-@interface Comment : NSObject {
-    NSInteger mId;
+@interface Comment : NSObject <ModelProtocol> {
+    NSString *mId;
     User *mAuthor;
     NSString *mBody;
     NSString *mCreatedAt;
 }
 
-@property (nonatomic, readwrite) NSInteger mId;
+@property (nonatomic, readwrite) NSString *mId;
 @property (nonatomic, readwrite) User *mAuthor;
 @property (nonatomic, readwrite) NSString *mBody;
 @property (nonatomic, readwrite) NSString *mCreatedAt;

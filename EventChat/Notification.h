@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ModelProtocol.h"
 
-@interface Notification : NSObject {
-    NSInteger mId;
+@interface Notification : NSObject <ModelProtocol> {
+    NSString *mId;
     NSString *mType;
     NSString *mBody;
     BOOL mIsRead;
     NSString *mCreatedAt;
 }
 
-@property (nonatomic, readwrite) NSInteger mId;
+@property (nonatomic, readwrite) NSString *mId;
 @property (nonatomic, readwrite) NSString *mType;
 @property (nonatomic, readwrite) NSString *mBody;
 @property (nonatomic, readwrite) BOOL mIsRead;
