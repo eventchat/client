@@ -6,13 +6,20 @@
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "CreateViewController.h"
 
-@interface SecondViewController ()
+@interface CreateViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation CreateViewController
+
+// called when a new feed is created
+- (IBAction)unwindToFeed:(UIStoryboardSegue *)segue;
+{
+
+}
+
 
 - (void)viewDidLoad
 {

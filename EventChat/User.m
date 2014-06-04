@@ -16,6 +16,12 @@
 @synthesize mName;
 @synthesize mAvatarUrl;
 
+- (id) init{
+    if(self = [super init]){
+        // to be implemented avatar
+    }
+    return self;
+}
 - (NSDictionary *) toDictionary {
     return nil;
 }

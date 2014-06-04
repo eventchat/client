@@ -15,8 +15,7 @@
 		AB724E8919340A8000F29EC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724E8819340A8000F29EC8 /* AppDelegate.m */; };
 		AB724E8C19340A8000F29EC8 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB724E8A19340A8000F29EC8 /* Main_iPhone.storyboard */; };
 		AB724E8F19340A8000F29EC8 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB724E8D19340A8000F29EC8 /* Main_iPad.storyboard */; };
-		AB724E9219340A8000F29EC8 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724E9119340A8000F29EC8 /* FirstViewController.m */; };
-		AB724E9519340A8000F29EC8 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724E9419340A8000F29EC8 /* SecondViewController.m */; };
+		AB724E9519340A8000F29EC8 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724E9419340A8000F29EC8 /* CreateViewController.m */; };
 		AB724E9719340A8000F29EC8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB724E9619340A8000F29EC8 /* Images.xcassets */; };
 		AB724E9E19340A8100F29EC8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E9D19340A8100F29EC8 /* XCTest.framework */; };
 		AB724E9F19340A8100F29EC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7819340A8000F29EC8 /* Foundation.framework */; };
@@ -32,6 +31,7 @@
 		ABDC794F1934382100607CE3 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC794E1934382100607CE3 /* Event.m */; };
 		ABDC79521934382F00607CE3 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79511934382F00607CE3 /* Message.m */; };
 		ABDC79551934384900607CE3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79541934384900607CE3 /* Notification.m */; };
+		E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88DF21A193FD39E004FECFC /* FeedsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +57,8 @@
 		AB724E8819340A8000F29EC8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AB724E8B19340A8000F29EC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		AB724E8E19340A8000F29EC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		AB724E9019340A8000F29EC8 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		AB724E9119340A8000F29EC8 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		AB724E9319340A8000F29EC8 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		AB724E9419340A8000F29EC8 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		AB724E9319340A8000F29EC8 /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		AB724E9419340A8000F29EC8 /* CreateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		AB724E9619340A8000F29EC8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AB724E9C19340A8100F29EC8 /* EventChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB724E9D19340A8100F29EC8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -86,6 +84,8 @@
 		ABDC79511934382F00607CE3 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		ABDC79531934384900607CE3 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		ABDC79541934384900607CE3 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		E88DF219193FD39E004FECFC /* FeedsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsTableViewController.h; sourceTree = "<group>"; };
+		E88DF21A193FD39E004FECFC /* FeedsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,16 +145,13 @@
 		AB724E7E19340A8000F29EC8 /* EventChat */ = {
 			isa = PBXGroup;
 			children = (
-				ABDC79431934364800607CE3 /* entity */,
-				ABDC793C193412DD00607CE3 /* util */,
+				E88DF218193FBD8A004FECFC /* ViewController */,
+				ABDC79431934364800607CE3 /* Model */,
+				ABDC793C193412DD00607CE3 /* Util */,
 				AB724E8719340A8000F29EC8 /* AppDelegate.h */,
 				AB724E8819340A8000F29EC8 /* AppDelegate.m */,
 				AB724E8A19340A8000F29EC8 /* Main_iPhone.storyboard */,
 				AB724E8D19340A8000F29EC8 /* Main_iPad.storyboard */,
-				AB724E9019340A8000F29EC8 /* FirstViewController.h */,
-				AB724E9119340A8000F29EC8 /* FirstViewController.m */,
-				AB724E9319340A8000F29EC8 /* SecondViewController.h */,
-				AB724E9419340A8000F29EC8 /* SecondViewController.m */,
 				AB724E9619340A8000F29EC8 /* Images.xcassets */,
 				AB724E7F19340A8000F29EC8 /* Supporting Files */,
 			);
@@ -190,7 +187,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		ABDC793C193412DD00607CE3 /* util */ = {
+		ABDC793C193412DD00607CE3 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				ABDC793D1934131100607CE3 /* JsonParser.h */,
@@ -200,10 +197,10 @@
 				ABCF7DD61937DEB300C49CA0 /* ApiUtil.h */,
 				ABCF7DD71937DEB300C49CA0 /* ApiUtil.m */,
 			);
-			name = util;
+			name = Util;
 			sourceTree = "<group>";
 		};
-		ABDC79431934364800607CE3 /* entity */ = {
+		ABDC79431934364800607CE3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				ABDC7944193436E600607CE3 /* User.h */,
@@ -220,7 +217,18 @@
 				ABDC79541934384900607CE3 /* Notification.m */,
 				ABCF7DD91938079F00C49CA0 /* ModelProtocol.h */,
 			);
-			name = entity;
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E88DF218193FBD8A004FECFC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E88DF219193FD39E004FECFC /* FeedsTableViewController.h */,
+				E88DF21A193FD39E004FECFC /* FeedsTableViewController.m */,
+				AB724E9319340A8000F29EC8 /* CreateViewController.h */,
+				AB724E9419340A8000F29EC8 /* CreateViewController.m */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,7 +310,6 @@
 				AB724E8F19340A8000F29EC8 /* Main_iPad.storyboard in Resources */,
 				AB724E9719340A8000F29EC8 /* Images.xcassets in Resources */,
 				AB724E8C19340A8000F29EC8 /* Main_iPhone.storyboard in Resources */,
-				E8D860CF1934125E0068DCE5 /* EventCell.xib in Resources */,
 				AB724E8319340A8000F29EC8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,13 +333,13 @@
 				ABCF7DD81937DEB400C49CA0 /* ApiUtil.m in Sources */,
 				ABDC7946193436E600607CE3 /* User.m in Sources */,
 				ABDC794F1934382100607CE3 /* Event.m in Sources */,
-				AB724E9519340A8000F29EC8 /* SecondViewController.m in Sources */,
+				AB724E9519340A8000F29EC8 /* CreateViewController.m in Sources */,
 				AB724E8919340A8000F29EC8 /* AppDelegate.m in Sources */,
 				ABDC793F1934131100607CE3 /* JsonParser.m in Sources */,
-				AB724E9219340A8000F29EC8 /* FirstViewController.m in Sources */,
 				AB724E8519340A8000F29EC8 /* main.m in Sources */,
 				ABDC794C1934381500607CE3 /* Comment.m in Sources */,
 				ABDC79521934382F00607CE3 /* Message.m in Sources */,
+				E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
 			);
