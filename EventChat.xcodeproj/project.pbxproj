@@ -23,9 +23,6 @@
 		AB724EA019340A8100F29EC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7C19340A8000F29EC8 /* UIKit.framework */; };
 		AB724EA819340A8100F29EC8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB724EA619340A8100F29EC8 /* InfoPlist.strings */; };
 		AB724EAA19340A8100F29EC8 /* EventChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724EA919340A8100F29EC8 /* EventChatTests.m */; };
-<<<<<<< HEAD
-		E8D860CF1934125E0068DCE5 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8D860CE1934125E0068DCE5 /* EventCell.xib */; };
-=======
 		ABB5E1161937D16A008113C6 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB5E1151937D16A008113C6 /* Constants.m */; };
 		ABCF7DD81937DEB400C49CA0 /* ApiUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCF7DD71937DEB300C49CA0 /* ApiUtil.m */; };
 		ABDC793F1934131100607CE3 /* JsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC793E1934131100607CE3 /* JsonParser.m */; };
@@ -35,7 +32,6 @@
 		ABDC794F1934382100607CE3 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC794E1934382100607CE3 /* Event.m */; };
 		ABDC79521934382F00607CE3 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79511934382F00607CE3 /* Message.m */; };
 		ABDC79551934384900607CE3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79541934384900607CE3 /* Notification.m */; };
->>>>>>> f101acade5bcf350ea54fb3def4ba4c6a9fefd3a
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,9 +67,6 @@
 		AB724EA519340A8100F29EC8 /* EventChatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EventChatTests-Info.plist"; sourceTree = "<group>"; };
 		AB724EA719340A8100F29EC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB724EA919340A8100F29EC8 /* EventChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventChatTests.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		E8D860CE1934125E0068DCE5 /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
-=======
 		ABB5E1141937D16A008113C6 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		ABB5E1151937D16A008113C6 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		ABCF7DD61937DEB300C49CA0 /* ApiUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiUtil.h; sourceTree = "<group>"; };
@@ -93,7 +86,6 @@
 		ABDC79511934382F00607CE3 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		ABDC79531934384900607CE3 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		ABDC79541934384900607CE3 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
->>>>>>> f101acade5bcf350ea54fb3def4ba4c6a9fefd3a
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,12 +145,8 @@
 		AB724E7E19340A8000F29EC8 /* EventChat */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				E8D860CD193412230068DCE5 /* Views */,
-=======
 				ABDC79431934364800607CE3 /* entity */,
 				ABDC793C193412DD00607CE3 /* util */,
->>>>>>> f101acade5bcf350ea54fb3def4ba4c6a9fefd3a
 				AB724E8719340A8000F29EC8 /* AppDelegate.h */,
 				AB724E8819340A8000F29EC8 /* AppDelegate.m */,
 				AB724E8A19340A8000F29EC8 /* Main_iPhone.storyboard */,
@@ -202,14 +190,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
-		E8D860CD193412230068DCE5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E8D860CE1934125E0068DCE5 /* EventCell.xib */,
-			);
-			name = Views;
-=======
 		ABDC793C193412DD00607CE3 /* util */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,7 +221,6 @@
 				ABCF7DD91938079F00C49CA0 /* ModelProtocol.h */,
 			);
 			name = entity;
->>>>>>> f101acade5bcf350ea54fb3def4ba4c6a9fefd3a
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
