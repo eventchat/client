@@ -14,11 +14,6 @@
 
 @implementation CreateViewController
 
-// called when a new feed is created
-- (IBAction)unwindToFeed:(UIStoryboardSegue *)segue;
-{
-
-}
 
 
 - (void)viewDidLoad

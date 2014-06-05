@@ -18,6 +18,13 @@
 
 @implementation FeedsTableViewController
 
+
+// called when a new feed is created
+- (IBAction)unwindToFeed:(UIStoryboardSegue *)segue;
+{
+    
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -71,7 +78,8 @@
     // Configure the cell...
     Post *post = [self.allFeeds objectAtIndex: indexPath.row];
     cell.textLabel.text = post.mBody;
-    
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
     return cell;
 }
 

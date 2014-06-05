@@ -10,7 +10,4 @@
 
 @interface CreateViewController : UIViewController
 
-// called when a new feed is created
-- (IBAction)unwindToFeed:(UIStoryboardSegue *)segue;
-
 @end
