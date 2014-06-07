@@ -11,7 +11,7 @@
 #import "Constants.h"
 #import "Post.h"
 #import "User.h"
-#import "TweetCell.h"
+#import "ItemCell.h"
 
 @interface FeedsTableViewController ()
 
@@ -68,7 +68,7 @@
 {
 
     // Return the number of rows in the section.
-//    NSLog(@"%d", [self.allFeeds count]);
+    NSLog(@"%d", [self.allFeeds count]);
     return [self.allFeeds count];
 }
 
@@ -77,22 +77,18 @@
 {
     //1. Dequeue Cell
     static NSString *CellIdentifier = @"ContentCell";
-    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     Post *post = [self.allFeeds objectAtIndex: indexPath.row];
-    cell.tweetLabel.text = post.mTitle;
-    cell.tweetText.text = post.mBody;
-    cell.tweetLocation.text = post.mCreatedAt;
+    cell.userName.text = post.mTitle;
+    cell.msgText.text = post.mBody;
+    cell.msgTime.text = post.mCreatedAt;
+//    cell.msgLocation = nil;
+    cell.msgLocation.text = @"Convention Center";
     cell.userImage.image = [UIImage imageNamed:@"placeholder"];
-    cell.tweetImage.image = [UIImage imageNamed:@"testImage"];
-//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    NSLog(@"post title is %@", post.mTitle);
-    NSLog(@"post body is %@", post.mBody);
-    NSLog(@"textLabel is %@", cell.tweetLabel.text);
-    NSLog(@"tweetText is %@", cell.tweetText.text);
-    NSLog(@"tweetLocation is %@", cell.tweetLocation.text);
-
+    cell.msgImage.image = [UIImage imageNamed:@"testImage"];
+    
     return cell;
 }
 

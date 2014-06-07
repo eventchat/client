@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6CBCB74B1942F8860031895F /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCB74A1942F8860031895F /* TweetCell.m */; };
+		6CBCB74B1942F8860031895F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCB74A1942F8860031895F /* ItemCell.m */; };
 		6CC216091943ACE400BC2FE3 /* profile-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC216081943ACE400BC2FE3 /* profile-placeholder.png */; };
 		AB724E7919340A8000F29EC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7819340A8000F29EC8 /* Foundation.framework */; };
 		AB724E7B19340A8000F29EC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7A19340A8000F29EC8 /* CoreGraphics.framework */; };
@@ -47,8 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6CBCB7491942F8860031895F /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
-		6CBCB74A1942F8860031895F /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
+		6CBCB7491942F8860031895F /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		6CBCB74A1942F8860031895F /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		6CC216081943ACE400BC2FE3 /* profile-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-placeholder.png"; sourceTree = "<group>"; };
 		AB724E7519340A8000F29EC8 /* EventChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB724E7819340A8000F29EC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -160,8 +160,8 @@
 				AB724E8D19340A8000F29EC8 /* Main_iPad.storyboard */,
 				AB724E9619340A8000F29EC8 /* Images.xcassets */,
 				AB724E7F19340A8000F29EC8 /* Supporting Files */,
-				6CBCB7491942F8860031895F /* TweetCell.h */,
-				6CBCB74A1942F8860031895F /* TweetCell.m */,
+				6CBCB7491942F8860031895F /* ItemCell.h */,
+				6CBCB74A1942F8860031895F /* ItemCell.m */,
 			);
 			path = EventChat;
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 				E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
-				6CBCB74B1942F8860031895F /* TweetCell.m in Sources */,
+				6CBCB74B1942F8860031895F /* ItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

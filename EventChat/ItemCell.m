@@ -6,21 +6,21 @@
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
 
-#import "TweetCell.h"
+#import "ItemCell.h"
 
-@implementation TweetCell
-
-@synthesize tweetImage = _tweetImage;
+@implementation ItemCell
 
 @synthesize userImage = _userImage;
 
-@synthesize tweetLabel = _tweetLabel;
+@synthesize msgImage = _msgImage;
 
-@synthesize tweetText = _tweetText;
+@synthesize userName = _userName;
 
-@synthesize tweetTime = _tweetTime;
+@synthesize msgTime = _msgTime;
 
-@synthesize tweetLocation = _tweetLocation;
+@synthesize msgText = _msgText;
+
+@synthesize msgLocation = _msgLocation;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
