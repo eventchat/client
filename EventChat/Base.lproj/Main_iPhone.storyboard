@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="02s-6V-s2O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="02s-6V-s2O">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -95,7 +95,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="bIu-JS-nOf"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="bIu-JS-nOf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="MYM-KI-J4W">
+                            <connections>
+                                <segue destination="cQw-fh-ri0" kind="modal" id="LpC-jy-vUA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yY7-eU-h7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,7 +123,81 @@
             </objects>
             <point key="canvasLocation" x="736" y="612"/>
         </scene>
+        <!--Create View Controller - Compose-->
+        <scene sceneID="EPA-dA-W41">
+            <objects>
+                <viewController title="Compose" id="Dwe-hw-Q1t" customClass="CreateViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aDS-07-XN6"/>
+                        <viewControllerLayoutGuide type="bottom" id="SLh-Fq-dzg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GR6-hO-aTT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="ada" translatesAutoresizingMaskIntoConstraints="NO" id="xAi-bT-TeZ">
+                                <rect key="frame" x="20" y="127" width="280" height="130"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lyman C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgY-Sw-2p8">
+                                <rect key="frame" x="66" y="81" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="fRy-vI-yyk">
+                                <rect key="frame" x="20" y="81" width="38" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Compose" id="Cpy-Ad-0MF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DnB-wc-WYD">
+                            <connections>
+                                <segue destination="YmV-Lr-yed" kind="unwind" unwindAction="unwindToFeed:" id="pLm-Jl-j4r"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="b8n-l0-e5d">
+                            <connections>
+                                <segue destination="YmV-Lr-yed" kind="unwind" unwindAction="unwindToFeed:" id="om0-nz-7Du"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="b8n-l0-e5d" id="7ka-6k-poD"/>
+                        <outlet property="textView" destination="xAi-bT-TeZ" id="qXM-wq-je4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bwh-68-B1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="YmV-Lr-yed" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1453" y="1320"/>
+        </scene>
+        <!--Navigation Controller - Compose-->
+        <scene sceneID="dW6-pA-yGG">
+            <objects>
+                <navigationController title="Compose" automaticallyAdjustsScrollViewInsets="NO" id="cQw-fh-ri0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0i7-Jh-7DK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dwe-hw-Q1t" kind="relationship" relationship="rootViewController" id="eWH-zb-uW1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Id-In-xdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="927" y="1320"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="placeholder" width="48" height="48"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

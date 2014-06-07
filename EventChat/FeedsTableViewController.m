@@ -12,6 +12,7 @@
 #import "Post.h"
 #import "User.h"
 #import "ItemCell.h"
+#import "CreateViewController.h"
 
 @interface FeedsTableViewController ()
 
@@ -23,7 +24,12 @@
 // called when a new feed is created
 - (IBAction)unwindToFeed:(UIStoryboardSegue *)segue;
 {
-    
+    CreateViewController *source = [segue sourceViewController];
+    Post *item = source.toCreatePost;
+    if (item != nil) {
+        [self.allFeeds addObject:item];
+        [self.tableView reloadData];
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -145,7 +151,7 @@
 
 - (void) loadInitData {
     
-    JsonParser *parser = [[JsonParser alloc] init];
+//    JsonParser *parser = [[JsonParser alloc] init];
 //    NSDictionary *dict = [parser parse:[NSURL URLWithString:@"http://eventchat.herokuapp.com/users/538797bb940bf30200bdb649"]];
 //    NSString *name = [dict valueForKey:@"name"];
 //    NSString *body = dict[@"body"];

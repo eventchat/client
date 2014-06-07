@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
 
 @interface CreateViewController : UIViewController
+
+@property Post *toCreatePost;
+@property User *currentUser;
 
 @end
