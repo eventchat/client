@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "Post.h"
 #import "User.h"
+#import "TweetCell.h"
 
 @interface FeedsTableViewController ()
 
@@ -67,18 +68,30 @@
 {
 
     // Return the number of rows in the section.
+//    NSLog(@"%d", [self.allFeeds count]);
     return [self.allFeeds count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
+    //1. Dequeue Cell
+    static NSString *CellIdentifier = @"ContentCell";
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     Post *post = [self.allFeeds objectAtIndex: indexPath.row];
-    cell.textLabel.text = post.mBody;
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    cell.tweetLabel.text = post.mTitle;
+    cell.tweetText.text = post.mBody;
+    cell.tweetLocation.text = post.mCreatedAt;
+    cell.userImage.image = [UIImage imageNamed:@"placeholder"];
+    cell.tweetImage.image = [UIImage imageNamed:@"testImage"];
+//    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    NSLog(@"post title is %@", post.mTitle);
+    NSLog(@"post body is %@", post.mBody);
+    NSLog(@"textLabel is %@", cell.tweetLabel.text);
+    NSLog(@"tweetText is %@", cell.tweetText.text);
+    NSLog(@"tweetLocation is %@", cell.tweetLocation.text);
 
     return cell;
 }
@@ -137,16 +150,16 @@
 - (void) loadInitData {
     
     JsonParser *parser = [[JsonParser alloc] init];
-    NSDictionary *dict = [parser parse:[NSURL URLWithString:@"http://eventchat.herokuapp.com/users/538797bb940bf30200bdb649"]];
-    NSString *name = [dict valueForKey:@"name"];
-    NSString *body = dict[@"body"];
+//    NSDictionary *dict = [parser parse:[NSURL URLWithString:@"http://eventchat.herokuapp.com/users/538797bb940bf30200bdb649"]];
+//    NSString *name = [dict valueForKey:@"name"];
+//    NSString *body = dict[@"body"];
     
     
     // mock up data
     User *testUser = [[User alloc] init];
-    testUser.mName = dict[@"name"];
+    testUser.mName = @"Lyman Cao";
     testUser.mId = @"538797bb940bf30200bdb649";
-    testUser.mEmail = dict[@"email"];
+    testUser.mEmail = @"lyman@cmu.edu";
     
     Post *testPost = [[Post alloc] init];
     
@@ -158,8 +171,8 @@
     // add the test post
     [self.allFeeds addObject:testPost];
     
-    NSLog(@"%@", name);
-    NSLog(@"%@", body);
+//    NSLog(@"%@", name);
+//    NSLog(@"%@", body);
 }
 
 @end

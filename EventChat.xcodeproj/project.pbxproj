@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CBCB74B1942F8860031895F /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCB74A1942F8860031895F /* TweetCell.m */; };
+		6CC216091943ACE400BC2FE3 /* profile-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC216081943ACE400BC2FE3 /* profile-placeholder.png */; };
 		AB724E7919340A8000F29EC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7819340A8000F29EC8 /* Foundation.framework */; };
 		AB724E7B19340A8000F29EC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7A19340A8000F29EC8 /* CoreGraphics.framework */; };
 		AB724E7D19340A8000F29EC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7C19340A8000F29EC8 /* UIKit.framework */; };
@@ -45,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6CBCB7491942F8860031895F /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		6CBCB74A1942F8860031895F /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
+		6CC216081943ACE400BC2FE3 /* profile-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-placeholder.png"; sourceTree = "<group>"; };
 		AB724E7519340A8000F29EC8 /* EventChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB724E7819340A8000F29EC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB724E7A19340A8000F29EC8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +120,7 @@
 		AB724E6C19340A8000F29EC8 = {
 			isa = PBXGroup;
 			children = (
+				6CC216081943ACE400BC2FE3 /* profile-placeholder.png */,
 				AB724E7E19340A8000F29EC8 /* EventChat */,
 				AB724EA319340A8100F29EC8 /* EventChatTests */,
 				AB724E7719340A8000F29EC8 /* Frameworks */,
@@ -154,6 +160,8 @@
 				AB724E8D19340A8000F29EC8 /* Main_iPad.storyboard */,
 				AB724E9619340A8000F29EC8 /* Images.xcassets */,
 				AB724E7F19340A8000F29EC8 /* Supporting Files */,
+				6CBCB7491942F8860031895F /* TweetCell.h */,
+				6CBCB74A1942F8860031895F /* TweetCell.m */,
 			);
 			path = EventChat;
 			sourceTree = "<group>";
@@ -307,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CC216091943ACE400BC2FE3 /* profile-placeholder.png in Resources */,
 				AB724E8F19340A8000F29EC8 /* Main_iPad.storyboard in Resources */,
 				AB724E9719340A8000F29EC8 /* Images.xcassets in Resources */,
 				AB724E8C19340A8000F29EC8 /* Main_iPhone.storyboard in Resources */,
@@ -342,6 +351,7 @@
 				E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
+				6CBCB74B1942F8860031895F /* TweetCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +490,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EventChat/EventChat-Prefix.pch";
 				INFOPLIST_FILE = "EventChat/EventChat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -494,7 +506,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EventChat/EventChat-Prefix.pch";
 				INFOPLIST_FILE = "EventChat/EventChat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
