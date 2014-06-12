@@ -22,6 +22,10 @@
 
 @synthesize msgLocation = _msgLocation;
 
+@synthesize likePost = _likePost;
+
+@synthesize morePost = _morePost;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

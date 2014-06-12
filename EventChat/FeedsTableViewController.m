@@ -59,7 +59,7 @@ static NSString *CellIdentifier = @"ContentCell";
     self.allFeeds = [[NSMutableArray alloc] init];
     [self loadInitData];
 
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
