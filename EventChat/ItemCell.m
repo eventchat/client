@@ -38,4 +38,17 @@
     // Configure the view for the selected state
 }
 
+
+// affects the size of the label when layout constraints are applied to ti. During layout, if the text extends beyond the width specified by this property, the additional text is flowed to one or more anew lines, thereby increasing the height of the label.
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self.contentView layoutIfNeeded];
+    self.msgImage.contentMode = UIViewContentModeScaleAspectFit;
+//    self.msgImage.frame = CGRectMake(self.msgImage.frame.origin.x, self.msgImage.frame.origin.y, 100, 100);
+    self.msgText.preferredMaxLayoutWidth = CGRectGetWidth(self.msgText.frame);
+    
+}
+
 @end

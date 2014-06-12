@@ -16,9 +16,20 @@
 
 @interface FeedsTableViewController ()
 
+@property (nonatomic, strong) ItemCell *itemCell;
+
 @end
 
 @implementation FeedsTableViewController
+
+static NSString *CellIdentifier = @"ContentCell";
+
+- (ItemCell *) itemCell {
+    if (!_itemCell) {
+        _itemCell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
+    return _itemCell;
+}
 
 
 // called when a new feed is created
@@ -47,6 +58,7 @@
 
     self.allFeeds = [[NSMutableArray alloc] init];
     [self loadInitData];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -82,22 +94,49 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //1. Dequeue Cell
-    static NSString *CellIdentifier = @"ContentCell";
+
     ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
-    Post *post = [self.allFeeds objectAtIndex: indexPath.row];
-    cell.userName.text = post.mTitle;
-    cell.msgText.text = post.mBody;
-    cell.msgTime.text = post.mCreatedAt;
-//    cell.msgLocation = nil;
-    cell.msgLocation.text = @"Convention Center";
-    cell.userImage.image = [UIImage imageNamed:@"placeholder"];
-    cell.msgImage.image = [UIImage imageNamed:@"testImage"];
+    [self configureCell:cell forRowAtIndexPath:indexPath];
     
     return cell;
 }
 
+- (void) configureCell:(ItemCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell isKindOfClass:[ItemCell class]]) {
+        // Configure the cell...
+        Post *post = [self.allFeeds objectAtIndex: indexPath.row];
+        cell.userName.text = post.mTitle;
+        cell.msgText.text = @"this is a test text message / tweet from jason tao to test if multiple lines still works in our prototype cell";
+//        cell.msgText.text = @"this is a short test";
+        cell.msgTime.text = post.mCreatedAt;
+        //    cell.msgLocation = nil;
+        cell.msgLocation.text = @"Convention Center";
+        cell.userImage.image = [UIImage imageNamed:@"placeholder"];
+        cell.msgImage.image = [UIImage imageNamed:@"testImage"];
+        cell.msgImage.contentMode = UIViewContentModeScaleAspectFit;
+        cell.msgImage.clipsToBounds = YES;
+        
+//        cell.msgImage = nil;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self configureCell:self.itemCell forRowAtIndexPath:indexPath];
+    
+    // ensure the width of the cell is set to width of the table view when calculating the row height
+    self.itemCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.bounds), CGRectGetHeight(self.itemCell.bounds));
+    [self.itemCell layoutIfNeeded];
+    
+    CGSize size = [self.itemCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height+1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
+}
 
 /*
 // Override to support conditional editing of the table view.
