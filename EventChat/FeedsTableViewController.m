@@ -113,12 +113,28 @@ static NSString *CellIdentifier = @"ContentCell";
         //    cell.msgLocation = nil;
         cell.msgLocation.text = @"Convention Center";
         cell.userImage.image = [UIImage imageNamed:@"placeholder"];
-        cell.msgImage.image = [UIImage imageNamed:@"testImage"];
+        cell.msgImage.image = [UIImage imageNamed:@"testImage" ];
+//        CGSize size = {50,50};
+//        cell.msgImage.image = [self imageWithImage:[UIImage imageNamed:@"testImage"] scaledToWidth:size];
+        
         cell.msgImage.contentMode = UIViewContentModeScaleAspectFit;
+
         cell.msgImage.clipsToBounds = YES;
         
 //        cell.msgImage = nil;
     }
+}
+
+//Given a UIImage and a CGSize, this method will return a resized UIImage.
+- (UIImage*)imageWithImage:(UIImage*)image
+              scaledToWidth:(CGSize)newSize;
+{
+    UIGraphicsBeginImageContext( newSize );
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
