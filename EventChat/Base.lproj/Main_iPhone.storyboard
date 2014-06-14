@@ -115,7 +115,6 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="zpG-1p-xO8" secondAttribute="bottom" constant="20" id="3aI-Xp-xlC"/>
-                                        <constraint firstItem="03g-Pn-Erb" firstAttribute="leading" secondItem="66b-QX-SCk" secondAttribute="trailing" constant="47" id="3cM-bU-nm8"/>
                                         <constraint firstAttribute="trailing" secondItem="03g-Pn-Erb" secondAttribute="trailing" constant="35" id="78E-yb-ylm"/>
                                         <constraint firstAttribute="trailing" secondItem="8db-Yz-ScW" secondAttribute="trailing" constant="20" id="7nI-iv-EU0"/>
                                         <constraint firstItem="0la-va-Zsi" firstAttribute="top" secondItem="oPx-e2-pFA" secondAttribute="bottom" constant="8" id="8t3-KZ-lsr"/>
@@ -146,10 +145,14 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="followUser" destination="03g-Pn-Erb" id="Jnm-ga-h1L"/>
+                                    <outlet property="forwardPost" destination="0la-va-Zsi" id="7FK-Rw-uzl"/>
+                                    <outlet property="likePost" destination="66b-QX-SCk" id="AU7-F2-OrU"/>
                                     <outlet property="msgImage" destination="v4g-do-iba" id="fbH-Xr-Ngr"/>
                                     <outlet property="msgLocation" destination="oPx-e2-pFA" id="3DM-Yw-tyT"/>
                                     <outlet property="msgText" destination="8db-Yz-ScW" id="Gtc-EG-Iau"/>
                                     <outlet property="msgTime" destination="NNY-9d-fGU" id="Dns-ww-FbL"/>
+                                    <outlet property="replyPost" destination="zpG-1p-xO8" id="v6m-6E-iuw"/>
                                     <outlet property="userImage" destination="LsK-RS-7W8" id="nnC-X6-XSW"/>
                                     <outlet property="userName" destination="wHq-Xs-uRB" id="BWP-mi-mgl"/>
                                 </connections>

@@ -125,12 +125,45 @@ static NSString *CellIdentifier = @"ContentCell";
 //        cell.msgImage = nil;
         
         // test like button
+        cell.likePost.tag = indexPath.row;
+        [cell.likePost addTarget:self action:@selector(likeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [cell.replyPost addTarget:self action:@selector(replyButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [cell.forwardPost addTarget:self action:@selector(forwardButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [cell.followUser addTarget:self action:@selector(followUserButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
         
     }
 }
 
-- (void)likeButtonClicked:(UITabBarItem*)sender {
+- (IBAction)likeButtonClicked:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    NSString *title = btn.titleLabel.text;
+    if ([title isEqualToString:@"Like"]) {
+        // like action takes here
+            NSLog(@"likePost clicked!");
+        [btn setTitle:@"Dislike" forState:UIControlStateNormal];
+    } else {
+        // unlike action takes here
+        NSLog(@"unlikePost clicked!");
+//        btn.titleLabel.text = @"Like";
+        [btn setTitle:@"Like" forState:UIControlStateNormal];
+    }
     
+}
+
+- (IBAction)replyButtonClicked:(id)sender {
+    NSLog(@"replyButtonClicked!");
+}
+
+- (IBAction)forwardButtonClicked:(id)sender {
+    NSLog(@"forwardButtonClicked!");
+}
+
+- (IBAction)followUserButtonClicked:(id)sender {
+    NSLog(@"followUserButtonClicked!");
 }
 
 //Given a UIImage and a CGSize, this method will return a resized UIImage.

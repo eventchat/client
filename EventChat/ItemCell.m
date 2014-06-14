@@ -22,9 +22,14 @@
 
 @synthesize msgLocation = _msgLocation;
 
+@synthesize replyPost = _replyPost;
+
+@synthesize forwardPost = _forwardPost;
+
 @synthesize likePost = _likePost;
 
-@synthesize morePost = _morePost;
+@synthesize followUser = _followUser;
+
 
 
 
