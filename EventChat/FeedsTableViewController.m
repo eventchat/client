@@ -61,7 +61,7 @@ static NSString *CellIdentifier = @"ContentCell";
     self.allFeeds = [[NSMutableArray alloc] init];
     [self loadInitData];
 
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -114,18 +114,59 @@ static NSString *CellIdentifier = @"ContentCell";
 //        cell.msgText.text = @"this is a short test";
         cell.msgTime.text = post.mCreatedAt;
         //    cell.msgLocation = nil;
-        cell.msgLocation.text = @"Convention Center";
+        cell.msgLocation.text = @"@Convention Center";
         cell.userImage.image = [UIImage imageNamed:@"placeholder"];
         cell.msgImage.image = [UIImage imageNamed:@"testImage" ];
 //        CGSize size = {50,50};
 //        cell.msgImage.image = [self imageWithImage:[UIImage imageNamed:@"testImage"] scaledToWidth:size];
-        
+        cell.msgImage.frame = CGRectMake(
+                                     cell.msgImage.frame.origin.x,
+                                     cell.msgImage.frame.origin.y, 50, 50);
         cell.msgImage.contentMode = UIViewContentModeScaleAspectFit;
-
         cell.msgImage.clipsToBounds = YES;
-        
+
 //        cell.msgImage = nil;
+        
+        // test like button
+        cell.likePost.tag = indexPath.row;
+        [cell.likePost addTarget:self action:@selector(likeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [cell.replyPost addTarget:self action:@selector(replyButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [cell.forwardPost addTarget:self action:@selector(forwardButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [cell.followUser addTarget:self action:@selector(followUserButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
     }
+}
+
+- (IBAction)likeButtonClicked:(id)sender {
+    UIButton *btn = (UIButton *)sender;
+    NSString *title = btn.titleLabel.text;
+    if ([title isEqualToString:@"Like"]) {
+        // like action takes here
+            NSLog(@"likePost clicked!");
+        [btn setTitle:@"Dislike" forState:UIControlStateNormal];
+    } else {
+        // unlike action takes here
+        NSLog(@"unlikePost clicked!");
+//        btn.titleLabel.text = @"Like";
+        [btn setTitle:@"Like" forState:UIControlStateNormal];
+    }
+    
+}
+
+- (IBAction)replyButtonClicked:(id)sender {
+    NSLog(@"replyButtonClicked!");
+}
+
+- (IBAction)forwardButtonClicked:(id)sender {
+    NSLog(@"forwardButtonClicked!");
+}
+
+- (IBAction)followUserButtonClicked:(id)sender {
+    NSLog(@"followUserButtonClicked!");
 }
 
 //Given a UIImage and a CGSize, this method will return a resized UIImage.

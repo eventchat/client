@@ -22,12 +22,24 @@
 
 @synthesize msgLocation = _msgLocation;
 
+@synthesize replyPost = _replyPost;
+
+@synthesize forwardPost = _forwardPost;
+
+@synthesize likePost = _likePost;
+
+@synthesize followUser = _followUser;
+
+
+
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
     }
+//    [self.likePost add]
     return self;
 }
 
@@ -50,5 +62,10 @@
     self.msgText.preferredMaxLayoutWidth = CGRectGetWidth(self.msgText.frame);
     
 }
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    NSLog(@"tab selected");
+}
+
 
 @end
