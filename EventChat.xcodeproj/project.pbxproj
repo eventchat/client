@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C1E0D70194A860000CC0DB2 /* PostLikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1E0D6F194A860000CC0DB2 /* PostLikeButton.m */; };
 		6CBCB74B1942F8860031895F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCB74A1942F8860031895F /* ItemCell.m */; };
 		6CC216091943ACE400BC2FE3 /* profile-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC216081943ACE400BC2FE3 /* profile-placeholder.png */; };
 		AB724E7919340A8000F29EC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7819340A8000F29EC8 /* Foundation.framework */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C1E0D6E194A860000CC0DB2 /* PostLikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostLikeButton.h; sourceTree = "<group>"; };
+		6C1E0D6F194A860000CC0DB2 /* PostLikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostLikeButton.m; sourceTree = "<group>"; };
 		6CBCB7491942F8860031895F /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		6CBCB74A1942F8860031895F /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		6CC216081943ACE400BC2FE3 /* profile-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-placeholder.png"; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				AB724E7F19340A8000F29EC8 /* Supporting Files */,
 				6CBCB7491942F8860031895F /* ItemCell.h */,
 				6CBCB74A1942F8860031895F /* ItemCell.m */,
+				6C1E0D6E194A860000CC0DB2 /* PostLikeButton.h */,
+				6C1E0D6F194A860000CC0DB2 /* PostLikeButton.m */,
 			);
 			path = EventChat;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
 				6CBCB74B1942F8860031895F /* ItemCell.m in Sources */,
+				6C1E0D70194A860000CC0DB2 /* PostLikeButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

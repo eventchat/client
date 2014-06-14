@@ -111,18 +111,26 @@ static NSString *CellIdentifier = @"ContentCell";
 //        cell.msgText.text = @"this is a short test";
         cell.msgTime.text = post.mCreatedAt;
         //    cell.msgLocation = nil;
-        cell.msgLocation.text = @"Convention Center";
+        cell.msgLocation.text = @"@Convention Center";
         cell.userImage.image = [UIImage imageNamed:@"placeholder"];
         cell.msgImage.image = [UIImage imageNamed:@"testImage" ];
 //        CGSize size = {50,50};
 //        cell.msgImage.image = [self imageWithImage:[UIImage imageNamed:@"testImage"] scaledToWidth:size];
-        
+        cell.msgImage.frame = CGRectMake(
+                                     cell.msgImage.frame.origin.x,
+                                     cell.msgImage.frame.origin.y, 50, 50);
         cell.msgImage.contentMode = UIViewContentModeScaleAspectFit;
-
         cell.msgImage.clipsToBounds = YES;
-        
+
 //        cell.msgImage = nil;
+        
+        // test like button
+        
     }
+}
+
+- (void)likeButtonClicked:(UITabBarItem*)sender {
+    
 }
 
 //Given a UIImage and a CGSize, this method will return a resized UIImage.

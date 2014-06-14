@@ -26,12 +26,15 @@
 
 @synthesize morePost = _morePost;
 
+
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
     }
+//    [self.likePost add]
     return self;
 }
 
@@ -54,5 +57,10 @@
     self.msgText.preferredMaxLayoutWidth = CGRectGetWidth(self.msgText.frame);
     
 }
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    NSLog(@"tab selected");
+}
+
 
 @end

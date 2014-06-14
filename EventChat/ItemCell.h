@@ -22,8 +22,5 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *msgLocation;
 
-@property (strong, nonatomic) IBOutlet UITabBarItem *likePost;
-
-@property (strong, nonatomic) IBOutlet UITabBarItem *morePost;
 
 @end
