@@ -13,6 +13,7 @@
 #import "User.h"
 #import "ItemCell.h"
 #import "CreateViewController.h"
+#import "UIKit/UIKit.h"
 
 @interface FeedsTableViewController ()
 
@@ -38,6 +39,7 @@ static NSString *CellIdentifier = @"ContentCell";
     CreateViewController *source = [segue sourceViewController];
     Post *item = source.toCreatePost;
     if (item != nil) {
+//        NSLog(@"%@ created!", item.mBody);
         [self.allFeeds addObject:item];
         [self.tableView reloadData];
     }
@@ -107,7 +109,8 @@ static NSString *CellIdentifier = @"ContentCell";
         // Configure the cell...
         Post *post = [self.allFeeds objectAtIndex: indexPath.row];
         cell.userName.text = post.mTitle;
-        cell.msgText.text = @"this is a test text message / tweet from jason tao to test if multiple lines still works in our prototype cell";
+        cell.msgText.text = post.mBody;
+//        cell.msgText.text = @"this is a test text message / tweet from jason tao to test if multiple lines still works in our prototype cell";
 //        cell.msgText.text = @"this is a short test";
         cell.msgTime.text = post.mCreatedAt;
         //    cell.msgLocation = nil;
@@ -230,6 +233,10 @@ static NSString *CellIdentifier = @"ContentCell";
     
 //    NSLog(@"%@", name);
 //    NSLog(@"%@", body);
+}
+
+- (IBAction)CommentClicked:(id)sender{
+#warning Potentially incomplete method implementation.
 }
 
 @end
