@@ -97,8 +97,17 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1J-Kr-HME">
+                                            <rect key="frame" x="271" y="259" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <state key="normal" title="More">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="i1J-Kr-HME" firstAttribute="top" secondItem="oPx-e2-pFA" secondAttribute="bottom" constant="5" id="2GN-lp-GYP"/>
                                         <constraint firstAttribute="bottom" secondItem="zpG-1p-xO8" secondAttribute="bottom" constant="20" id="3aI-Xp-xlC"/>
                                         <constraint firstAttribute="trailing" secondItem="8db-Yz-ScW" secondAttribute="trailing" constant="20" id="7nI-iv-EU0"/>
                                         <constraint firstAttribute="trailing" secondItem="oPx-e2-pFA" secondAttribute="trailing" constant="20" id="BE7-yT-BmO"/>
@@ -121,6 +130,8 @@
                                         <constraint firstItem="66b-QX-SCk" firstAttribute="top" secondItem="oPx-e2-pFA" secondAttribute="bottom" constant="8" id="oWC-uE-stQ"/>
                                         <constraint firstItem="v4g-do-iba" firstAttribute="leading" secondItem="wEO-i1-1O7" secondAttribute="leading" constant="92" id="rd7-co-mnS"/>
                                         <constraint firstItem="LsK-RS-7W8" firstAttribute="top" secondItem="wEO-i1-1O7" secondAttribute="top" constant="20" id="rzP-H3-irg"/>
+                                        <constraint firstAttribute="bottom" secondItem="i1J-Kr-HME" secondAttribute="bottom" constant="17" id="wae-u7-3sx"/>
+                                        <constraint firstAttribute="trailing" secondItem="i1J-Kr-HME" secondAttribute="trailing" constant="19" id="xgS-as-0rk"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
