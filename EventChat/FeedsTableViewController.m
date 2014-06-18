@@ -134,6 +134,8 @@ static NSString *CellIdentifier = @"ContentCell";
         
         [cell.replyPost addTarget:self action:@selector(replyButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
+        [cell.morePost addTarget:self action:@selector(moreButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
 }
 
@@ -157,12 +159,8 @@ static NSString *CellIdentifier = @"ContentCell";
     NSLog(@"replyButtonClicked!");
 }
 
-- (IBAction)forwardButtonClicked:(id)sender {
-    NSLog(@"forwardButtonClicked!");
-}
-
-- (IBAction)followUserButtonClicked:(id)sender {
-    NSLog(@"followUserButtonClicked!");
+- (IBAction)moreButtonClicked:(id)sender {
+    NSLog(@"moreButtonClicked!");
 }
 
 //Given a UIImage and a CGSize, this method will return a resized UIImage.

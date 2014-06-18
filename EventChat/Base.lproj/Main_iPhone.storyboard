@@ -136,6 +136,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="likePost" destination="66b-QX-SCk" id="AU7-F2-OrU"/>
+                                    <outlet property="morePost" destination="i1J-Kr-HME" id="tzW-Vi-Afo"/>
                                     <outlet property="msgImage" destination="v4g-do-iba" id="fbH-Xr-Ngr"/>
                                     <outlet property="msgLocation" destination="oPx-e2-pFA" id="3DM-Yw-tyT"/>
                                     <outlet property="msgText" destination="8db-Yz-ScW" id="Gtc-EG-Iau"/>

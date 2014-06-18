@@ -30,4 +30,6 @@
 
 //@property (strong, nonatomic) IBOutlet UIButton *followUser;
 
+@property (strong, nonatomic) IBOutlet UIButton *morePost;
+
 @end

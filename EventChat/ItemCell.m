@@ -30,6 +30,8 @@
 
 //@synthesize followUser = _followUser;
 
+@synthesize morePost = _morePost;
+
 
 
 
