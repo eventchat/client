@@ -24,11 +24,11 @@
 
 @synthesize replyPost = _replyPost;
 
-@synthesize forwardPost = _forwardPost;
+//@synthesize forwardPost = _forwardPost;
 
 @synthesize likePost = _likePost;
 
-@synthesize followUser = _followUser;
+//@synthesize followUser = _followUser;
 
 
 
@@ -38,8 +38,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.msgImage.contentMode = UIViewContentModeScaleAspectFit;
     }
 //    [self.likePost add]
+
     return self;
 }
 
@@ -55,11 +57,13 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+//    
     [self.contentView layoutIfNeeded];
-    self.msgImage.contentMode = UIViewContentModeScaleAspectFit;
+//    self.msgImage.contentMode = UIViewContentModeScaleAspectFit;
 //    self.msgImage.frame = CGRectMake(self.msgImage.frame.origin.x, self.msgImage.frame.origin.y, 100, 100);
-    self.msgText.preferredMaxLayoutWidth = CGRectGetWidth(self.msgText.frame);
+    //self.msgText.preferredMaxLayoutWidth = CGRectGetWidth(self.msgText.frame);
+    //self.msgImage.frame = CGRectMake(0.0, 0.0, 100, 100);
+    
     
 }
 

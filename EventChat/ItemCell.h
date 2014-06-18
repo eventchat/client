@@ -24,10 +24,10 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *replyPost;
 
-@property (strong, nonatomic) IBOutlet UIButton *forwardPost;
+//@property (strong, nonatomic) IBOutlet UIButton *forwardPost;
 
 @property (strong, nonatomic) IBOutlet UIButton *likePost;
 
-@property (strong, nonatomic) IBOutlet UIButton *followUser;
+//@property (strong, nonatomic) IBOutlet UIButton *followUser;
 
 @end

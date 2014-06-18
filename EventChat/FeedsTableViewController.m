@@ -117,13 +117,14 @@ static NSString *CellIdentifier = @"ContentCell";
         cell.msgLocation.text = @"@Convention Center";
         cell.userImage.image = [UIImage imageNamed:@"placeholder"];
         cell.msgImage.image = [UIImage imageNamed:@"testImage" ];
+        
 //        CGSize size = {50,50};
 //        cell.msgImage.image = [self imageWithImage:[UIImage imageNamed:@"testImage"] scaledToWidth:size];
-        cell.msgImage.frame = CGRectMake(
-                                     cell.msgImage.frame.origin.x,
-                                     cell.msgImage.frame.origin.y, 50, 50);
-        cell.msgImage.contentMode = UIViewContentModeScaleAspectFit;
-        cell.msgImage.clipsToBounds = YES;
+//        cell.msgImage.frame = CGRectMake(
+//                                     cell.msgImage.frame.origin.x,
+//                                     cell.msgImage.frame.origin.y, 50, 50);
+//        cell.msgImage.contentMode = UIViewContentModeScaleAspectFit;
+//        cell.msgImage.clipsToBounds = YES;
 
 //        cell.msgImage = nil;
         
@@ -132,11 +133,6 @@ static NSString *CellIdentifier = @"ContentCell";
         [cell.likePost addTarget:self action:@selector(likeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         [cell.replyPost addTarget:self action:@selector(replyButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [cell.forwardPost addTarget:self action:@selector(forwardButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [cell.followUser addTarget:self action:@selector(followUserButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
         
     }
 }
@@ -190,6 +186,7 @@ static NSString *CellIdentifier = @"ContentCell";
     [self.itemCell layoutIfNeeded];
     
     CGSize size = [self.itemCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    NSLog(@"height: %f, width: %f", size.height, size.width);
     return size.height+1;
 }
 
