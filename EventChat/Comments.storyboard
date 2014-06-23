@@ -7,7 +7,7 @@
         <!--Comments Table View Controller - Comment-->
         <scene sceneID="q0B-gC-Jw7">
             <objects>
-                <tableViewController title="Comment" id="2dl-C7-96D" customClass="CommentsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myComments" title="Comment" id="2dl-C7-96D" customClass="CommentsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tpx-pO-0BJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Comments" id="irt-B5-28l">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="P2Q-Oi-uyI"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="x38-bb-eTN">
                             <connections>
                                 <segue destination="k5u-j0-J4j" kind="modal" id="oU9-kM-aBa"/>
@@ -77,18 +76,26 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Comment" id="yrj-MZ-8BS">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eq7-7X-PbA"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="6W6-xT-cd5"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eq7-7X-PbA">
+                            <connections>
+                                <segue destination="gMX-do-1xg" kind="unwind" unwindAction="unwindToPost:" id="bAV-Ck-kAj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="6W6-xT-cd5">
+                            <connections>
+                                <segue destination="gMX-do-1xg" kind="unwind" unwindAction="unwindToPost:" id="8cU-fI-NpP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7xk-Bz-BWA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gMX-do-1xg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1788" y="2237"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xiI-O1-O8v">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p2e-7L-mgC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PSu-zo-2YY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UZS-sk-PDG">
@@ -100,6 +107,7 @@
                         <segue destination="2dl-C7-96D" kind="relationship" relationship="rootViewController" id="GdB-iw-ckg"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p2e-7L-mgC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="2218"/>
         </scene>

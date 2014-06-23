@@ -14,6 +14,19 @@
 
 @implementation CreateCommentViewController
 
+// called when a new feed is created
+- (IBAction)unwindToPost:(UIStoryboardSegue *)segue;
+{
+//    CreateCommentViewController *source = [segue sourceViewController];
+//    Post *item = source.toCreatePost;
+//    if (item != nil) {
+//        //        NSLog(@"%@ created!", item.mBody);
+//        [self.allFeeds addObject:item];
+//        [self.tableView reloadData];
+//    }
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
