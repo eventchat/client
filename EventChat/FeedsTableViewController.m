@@ -24,6 +24,7 @@
 @implementation FeedsTableViewController
 
 static NSString *CellIdentifier = @"ContentCell";
+static CGFloat widthSingleImage = 227.f;
 
 - (ItemCell *) itemCell {
     if (!_itemCell) {
@@ -115,18 +116,19 @@ static NSString *CellIdentifier = @"ContentCell";
         cell.msgTime.text = post.mCreatedAt;
         //    cell.msgLocation = nil;
         cell.msgLocation.text = @"@Convention Center";
-        cell.userImage.image = [UIImage imageNamed:@"placeholder"];
-        cell.msgImage.image = [UIImage imageNamed:@"testImage" ];
+        UIImage *tmpImg = [UIImage imageNamed:@"testImage"];
         
-//        CGSize size = {50,50};
-//        cell.msgImage.image = [self imageWithImage:[UIImage imageNamed:@"testImage"] scaledToWidth:size];
-//        cell.msgImage.frame = CGRectMake(
-//                                     cell.msgImage.frame.origin.x,
-//                                     cell.msgImage.frame.origin.y, 50, 50);
-//        cell.msgImage.contentMode = UIViewContentModeScaleAspectFit;
-//        cell.msgImage.clipsToBounds = YES;
-
-//        cell.msgImage = nil;
+        
+        cell.userImage.image = [UIImage imageNamed:@"placeholder"];
+        
+        // scaling for single image
+        CGFloat scaleRatio = tmpImg.size.width / widthSingleImage;
+        CGFloat height = tmpImg.size.height / scaleRatio;
+        CGFloat width = widthSingleImage;
+        CGSize size = {width, height};
+        cell.msgImage.image = [self imageWithImage:tmpImg scaledToWidth:size];
+        cell.msgImage.contentMode = UIViewContentModeScaleAspectFit;
+        
         
         // test like button
         cell.likePost.tag = indexPath.row;
