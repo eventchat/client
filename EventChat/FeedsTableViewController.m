@@ -159,6 +159,11 @@ static CGFloat widthSingleImage = 227.f;
 
 - (IBAction)replyButtonClicked:(id)sender {
     NSLog(@"replyButtonClicked!");
+    UIStoryboard *commentStoryboard = [UIStoryboard storyboardWithName:@"Comments" bundle:nil];
+    UIViewController *theInitialViewController = [commentStoryboard instantiateViewControllerWithIdentifier:@"myComments"];
+    // because the navigation controller for comments is needed
+    [(UINavigationController *)self.parentViewController pushViewController: theInitialViewController animated:YES];
+//    [self presentModalViewController:theInitialViewController animated:YES];
 }
 
 - (IBAction)moreButtonClicked:(id)sender {

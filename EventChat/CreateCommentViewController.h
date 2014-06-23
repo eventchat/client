@@ -10,4 +10,6 @@
 
 @interface CreateCommentViewController : UIViewController
 
+- (IBAction)unwindToPost:(UIStoryboardSegue *)segue;
+
 @end
