@@ -157,6 +157,10 @@ static NSString *CellIdentifier = @"ContentCell";
 
 - (IBAction)replyButtonClicked:(id)sender {
     NSLog(@"replyButtonClicked!");
+    UIStoryboard *commentStoryboard = [UIStoryboard storyboardWithName:@"Comments" bundle:nil];
+    UIViewController *theInitialViewController = [commentStoryboard instantiateInitialViewController];
+    // because the navigation controller for comments is needed
+    [self presentModalViewController:theInitialViewController animated:YES];
 }
 
 - (IBAction)moreButtonClicked:(id)sender {
