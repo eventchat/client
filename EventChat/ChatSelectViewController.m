@@ -1,0 +1,98 @@
+//
+//  ChatSelectViewController.m
+//  EventChat
+//
+//  Created by Jianchen Tao on 7/8/14.
+//  Copyright (c) 2014 EventChat. All rights reserved.
+//
+
+#import "ChatSelectViewController.h"
+#import "ChatterCell.h"
+#import "ChatMessageViewController.h"
+
+@interface ChatSelectViewController ()
+@property NSMutableArray *chatters;
+@end
+
+@implementation ChatSelectViewController
+
+@synthesize chatterTable = _chatterTable;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    
+    self.chatters = [[NSMutableArray alloc] initWithObjects:@"Michael", @"Jason", @"Rose", nil];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.chatters count];
+}
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    // The header for the section is the region name -- get this from the region at the section index.
+//    return [region name];
+//}
+
+- (ChatterCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"try to load the chatter cell");
+    static NSString *MyIdentifier = @"ChatterCell";
+    
+    ChatterCell *cell;
+//    if (cell == nil) {
+//        cell = [[ChatterCell alloc] init]; // or your custom initialization
+//        
+//    }
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+//        NSLog(@"description = %@",[cell description]);
+    // configure cell
+    [self configureCell:cell cellForRowAtIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void) configureCell: (ChatterCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell isKindOfClass:[ChatterCell class]]) {
+//        NSLog(@"check ChatterCell");
+        cell.chatterName.text = [self.chatters objectAtIndex:[indexPath row]];
+    }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showChatMessage"]) {
+        NSIndexPath *indexPath = [self.chatterTable indexPathForSelectedRow];
+        NSLog(@"%ld", (long)indexPath.row);
+        ChatMessageViewController *destViewController = segue.destinationViewController;
+
+        // update the title of destination view controller to be chatter's name
+        destViewController.navigationItem.title = [self.chatters objectAtIndex:indexPath.row];
+        
+        // hide the bottom bar
+        destViewController.hidesBottomBarWhenPushed = YES;
+//        NSLog(@"segue completed!");
+    }
+}
+
+
+@end

@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C4E635A196C81260009505F /* ChatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6359196C81260009505F /* ChatterCell.m */; };
+		6C4E635E196CA8970009505F /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E635D196CA8970009505F /* ChatMessageCell.m */; };
+		6C4E6361196CACC90009505F /* ChatSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6360196CACC90009505F /* ChatSelectViewController.m */; };
+		6C4E6364196D1A590009505F /* ChatMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6363196D1A590009505F /* ChatMessageViewController.m */; };
 		6CBCB74B1942F8860031895F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCB74A1942F8860031895F /* ItemCell.m */; };
 		6CC216091943ACE400BC2FE3 /* profile-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC216081943ACE400BC2FE3 /* profile-placeholder.png */; };
+		6CCF3419196E0987001DEA77 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCF3418196E0987001DEA77 /* ChatMessage.m */; };
 		AB724E7919340A8000F29EC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7819340A8000F29EC8 /* Foundation.framework */; };
 		AB724E7B19340A8000F29EC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7A19340A8000F29EC8 /* CoreGraphics.framework */; };
 		AB724E7D19340A8000F29EC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7C19340A8000F29EC8 /* UIKit.framework */; };
@@ -50,9 +55,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C4E6358196C81260009505F /* ChatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatterCell.h; sourceTree = "<group>"; };
+		6C4E6359196C81260009505F /* ChatterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatterCell.m; sourceTree = "<group>"; };
+		6C4E635C196CA8970009505F /* ChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageCell.h; sourceTree = "<group>"; };
+		6C4E635D196CA8970009505F /* ChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageCell.m; sourceTree = "<group>"; };
+		6C4E635F196CACC90009505F /* ChatSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectViewController.h; sourceTree = "<group>"; };
+		6C4E6360196CACC90009505F /* ChatSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectViewController.m; sourceTree = "<group>"; };
+		6C4E6362196D1A590009505F /* ChatMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageViewController.h; sourceTree = "<group>"; };
+		6C4E6363196D1A590009505F /* ChatMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageViewController.m; sourceTree = "<group>"; };
 		6CBCB7491942F8860031895F /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		6CBCB74A1942F8860031895F /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		6CC216081943ACE400BC2FE3 /* profile-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-placeholder.png"; sourceTree = "<group>"; };
+		6CCF3417196E0987001DEA77 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
+		6CCF3418196E0987001DEA77 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		AB724E7519340A8000F29EC8 /* EventChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB724E7819340A8000F29EC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB724E7A19340A8000F29EC8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -125,6 +140,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C4E635B196CA7540009505F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CBCB7491942F8860031895F /* ItemCell.h */,
+				6CBCB74A1942F8860031895F /* ItemCell.m */,
+				6C4E6358196C81260009505F /* ChatterCell.h */,
+				6C4E6359196C81260009505F /* ChatterCell.m */,
+				6C4E635C196CA8970009505F /* ChatMessageCell.h */,
+				6C4E635D196CA8970009505F /* ChatMessageCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		AB724E6C19340A8000F29EC8 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +187,7 @@
 		AB724E7E19340A8000F29EC8 /* EventChat */ = {
 			isa = PBXGroup;
 			children = (
+				6C4E635B196CA7540009505F /* View */,
 				E88DF218193FBD8A004FECFC /* ViewController */,
 				ABDC79431934364800607CE3 /* Model */,
 				ABDC793C193412DD00607CE3 /* Util */,
@@ -169,8 +198,6 @@
 				AB724E8D19340A8000F29EC8 /* Main_iPad.storyboard */,
 				AB724E9619340A8000F29EC8 /* Images.xcassets */,
 				AB724E7F19340A8000F29EC8 /* Supporting Files */,
-				6CBCB7491942F8860031895F /* ItemCell.h */,
-				6CBCB74A1942F8860031895F /* ItemCell.m */,
 			);
 			path = EventChat;
 			sourceTree = "<group>";
@@ -233,6 +260,8 @@
 				ABDC79531934384900607CE3 /* Notification.h */,
 				ABDC79541934384900607CE3 /* Notification.m */,
 				ABCF7DD91938079F00C49CA0 /* ModelProtocol.h */,
+				6CCF3417196E0987001DEA77 /* ChatMessage.h */,
+				6CCF3418196E0987001DEA77 /* ChatMessage.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -240,6 +269,8 @@
 		E88DF218193FBD8A004FECFC /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6C4E635F196CACC90009505F /* ChatSelectViewController.h */,
+				6C4E6360196CACC90009505F /* ChatSelectViewController.m */,
 				E8377FA9194BBF2B00E33C6D /* CommentsTableViewController.h */,
 				E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */,
 				E88DF219193FD39E004FECFC /* FeedsTableViewController.h */,
@@ -248,6 +279,8 @@
 				AB724E9419340A8000F29EC8 /* CreateViewController.m */,
 				E8377FAC194BBF4E00E33C6D /* CreateCommentViewController.h */,
 				E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */,
+				6C4E6362196D1A590009505F /* ChatMessageViewController.h */,
+				6C4E6363196D1A590009505F /* ChatMessageViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -353,20 +386,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABDC79551934384900607CE3 /* Notification.m in Sources */,
+				6C4E635E196CA8970009505F /* ChatMessageCell.m in Sources */,
 				ABCF7DD81937DEB400C49CA0 /* ApiUtil.m in Sources */,
 				ABDC7946193436E600607CE3 /* User.m in Sources */,
 				ABDC794F1934382100607CE3 /* Event.m in Sources */,
 				AB724E9519340A8000F29EC8 /* CreateViewController.m in Sources */,
 				AB724E8919340A8000F29EC8 /* AppDelegate.m in Sources */,
 				ABDC793F1934131100607CE3 /* JsonParser.m in Sources */,
+				6C4E6361196CACC90009505F /* ChatSelectViewController.m in Sources */,
 				AB724E8519340A8000F29EC8 /* main.m in Sources */,
 				E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */,
+				6C4E635A196C81260009505F /* ChatterCell.m in Sources */,
 				ABDC794C1934381500607CE3 /* Comment.m in Sources */,
 				ABDC79521934382F00607CE3 /* Message.m in Sources */,
 				E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
 				E8377FAE194BBF4E00E33C6D /* CreateCommentViewController.m in Sources */,
+				6CCF3419196E0987001DEA77 /* ChatMessage.m in Sources */,
+				6C4E6364196D1A590009505F /* ChatMessageViewController.m in Sources */,
 				6CBCB74B1942F8860031895F /* ItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
