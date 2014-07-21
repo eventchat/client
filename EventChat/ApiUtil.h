@@ -14,7 +14,13 @@
 #import "Message.h"
 #import "Notification.h"
 
-@interface ApiUtil : NSObject
+// Referencing variables
+extern NSString *const ECAPIBaseURL;
+extern NSString *const ECAPIStories;
+extern NSString *const ECAPIComments;
+extern NSString *const ECAPILogin;
+
+@interface NSURLRequest (ApiUtil)
 
 + (NSMutableURLRequest *) buildGetUserRequest:(NSString *) id;
 
@@ -47,5 +53,16 @@
 + (NSMutableURLRequest *) buildReadNotificationByIdRequest:(NSString *) id;
 
 + (NSMutableURLRequest *) buildReadNotificationRequest;
+
+
+
+// functions we'll need
++ (instancetype)requestWithPattern:(NSString *)string object:(id)object;
++ (instancetype)postRequest:(NSString *)string parameters:(NSDictionary *)parameters;
++ (instancetype)deleteRequest:(NSString *)string parameters:(NSDictionary *)parameters;
++ (instancetype)requestWithMethod:(NSString *)method
+                              url:(NSString *)url
+                       parameters:(NSDictionary *)parameters;
+
 
 @end
