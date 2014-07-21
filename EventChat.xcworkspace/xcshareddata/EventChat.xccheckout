@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D4A63E53-74FF-4C87-A539-001393F9CBDF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>EventChat</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F5C3AD08-5ACC-4952-86DE-4D3C488230C7</key>
+		<string>ssh://github.com/eventchat/client.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>EventChat.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F5C3AD08-5ACC-4952-86DE-4D3C488230C7</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/eventchat/client.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F5C3AD08-5ACC-4952-86DE-4D3C488230C7</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F5C3AD08-5ACC-4952-86DE-4D3C488230C7</string>
+			<key>IDESourceControlWCCName</key>
+			<string>client</string>
+		</dict>
+	</array>
+</dict>
+</plist>

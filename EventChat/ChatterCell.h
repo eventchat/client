@@ -8,8 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class ChatterCell;
+
+@protocol ChatterCellDelegate <NSObject>
+
+-(void)cellDidSelectDelete:(ChatterCell *)cell;
+-(void)cellDidSelectMore:(ChatterCell *)cell;
+
+@end
+
+extern NSString *const TLSwipeForOptionsCellEnclosingTableViewDidBeginScrollingNotification;
+
 @interface ChatterCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *chatterName;
+
+@property (nonatomic, weak) id<ChatterCellDelegate> delegate;
 
 @end

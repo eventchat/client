@@ -30,7 +30,7 @@ bool keyboardIsShown;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSLog(@"initialize for tableview");
+//        NSLog(@"initialize for tableview");
     }
     return self;
 }
@@ -199,7 +199,7 @@ bool keyboardIsShown;
 //    if (!keyboardIsShown) {
 //        return;
 //    }
-    NSLog(@"%@", notif.description);
+//    NSLog(@"%@", notif.description);
     keyboardIsShown = NO;
     CGRect beginRect = [[notif.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     CGRect endRect = [[notif.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -218,7 +218,7 @@ bool keyboardIsShown;
 #pragma mark - send message / image button methods
 
 - (void) sendPressed:(id)sender {
-    NSLog(@"send button pressed!"); //debug purpose
+//    NSLog(@"send button pressed!"); //debug purpose
     
     [self dismissKeyboard]; //dismiss keyboard
     

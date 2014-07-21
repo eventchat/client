@@ -7,8 +7,9 @@
 //
 
 #import "ChatSelectViewController.h"
-#import "ChatterCell.h"
+//#import "ChatterCell.h"
 #import "ChatMessageViewController.h"
+#import "ConversationCell.h"
 
 @interface ChatSelectViewController ()
 @property NSMutableArray *chatters;
@@ -54,29 +55,30 @@
 //    return [region name];
 //}
 
-- (ChatterCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (ConversationCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 //    NSLog(@"try to load the chatter cell");
-    static NSString *MyIdentifier = @"ChatterCell";
+    static NSString *MyIdentifier = @"ConversationCell";
     
-    ChatterCell *cell;
+    ConversationCell *cell;
+    
+    NSLog(@"%@", MyIdentifier);
 //    if (cell == nil) {
-//        cell = [[ChatterCell alloc] init]; // or your custom initialization
+//        cell = [[ConversationCell alloc] init]; // or your custom initialization
 //        
 //    }
     
     cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 //        NSLog(@"description = %@",[cell description]);
     // configure cell
-    [self configureCell:cell cellForRowAtIndexPath:indexPath];
+//    [self configureCell:cell cellForRowAtIndexPath:indexPath];
     
     return cell;
 }
 
-- (void) configureCell: (ChatterCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([cell isKindOfClass:[ChatterCell class]]) {
-//        NSLog(@"check ChatterCell");
-        cell.chatterName.text = [self.chatters objectAtIndex:[indexPath row]];
-    }
+- (void) configureCell: (ConversationCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if ([cell isKindOfClass:[ConversationCell class]]) {
+//        NSLog(@"check ConversationCell");
+//    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
