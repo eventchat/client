@@ -10,4 +10,8 @@
 
 @interface CommentsTableViewController : UITableViewController
 
+@property NSMutableArray *allComments;
+
+- (IBAction)unwindToComments:(UIStoryboardSegue *)segue;
+
 @end

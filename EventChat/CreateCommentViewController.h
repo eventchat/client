@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Comment.h"
 
 @interface CreateCommentViewController : UIViewController
 
-- (IBAction)unwindToPost:(UIStoryboardSegue *)segue;
+@property Comment *toCreateComment;
 
 @end

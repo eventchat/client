@@ -14,6 +14,7 @@
 #import "ItemCell.h"
 #import "CreateViewController.h"
 #import "UIKit/UIKit.h"
+#import "ApiUtil.h"
 
 @interface FeedsTableViewController ()
 
@@ -40,7 +41,7 @@ static CGFloat widthSingleImage = 227.f;
     CreateViewController *source = [segue sourceViewController];
     Post *item = source.toCreatePost;
     if (item != nil) {
-//        NSLog(@"%@ created!", item.mBody);
+        //        NSLog(@"%@ created!", item.mBody);
         [self.allFeeds addObject:item];
         [self.tableView reloadData];
     }
@@ -58,11 +59,11 @@ static CGFloat widthSingleImage = 227.f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.allFeeds = [[NSMutableArray alloc] init];
     [self loadInitData];
-
-
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -80,16 +81,16 @@ static CGFloat widthSingleImage = 227.f;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
+    
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
     // Return the number of rows in the section.
-    NSLog(@"%d", [self.allFeeds count]);
+    NSLog(@"%lu", [self.allFeeds count]);
     return [self.allFeeds count];
 }
 
@@ -97,7 +98,7 @@ static CGFloat widthSingleImage = 227.f;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //1. Dequeue Cell
-
+    
     ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     [self configureCell:cell forRowAtIndexPath:indexPath];
@@ -111,8 +112,8 @@ static CGFloat widthSingleImage = 227.f;
         Post *post = [self.allFeeds objectAtIndex: indexPath.row];
         cell.userName.text = post.mTitle;
         cell.msgText.text = post.mBody;
-//        cell.msgText.text = @"this is a test text message / tweet from jason tao to test if multiple lines still works in our prototype cell";
-//        cell.msgText.text = @"this is a short test";
+        //        cell.msgText.text = @"this is a test text message / tweet from jason tao to test if multiple lines still works in our prototype cell";
+        //        cell.msgText.text = @"this is a short test";
         cell.msgTime.text = post.mCreatedAt;
         //    cell.msgLocation = nil;
         cell.msgLocation.text = @"@Convention Center";
@@ -146,12 +147,12 @@ static CGFloat widthSingleImage = 227.f;
     NSString *title = btn.titleLabel.text;
     if ([title isEqualToString:@"Like"]) {
         // like action takes here
-            NSLog(@"likePost clicked!");
+        NSLog(@"likePost clicked!");
         [btn setTitle:@"Dislike" forState:UIControlStateNormal];
     } else {
         // unlike action takes here
         NSLog(@"unlikePost clicked!");
-//        btn.titleLabel.text = @"Like";
+        //        btn.titleLabel.text = @"Like";
         [btn setTitle:@"Like" forState:UIControlStateNormal];
     }
     
@@ -163,7 +164,7 @@ static CGFloat widthSingleImage = 227.f;
     UIViewController *theInitialViewController = [commentStoryboard instantiateViewControllerWithIdentifier:@"myComments"];
     // because the navigation controller for comments is needed
     [(UINavigationController *)self.parentViewController pushViewController: theInitialViewController animated:YES];
-//    [self presentModalViewController:theInitialViewController animated:YES];
+    //    [self presentModalViewController:theInitialViewController animated:YES];
 }
 
 - (IBAction)moreButtonClicked:(id)sender {
@@ -172,7 +173,7 @@ static CGFloat widthSingleImage = 227.f;
 
 //Given a UIImage and a CGSize, this method will return a resized UIImage.
 - (UIImage*)imageWithImage:(UIImage*)image
-              scaledToWidth:(CGSize)newSize;
+             scaledToWidth:(CGSize)newSize;
 {
     UIGraphicsBeginImageContext( newSize );
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
@@ -201,61 +202,61 @@ static CGFloat widthSingleImage = 227.f;
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 - (void) loadInitData {
     
-//    JsonParser *parser = [[JsonParser alloc] init];
-//    NSDictionary *dict = [parser parse:[NSURL URLWithString:@"http://eventchat.herokuapp.com/users/538797bb940bf30200bdb649"]];
-//    NSString *name = [dict valueForKey:@"name"];
-//    NSString *body = dict[@"body"];
+    //    JsonParser *parser = [[JsonParser alloc] init];
+    //    NSDictionary *dict = [parser parse:[NSURL URLWithString:@"http://eventchat.herokuapp.com/users/538797bb940bf30200bdb649"]];
+    //    NSString *name = [dict valueForKey:@"name"];
+    //    NSString *body = dict[@"body"];
     
     
     // mock up data
@@ -274,12 +275,9 @@ static CGFloat widthSingleImage = 227.f;
     // add the test post
     [self.allFeeds addObject:testPost];
     
-//    NSLog(@"%@", name);
-//    NSLog(@"%@", body);
+    //    NSLog(@"%@", name);
+    //    NSLog(@"%@", body);
 }
 
-- (IBAction)CommentClicked:(id)sender{
-#warning Potentially incomplete method implementation.
-}
 
 @end
