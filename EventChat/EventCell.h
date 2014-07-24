@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface EventCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *eventTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *eventTimeLabel;
 
 @end

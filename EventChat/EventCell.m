@@ -9,6 +9,9 @@
 #import "EventCell.h"
 
 @implementation EventCell
+@synthesize eventTitleLabel = _eventTitleLabel;
+@synthesize eventTimeLabel = _eventTimeLabel;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

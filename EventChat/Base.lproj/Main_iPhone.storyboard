@@ -460,7 +460,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="I2a-uh-kwc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="I2a-uh-kwc" customClass="EventCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I2a-uh-kwc" id="mT8-EC-1MM">
@@ -484,6 +484,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="eventTimeLabel" destination="t5b-j1-0fK" id="FZ0-Mi-zd4"/>
+                                            <outlet property="eventTitleLabel" destination="bt0-Eb-z8t" id="puh-F0-Byb"/>
                                             <segue destination="6eR-GN-tTb" kind="push" id="KaU-15-cEp"/>
                                         </connections>
                                     </tableViewCell>
