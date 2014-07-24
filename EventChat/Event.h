@@ -12,18 +12,23 @@
 @interface Event : NSObject <ModelProtocol> {
     NSString *mId;
     NSString *mName;
+    NSString *mLocation;
     double mLongitude;
     double mLatitude;
     NSString *mStartTime;
     NSString *mEndTime;
     NSString *mDesc;
+    NSString *mEventImageLink;
 }
 
 @property (nonatomic, readwrite) NSString *mId;
+@property (nonatomic, readwrite) NSString *mName;
+@property (nonatomic, readwrite) NSString *mLocation;
 @property (nonatomic, readwrite) double mLongitude;
 @property (nonatomic, readwrite) double mLatitude;
 @property (nonatomic, readwrite) NSString *mStartTime;
 @property (nonatomic, readwrite) NSString *mEndTime;
 @property (nonatomic, readwrite) NSString *mDesc;
+@property (nonatomic, readwrite) NSString *mEventImageLink;
 
 @end

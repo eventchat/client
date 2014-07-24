@@ -11,11 +11,14 @@
 @implementation Event
 
 @synthesize mId;
+@synthesize mName;
+@synthesize mLocation;
 @synthesize mLongitude;
 @synthesize mLatitude;
 @synthesize mStartTime;
 @synthesize mEndTime;
 @synthesize mDesc;
+@synthesize mEventImageLink;
 
 - (NSDictionary *) toDictionary {
     return nil;
