@@ -12,18 +12,27 @@
 @interface Event : NSObject <ModelProtocol> {
     NSString *mId;
     NSString *mName;
+    NSString *mLocation;
     double mLongitude;
     double mLatitude;
     NSString *mStartTime;
     NSString *mEndTime;
     NSString *mDesc;
+    NSString *mEventImageLink;
 }
 
-@property (nonatomic, readwrite) NSString *mId;
+@property (nonatomic, copy) NSString *mId;
+@property (nonatomic, copy) NSString *mName;
+@property (nonatomic, copy) NSString *mLocation;
 @property (nonatomic, readwrite) double mLongitude;
 @property (nonatomic, readwrite) double mLatitude;
-@property (nonatomic, readwrite) NSString *mStartTime;
-@property (nonatomic, readwrite) NSString *mEndTime;
-@property (nonatomic, readwrite) NSString *mDesc;
+@property (nonatomic, copy) NSString *mStartTime;
+@property (nonatomic, copy) NSString *mEndTime;
+@property (nonatomic, copy) NSString *mDesc;
+@property (nonatomic, copy) NSString *mEventImageLink;
+
++(instancetype) eventWithId: (NSString *)mId eventName:(NSString *)mName eventLocation:(NSString *)mLocation eventLongitude:(double)mLongitude eventLatitude:(double)mLatitude eventStartTime:(NSString *)mStartTime eventEndTime:(NSString *)mEndTime eventDescription:(NSString *)mDesc eventImageLink:(NSString *)mEventImageLink;
+    
+-(instancetype) initWithId: (NSString *)mId eventName:(NSString *)mName eventLocation:(NSString *)mLocation eventLongitude:(double)mLongitude eventLatitude:(double)mLatitude eventStartTime:(NSString *)mStartTime eventEndTime:(NSString *)mEndTime eventDescription:(NSString *)mDesc eventImageLink:(NSString *)mEventImageLink;
 
 @end
