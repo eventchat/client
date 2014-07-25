@@ -72,3 +72,4 @@ NSString *const GET_MESSAGE_BY_EVENT_ID = @"/events/%@/messages";
 NSString *const GET_NOTIFICATION = @"/notifications";
 NSString *const READ_NOTIFICATION_BY_ID = @"/notifications/%@";
 NSString *const READ_NOTIFICATION = @"/notifications";
+
