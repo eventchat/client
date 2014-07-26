@@ -1,21 +1,18 @@
 //
-//  CreateCommentViewController.m
+//  ProfileViewController.m
 //  EventChat
 //
-//  Created by Lyman Cao on 6/13/14.
+//  Created by Lyman Cao on 7/11/14.
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
 
-#import "CreateCommentViewController.h"
+#import "ProfileViewController.h"
 
-@interface CreateCommentViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@interface ProfileViewController ()
 
 @end
 
-@implementation CreateCommentViewController
-
+@implementation ProfileViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,19 +35,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
+#pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if (sender != self.doneButton) {
-        return;
-    }
-    if (self.textView.text.length > 0) {
-        self.toCreateComment = [[Comment alloc] init];
-        self.toCreateComment.mBody = self.textView.text;
-        NSLog(@"%@", self.toCreateComment.mBody);
-    }
-    
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
+*/
 
 @end

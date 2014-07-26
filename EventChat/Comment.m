@@ -16,7 +16,7 @@
 @synthesize mCreatedAt;
 
 - (NSDictionary *) toDictionary {
-    return nil;
+    return @{@"body": mBody};
 }
 
 @end
