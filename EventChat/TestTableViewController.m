@@ -7,10 +7,14 @@
 //
 
 #import "TestTableViewController.h"
+#import "PostCell.h"
 
 @interface TestTableViewController ()
 
+//@property (nonatomic, strong) NSMutableArray *data;
 @end
+
+NSMutableArray *cdata;
 
 @implementation TestTableViewController
 
@@ -32,6 +36,19 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"this is a test message, a short one", @"message", @"this is a test image, a random one", @"image", nil];
+    
+    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
+    
+    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
+
+    cdata = [[NSMutableArray alloc] init];
+    [cdata addObject:data1];
+    [cdata addObject:data2];
+    [cdata addObject:data3];
+    
+    NSLog(@"%d", [cdata count]);
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,24 +61,37 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    NSLog(@"%d", [cdata count]);
+    return [cdata count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (PostCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"postCell";
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    NSDictionary *postData = [cdata objectAtIndex:indexPath.row];
+    cell.authorLabel =[postData valueForKey:@"author"];
+    
+    cell.timeLabel = [postData valueForKey:@"time"];
+    
+    cell.likeCountLabel = [postData valueForKey:@"likeCnt"];
+    
+    cell.commentCountLabel = [postData valueForKey:@"commentCnt"];
+    
+    cell.messageLabel = [postData valueForKey:@"message"];
+    
+    cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
+    
+    cell.picImageView.image = Nil;
     
     return cell;
 }
