@@ -46,6 +46,13 @@
     
     // Add listener for textfield change
     [self.emailTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    
+    // now test for join page
+    UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Join" bundle:nil];
+    UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myJoin"];
+    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+    
 }
 
 -(UIStatusBarStyle) preferredStatusBarStyle {

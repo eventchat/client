@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UgN-xh-ax2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9Iw-Rj-gl8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="gkB-W1-70O">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="02s-6V-s2O" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="myTabs" automaticallyAdjustsScrollViewInsets="NO" id="02s-6V-s2O" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Rgv-mb-LCP"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1063,7 +1063,7 @@
         <!--Navigation Controller - My Events-->
         <scene sceneID="ATN-MO-gaM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="62G-rm-t79" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="myEvents" automaticallyAdjustsScrollViewInsets="NO" id="62G-rm-t79" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Events" image="ico_event_gray" id="kxY-dk-pSP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="z3W-WD-Bd6">
@@ -1089,15 +1089,10 @@
         <image name="button-blue" width="250" height="44"/>
         <image name="first" width="30" height="30"/>
         <image name="food" width="2048" height="1365"/>
-        <image name="food" width="2048" height="1365"/>
         <image name="ico_chat_gray" width="32" height="32"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
         <image name="ico_comment" width="16" height="16"/>
         <image name="ico_event_gray" width="32" height="32"/>
         <image name="ico_join_gray" width="32" height="32"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
         <image name="ico_like" width="16" height="16"/>
         <image name="ico_location" width="16" height="16"/>
         <image name="ico_me_gray" width="32" height="32"/>
@@ -1106,8 +1101,6 @@
         <image name="icon-mail" width="26" height="18"/>
         <image name="icon-password" width="25" height="25"/>
         <image name="input-outline" width="250" height="44"/>
-        <image name="input-outline" width="250" height="44"/>
-        <image name="placeholder" width="48" height="48"/>
         <image name="placeholder" width="48" height="48"/>
         <image name="testImage" width="1024" height="768"/>
     </resources>
