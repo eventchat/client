@@ -48,7 +48,11 @@
 		E8377FA8194A786600E33C6D /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8377FA7194A786600E33C6D /* Comments.storyboard */; };
 		E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */; };
 		E8377FAE194BBF4E00E33C6D /* CreateCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */; };
+		E846E91219864DF300154822 /* JoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E846E91119864DF300154822 /* JoinViewController.m */; };
 		E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88DF21A193FD39E004FECFC /* FeedsTableViewController.m */; };
+		E89E5F98197F3094002CA342 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89E5F97197F3094002CA342 /* ProfileViewController.m */; };
+		E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E5F99197F309C002CA342 /* Profile.storyboard */; };
+		E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CCAB74197F59FC005B0DA7 /* Join.storyboard */; };
 		F8347A7DD6FE44ACBC61644C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15338296C6334C938CB2FA3F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -136,8 +140,14 @@
 		E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewController.m; sourceTree = "<group>"; };
 		E8377FAC194BBF4E00E33C6D /* CreateCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateCommentViewController.h; sourceTree = "<group>"; };
 		E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCommentViewController.m; sourceTree = "<group>"; };
+		E846E91019864DF300154822 /* JoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinViewController.h; sourceTree = "<group>"; };
+		E846E91119864DF300154822 /* JoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinViewController.m; sourceTree = "<group>"; };
 		E88DF219193FD39E004FECFC /* FeedsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsTableViewController.h; sourceTree = "<group>"; };
 		E88DF21A193FD39E004FECFC /* FeedsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsTableViewController.m; sourceTree = "<group>"; };
+		E89E5F96197F3094002CA342 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		E89E5F97197F3094002CA342 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		E89E5F99197F309C002CA342 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		E8CCAB73197F59FC005B0DA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Join.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +241,8 @@
 				AB724E8719340A8000F29EC8 /* AppDelegate.h */,
 				AB724E8819340A8000F29EC8 /* AppDelegate.m */,
 				AB724E8A19340A8000F29EC8 /* Main_iPhone.storyboard */,
+				E89E5F99197F309C002CA342 /* Profile.storyboard */,
+				E8CCAB74197F59FC005B0DA7 /* Join.storyboard */,
 				E8377FA7194A786600E33C6D /* Comments.storyboard */,
 				AB724E8D19340A8000F29EC8 /* Main_iPad.storyboard */,
 				AB724E9619340A8000F29EC8 /* Images.xcassets */,
@@ -284,6 +296,7 @@
 		ABDC79431934364800607CE3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ABDC794B1934381500607CE3 /* Comment.m */,
 				ABDC7944193436E600607CE3 /* User.h */,
 				ABDC7945193436E600607CE3 /* User.m */,
 				ABDC79471934380900607CE3 /* Post.h */,
@@ -306,6 +319,10 @@
 		E88DF218193FBD8A004FECFC /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E846E91019864DF300154822 /* JoinViewController.h */,
+				E846E91119864DF300154822 /* JoinViewController.m */,
+				E89E5F96197F3094002CA342 /* ProfileViewController.h */,
+				E89E5F97197F3094002CA342 /* ProfileViewController.m */,
 				6C53D14D1980AB770061DC2A /* MyEventsViewController.h */,
 				6C53D14E1980AB770061DC2A /* MyEventsViewController.m */,
 				6C4E635F196CACC90009505F /* ChatSelectViewController.h */,
@@ -409,6 +426,8 @@
 				AB724E9719340A8000F29EC8 /* Images.xcassets in Resources */,
 				E8377FA8194A786600E33C6D /* Comments.storyboard in Resources */,
 				AB724E8C19340A8000F29EC8 /* Main_iPhone.storyboard in Resources */,
+				E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */,
+				E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */,
 				AB724E8319340A8000F29EC8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +493,7 @@
 				6C4E6361196CACC90009505F /* ChatSelectViewController.m in Sources */,
 				6C551B1C1985AA29003805B6 /* PostCell.m in Sources */,
 				AB724E8519340A8000F29EC8 /* main.m in Sources */,
+				E89E5F98197F3094002CA342 /* ProfileViewController.m in Sources */,
 				E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */,
 				6C4E635A196C81260009505F /* ChatterCell.m in Sources */,
 				ABDC794C1934381500607CE3 /* Comment.m in Sources */,
@@ -482,6 +502,7 @@
 				E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */,
 				6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
+				E846E91219864DF300154822 /* JoinViewController.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
 				E8377FAE194BBF4E00E33C6D /* CreateCommentViewController.m in Sources */,
 				6CCF3419196E0987001DEA77 /* ChatMessage.m in Sources */,
@@ -541,6 +562,14 @@
 				AB724EA719340A8100F29EC8 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E8CCAB74197F59FC005B0DA7 /* Join.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8CCAB73197F59FC005B0DA7 /* Base */,
+			);
+			name = Join.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

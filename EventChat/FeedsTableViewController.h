@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface FeedsTableViewController : UITableViewController
 
@@ -14,5 +15,9 @@
 
 // called when a new feed is created
 - (IBAction)unwindToFeed:(UIStoryboardSegue *)segue;
+
+@property User *currentUser;
+
+
 
 @end

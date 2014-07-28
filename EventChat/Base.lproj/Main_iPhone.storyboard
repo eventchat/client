@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="02s-6V-s2O">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
         <scene sceneID="gkB-W1-70O">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="02s-6V-s2O" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="myTabs" automaticallyAdjustsScrollViewInsets="NO" id="02s-6V-s2O" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Rgv-mb-LCP"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1063,7 +1063,7 @@
         <!--Navigation Controller - My Events-->
         <scene sceneID="ATN-MO-gaM">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="62G-rm-t79" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="myEvents" automaticallyAdjustsScrollViewInsets="NO" id="62G-rm-t79" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Events" image="ico_event_gray" id="kxY-dk-pSP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="z3W-WD-Bd6">
