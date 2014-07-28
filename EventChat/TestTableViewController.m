@@ -47,8 +47,6 @@ NSMutableArray *cdata;
     [cdata addObject:data2];
     [cdata addObject:data3];
     
-    NSLog(@"%d", [cdata count]);
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +66,6 @@ NSMutableArray *cdata;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"%d", [cdata count]);
     return [cdata count];
 }
 
@@ -77,23 +74,42 @@ NSMutableArray *cdata;
     static NSString *CellIdentifier = @"postCell";
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    [self configureCell:cell forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    PostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"postCell"];
+//    [self configureCell:cell forIndexPath:indexPath];
+//    CGFloat height  = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    return 200;
+    
+}
+
+#pragma mark - private methods
+
+- (void)configureCell: (PostCell *)cell forIndexPath: (NSIndexPath *)indexPath {
     // Configure the cell...
     NSDictionary *postData = [cdata objectAtIndex:indexPath.row];
-    cell.authorLabel =[postData valueForKey:@"author"];
     
-    cell.timeLabel = [postData valueForKey:@"time"];
+    NSLog(@"%@", [postData valueForKey:@"author"]);
     
-    cell.likeCountLabel = [postData valueForKey:@"likeCnt"];
+    cell.authorLabel.text =[postData valueForKey:@"author"];
     
-    cell.commentCountLabel = [postData valueForKey:@"commentCnt"];
+    cell.timeLabel.text = [postData valueForKey:@"time"];
     
-    cell.messageLabel = [postData valueForKey:@"message"];
+    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
+    
+    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
+    
+    cell.messageLabel.text = [postData valueForKey:@"message"];
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
     cell.picImageView.image = Nil;
     
-    return cell;
 }
 
 /*
