@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MyEventsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UISegmentedControl *attendHostSegmentedControl;
+@property (weak, nonatomic) IBOutlet UITableView *eventsTableView;
 
 @end
