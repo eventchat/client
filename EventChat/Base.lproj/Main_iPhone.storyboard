@@ -717,7 +717,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKq-Lj-XE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1619" y="1304"/>
+            <point key="canvasLocation" x="2073" y="598"/>
         </scene>
         <!--Chat Select View Controller - Chat-->
         <scene sceneID="CA0-Gy-q5T">
@@ -921,7 +921,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="65" id="I2a-uh-kwc" customClass="EventCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="EventCell" rowHeight="65" id="I2a-uh-kwc" customClass="EventCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I2a-uh-kwc" id="mT8-EC-1MM">
@@ -955,10 +955,15 @@
                                         <connections>
                                             <outlet property="eventTimeLabel" destination="t5b-j1-0fK" id="FZ0-Mi-zd4"/>
                                             <outlet property="eventTitleLabel" destination="bt0-Eb-z8t" id="puh-F0-Byb"/>
+                                            <segue destination="kGA-ZS-NDS" kind="push" id="BsA-YP-nUA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ht9-4F-kub" id="KYG-Wg-WdW"/>
+                                    <outlet property="delegate" destination="Ht9-4F-kub" id="ztx-Y9-HGP"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -978,7 +983,7 @@
             <objects>
                 <tableViewController id="kGA-ZS-NDS" customClass="EventViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Pnc-U1-mxB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.99215686274509807" green="0.63137254901960782" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
@@ -1522,7 +1527,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTk-WJ-C84" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1964" y="598"/>
+            <point key="canvasLocation" x="1619" y="601"/>
         </scene>
         <!--Navigation Controller - Feed-->
         <scene sceneID="2rL-AF-MjX">
