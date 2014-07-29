@@ -9,6 +9,7 @@
 #import "PostBasicCell.h"
 
 @interface PostImageCell : PostBasicCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *messageImageView;
 
 @end

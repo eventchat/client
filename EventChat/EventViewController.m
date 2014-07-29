@@ -1,12 +1,12 @@
 //
-//  TestTableViewController.m
+//  EventViewController.m
 //  EventChat
 //
-//  Created by Jianchen Tao on 7/27/14.
+//  Created by Jianchen Tao on 7/29/14.
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
 
-#import "TestTableViewController.h"
+#import "EventViewController.h"
 #import "PostBasicCell.h"
 #import "PostImageCell.h"
 
@@ -15,14 +15,12 @@ static NSString * const PostImageCellIdentifier = @"PostImageCell";
 
 NSMutableArray *cdata;
 
-@interface TestTableViewController ()
 
-//@property (nonatomic, strong) NSMutableArray *data;
+@interface EventViewController ()
 
 @end
 
-@implementation TestTableViewController
-
+@implementation EventViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,10 +34,10 @@ NSMutableArray *cdata;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
@@ -47,7 +45,7 @@ NSMutableArray *cdata;
     NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
     
     NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
-
+    
     cdata = [[NSMutableArray alloc] init];
     [cdata addObject:data1];
     [cdata addObject:data2];
@@ -175,7 +173,7 @@ NSMutableArray *cdata;
     static PostBasicCell *sizingCell = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-    sizingCell = [self.tableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier];
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier];
     });
     
     [self configureBasicCell:sizingCell forIndexPath:indexPath];
@@ -188,7 +186,7 @@ NSMutableArray *cdata;
     dispatch_once(&onceToken, ^{
         sizingCell = [self.tableView dequeueReusableCellWithIdentifier:PostImageCellIdentifier];
     });
-
+    
     [self configureImageCell:sizingCell atIndexPath:indexPath];
     return [self calculateHeightForConfiguredSizingCell:sizingCell] + 1;
 }
@@ -200,56 +198,5 @@ NSMutableArray *cdata;
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end
