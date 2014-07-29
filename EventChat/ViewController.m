@@ -49,9 +49,9 @@
     
     
     // now test for join page
-    UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Join" bundle:nil];
-    UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myJoin"];
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+//    UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Join" bundle:nil];
+//    UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myJoin"];
+//    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
     
 }
 
