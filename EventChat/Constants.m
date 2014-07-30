@@ -50,6 +50,8 @@ NSString *const IS_READ = @"is_read";
 // Host
 NSString *const HOST = @"http://eventchat.herokuapp.com";
 NSString *const PORT = @"";
+// Session
+NSString *const SESSION = @"/session";
 // User
 NSString *const GET_USER = @"/users/%@";
 NSString *const CREATE_USER = @"/users";

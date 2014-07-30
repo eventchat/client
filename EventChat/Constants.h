@@ -19,6 +19,9 @@ extern NSString *const BODY;
 extern NSString *const CREATED_AT;
 extern NSString *const AUTHOR;
 
+// Key for session
+extern NSString *const SESSION;
+
 // Key for user
 extern NSString *const EMAIL;
 extern NSString *const INFO;

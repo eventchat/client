@@ -34,7 +34,7 @@ NSString *const ECAPILogin    = @"/oauth/token";
 + (NSString *)baseURL {
     NSString *baseURLConfiguration = [[[NSProcessInfo processInfo] environment] objectForKey:@"baseURL"];
     
-    return baseURLConfiguration ?: ECAPIBaseURL;
+    return baseURLConfiguration ?: HOST;
 }
 
 @end

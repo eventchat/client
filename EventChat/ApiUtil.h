@@ -55,7 +55,6 @@ extern NSString *const ECAPILogin;
 + (NSMutableURLRequest *) buildReadNotificationRequest;
 
 
-
 // functions we'll need
 + (instancetype)requestWithPattern:(NSString *)string object:(id)object;
 + (instancetype)postRequest:(NSString *)string parameters:(NSDictionary *)parameters;
