@@ -5,7 +5,7 @@
 //  Created by Jianchen Tao on 7/20/14.
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
-
+#import "AFNetworking.h"
 #import "ViewController.h"
 #import "ApiUtil.h"
 
@@ -36,6 +36,8 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    NSURL *url = [[NSURL alloc] initWithString:HOST];
+    NSLog(@"%@", [NSHTTPCookieStorage sharedHTTPCookieStorage]);
 
     // Change status bar
     [self setNeedsStatusBarAppearanceUpdate];
@@ -112,49 +114,73 @@
     }
 }
 
+
 - (IBAction)loginButtonDidPress:(id)sender {
 
     // hide loadingView
     self.loadingView.hidden = NO;
     
+//    NSString *email = self.emailTextField.text;
+//    NSString *password = self.passwordTextField.text;
+//    NSDictionary *param = @{@"grant_type":@"password",
+//                            @"username":email,
+//                            @"password":password,
+//                            @"client_id":@"750ab22aac78be1c6d4bbe584f0e3477064f646720f327c5464bc127100a1a6d",
+//                            @"client_secret":@"53e3822c49287190768e009a8f8e55d09041c5bf26d0ef982693f215c72d87da"
+//                            };
+//    NSURLRequest *request = [NSURLRequest postRequest:ECAPILogin
+//                                           parameters:param];
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    NSURLSessionTask *task = [session dataTaskWithRequest:request
+//                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                            NSError *serializeError;
+//                                            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializeError];
+//                                            double delayInSeconds = 1.0f;   // Just for debug
+//                                            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//                                            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//
+//                                                                                                self.loadingView.hidden = YES;
+//                                                // Get response
+//                                                self.data = json;
+//                                                NSString *token = [self.data valueForKeyPath:@"access_token"];
+//                                                NSLog(@"%@", self.data);
+//
+//                                                // if logged in
+//                                                if (token) {
+//                                                    // do something after logged in
+//                                                    NSLog(@"I am logged in!");
+//                                                    // perform segue
+//                                                    [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
+//                                                } else {
+//                                                    [self doErrorMessage];
+//                                                }
+//                                                
+//                                                
+//                                            });
+//                                        }];
+//    [task resume];
+    
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
-    NSDictionary *param = @{@"grant_type":@"password",
-                            @"username":email,
-                            @"password":password,
-                            @"client_id":@"750ab22aac78be1c6d4bbe584f0e3477064f646720f327c5464bc127100a1a6d",
-                            @"client_secret":@"53e3822c49287190768e009a8f8e55d09041c5bf26d0ef982693f215c72d87da"
-                            };
-    NSURLRequest *request = [NSURLRequest postRequest:ECAPILogin
-                                           parameters:param];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionTask *task = [session dataTaskWithRequest:request
-                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                            NSError *serializeError;
-                                            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializeError];
-                                            double delayInSeconds = 1.0f;   // Just for debug
-                                            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                                            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-
-                                                                                                self.loadingView.hidden = YES;
-                                                // Get response
-                                                self.data = json;
-                                                NSString *token = [self.data valueForKeyPath:@"access_token"];
-                                                NSLog(@"%@", self.data);
-
-                                                // if logged in
-                                                if (token) {
-                                                    // do something after logged in
-                                                    NSLog(@"I am logged in!");
-                                                    // perform segue
-                                                    [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
-                                                } else {
-                                                    [self doErrorMessage];
-                                                }
-                                                
-                                                
-                                            });
-                                        }];
-    [task resume];
+    NSDictionary *param = @{@"name":email,
+                            @"password":password};
+    NSURLRequest *request = [NSURLRequest postRequest: SESSION parameters:param];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    self.loadingView.hidden = YES;
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.data = (NSDictionary *)responseObject;
+        NSLog(@"%@",[NSHTTPCookieStorage sharedHTTPCookieStorage]);
+        // do something after logged in
+        NSLog(@"I am logged in!");
+        // perform segue
+        [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self doErrorMessage];
+    }];
+    [operation start];
 }
 @end
+
+
