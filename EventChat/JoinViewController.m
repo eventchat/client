@@ -17,6 +17,9 @@ static NSInteger unlockCount = 0;
 static NSTimeInterval elapsedTime;
 static NSInteger prevNumber = -1;
 
+// two predefined events
+static NSString * const EVENT_A = @"53d6d5a7da0e0f0200e69de6";
+static NSString * const EVENT_B = @"53d6d749da0e0f0200e69de7";
 
 @implementation JoinViewController{
     // mock the unlock pattern
@@ -46,7 +49,7 @@ static NSInteger prevNumber = -1;
     [_buttonD addTarget:self action:@selector(buttonDClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     // now having the two predefined patterns
-    patterns = [[NSDictionary alloc] initWithObjectsAndKeys:@"53d6d5a7da0e0f0200e69de6", @"1234", @"53d6d749da0e0f0200e69de7", @"4321", nil];
+    patterns = [[NSDictionary alloc] initWithObjectsAndKeys:EVENT_A, @"1234", EVENT_B, @"4321", nil];
     elapsedTime = CFAbsoluteTimeGetCurrent();
 }
 
@@ -88,30 +91,37 @@ static NSInteger prevNumber = -1;
     if (prevNumber == buttonTag) {
         return;
     }
-    for (NSString *key in patterns) {
-        if (currentPattern) {
-            break;
-        }else{
-            currentPattern = [NSString stringWithString:key];            
-        }
-
-        NSInteger pos = [currentPattern rangeOfString:[NSString stringWithFormat:@"%ld",(long)buttonTag]].location;
-        if ((prevNumber == -1 && buttonTag == [[currentPattern substringToIndex:1] integerValue]) || [currentPattern rangeOfString:[NSString stringWithFormat:@"%ld",(long)prevNumber]].location == pos - 1) {
+    if (!currentPattern) {
+        for (NSString *key in patterns) {
+            currentPattern = [NSString stringWithString:key];
             
-            NSLog(@"unlock: %ld, prevNumber: %ld, buttonTag: %ld\n", (long)unlockCount, (long)prevNumber, (long)buttonTag);
-            prevNumber = buttonTag;
-            unlockCount++;
-            break;
-        }else{
-            [self resetButtons];
-            continue;
+            BOOL breakFlag = [self verifyPattern:buttonTag];
+            if (breakFlag) {
+                break;
+            }
         }
+    }else{
+        [self verifyPattern:buttonTag];
     }
     
     
     if (unlockCount == 4 && currentPattern) {
         NSLog(@"current pattern: %@, key: %@", currentPattern, [patterns objectForKey:currentPattern] );
         [self jumpToEventPage:[patterns objectForKey:currentPattern]];
+    }
+}
+
+- (BOOL) verifyPattern:(NSInteger) buttonTag{
+    NSInteger pos = [currentPattern rangeOfString:[NSString stringWithFormat:@"%ld",(long)buttonTag]].location;
+    if ((prevNumber == -1 && buttonTag == [[currentPattern substringToIndex:1] integerValue]) || [currentPattern rangeOfString:[NSString stringWithFormat:@"%ld",(long)prevNumber]].location == pos - 1) {
+        
+        NSLog(@"unlock: %ld, prevNumber: %ld, buttonTag: %ld\n", (long)unlockCount, (long)prevNumber, (long)buttonTag);
+        prevNumber = buttonTag;
+        unlockCount++;
+        return YES;
+    }else{
+        [self resetButtons];
+        return NO;
     }
 }
 
