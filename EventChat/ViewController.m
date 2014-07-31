@@ -170,13 +170,22 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     self.loadingView.hidden = YES;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // logged in successfully
+        
+        // get cookies
+        NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:responseObject forURL:[[NSURL alloc] initWithString:HOST]];
+//        for (int i = 0; i<cookies.count; ++i){
+            NSLog(@"number of cookies:\t %d; cookie value: \t%@", cookies.count, cookies );
+//        }
+        
+        // get response data
         self.data = (NSDictionary *)responseObject;
-        NSLog(@"%@",[NSHTTPCookieStorage sharedHTTPCookieStorage]);
         // do something after logged in
         NSLog(@"I am logged in!");
         // perform segue
         [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // failt to log in
         [self doErrorMessage];
     }];
     [operation start];
