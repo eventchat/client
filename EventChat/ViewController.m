@@ -183,7 +183,7 @@
         // do something after logged in
         NSLog(@"I am logged in!");
         // start checking incoming message
-        NSURLRequest *messageRequest = [NSURLRequest class];
+        NSURLRequest *messageRequest = [NSURLRequest getRequest: CHAT parameters:<#(NSDictionary *)#>];
         
         // perform segue
         [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];

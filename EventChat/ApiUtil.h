@@ -58,6 +58,7 @@ extern NSString *const ECAPILogin;
 // functions we'll need
 + (instancetype)requestWithPattern:(NSString *)string object:(id)object;
 + (instancetype)postRequest:(NSString *)string parameters:(NSDictionary *)parameters;
++ (instancetype)getRequest:(NSString *)string parameters:(NSDictionary *)parameters;
 + (instancetype)deleteRequest:(NSString *)string parameters:(NSDictionary *)parameters;
 + (instancetype)requestWithMethod:(NSString *)method
                               url:(NSString *)url
