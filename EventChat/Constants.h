@@ -73,4 +73,6 @@ extern NSString *const GET_MESSAGE_BY_EVENT_ID;
 extern NSString *const GET_NOTIFICATION;
 extern NSString *const READ_NOTIFICATION_BY_ID;
 extern NSString *const READ_NOTIFICATION;
+// Chat
+extern NSString *const CHAT;
 
