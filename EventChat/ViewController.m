@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *loadingView;
 @property (weak, nonatomic) IBOutlet UIImageView *emailImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
-@property (strong, nonatomic) NSDictionary *data;
+
 
 - (IBAction)loginButtonDidPress:(id)sender;
 
@@ -182,6 +182,9 @@
         self.data = (NSDictionary *)responseObject;
         // do something after logged in
         NSLog(@"I am logged in!");
+        // start checking incoming message
+        NSURLRequest *messageRequest = [NSURLRequest class];
+        
         // perform segue
         [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

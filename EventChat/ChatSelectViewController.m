@@ -15,6 +15,8 @@
 @property NSMutableArray *chatters;
 @end
 
+NSDictionary *data;
+
 @implementation ChatSelectViewController
 
 @synthesize chatterTable = _chatterTable;
@@ -34,6 +36,8 @@
 	// Do any additional setup after loading the view.
     
     self.chatters = [[NSMutableArray alloc] initWithObjects:@"Michael", @"Jason", @"Rose", nil];
+    
+    data = [[NSDictionary alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -94,6 +98,10 @@
         destViewController.hidesBottomBarWhenPushed = YES;
 //        NSLog(@"segue completed!");
     }
+}
+
+-(void)reloadData {
+    
 }
 
 
