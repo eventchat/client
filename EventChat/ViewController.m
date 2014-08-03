@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *loadingView;
 @property (weak, nonatomic) IBOutlet UIImageView *emailImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *passwordImageView;
-@property (strong, nonatomic) NSDictionary *data;
+
 
 - (IBAction)loginButtonDidPress:(id)sender;
 
@@ -36,7 +36,7 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@", [NSHTTPCookieStorage sharedHTTPCookieStorage]);
+    
     // load the cookies
     [ApiUtil loadCookies];
     
@@ -193,20 +193,45 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     self.loadingView.hidden = YES;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // logged in successfully
+        
+        // get response data
         self.data = (NSDictionary *)responseObject;
-        NSLog(@"%@",[NSHTTPCookieStorage sharedHTTPCookieStorage]);
+        NSLog(@"%@", self.data);
         // do something after logged in
         NSLog(@"I am logged in!");
-        
+
+        // save the cookie
         [ApiUtil saveCookies];
         
+        [self pullingMessage];
+        NSLog(@"passed send get request");
         // perform segue
         [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // failt to log in
         [self doErrorMessage];
     }];
     [operation start];
+}
+
+-(void) pullingMessage {
+    // start checking incoming message
+    NSURLRequest *messageRequest = [NSURLRequest getRequest: CHAT parameters:nil];
+    
+    AFHTTPRequestOperation *chat_operation = [[AFHTTPRequestOperation alloc] initWithRequest:messageRequest];
+    chat_operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [chat_operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"successfully get chat info");
+        NSArray *chatData = [[NSArray alloc] initWithArray:(NSArray *) responseObject];
+        NSLog(@"%@", chatData);
+        [self pullingMessage];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to get chat info");
+        [self pullingMessage];
+    }];
+    [chat_operation start];
 }
 @end
 

@@ -224,6 +224,12 @@ NSString *const ECAPILogin    = @"/oauth/token";
                                 parameters:parameters];
 }
 
++ (NSURLRequest *)getRequest:(NSString *)string parameters:(NSDictionary *)parameters {
+    return [NSURLRequest requestWithMethod:@"GET"
+                                       url:string
+                                parameters:parameters];
+}
+
 + (NSURLRequest *)deleteRequest:(NSString *)string parameters:(NSDictionary *)parameters {
     return [NSURLRequest requestWithMethod:@"DELETE"
                                        url:string
