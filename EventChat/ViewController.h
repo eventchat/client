@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-@property (static, strong, nonatomic) NSDictionary *data;
+@property (strong, nonatomic) NSDictionary *data;
 @end
