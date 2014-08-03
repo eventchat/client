@@ -39,7 +39,6 @@ NSString *const ECAPILogin    = @"/oauth/token";
 
 @end
 
-
 // below NSURLRequest implementation are partially from snippet
 @implementation NSURLRequest (ApiUtil)
 
@@ -194,7 +193,22 @@ NSString *const ECAPILogin    = @"/oauth/token";
     return nil;
 }
 
+
 // Xiaolei's implementation ends here
+
+// Added by Lyman
++ (NSMutableURLRequest *) buildGetSessionRequest:(NSString *)parameters {
+    NSString *url = [self buildUrlString:SESSION :parameters];
+    if (url) {
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:url]];
+        [request setHTTPMethod: HTTP_GET];
+        return request;
+    }
+    return nil;
+}
+
+
+
 // Below are from snippet
 
 + (NSURLRequest *)requestWithPattern:(NSString *)string object:(id)object {
@@ -230,5 +244,31 @@ NSString *const ECAPILogin    = @"/oauth/token";
     return request;
 }
 
+
+@end
+
+
+@implementation ApiUtil
+
++ (void)saveCookies{
+    
+    NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject: cookiesData forKey: @"sessionCookies"];
+    [defaults synchronize];
+    
+}
+
+
++ (void)loadCookies{
+    
+    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData: [[NSUserDefaults standardUserDefaults] objectForKey: @"sessionCookies"]];
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    for (NSHTTPCookie *cookie in cookies){
+        [cookieStorage setCookie: cookie];
+    }
+    
+}
 
 @end

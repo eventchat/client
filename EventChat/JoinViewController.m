@@ -7,6 +7,9 @@
 //
 
 #import "JoinViewController.h"
+#import "AFNetworking.h"
+#import "Constants.h"
+#import "ApiUtil.h"
 
 @interface JoinViewController ()
 
@@ -141,13 +144,27 @@ static NSString * const EVENT_B = @"53d6d749da0e0f0200e69de7";
     [self parsePattern:sender];
 }
 
-- (void) jumpToEventPage:(NSString *)myEvent{
-    // TODO: choose the event
+- (void) jumpToEventPage:(NSString *)eventId{
+    NSURLRequest *request = [NSURLRequest postRequest: [NSString stringWithFormat:JOIN_EVENT, eventId]  parameters:nil];
     
-    // begin the jump
-    UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myTabs"];
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+            NSLog(@"%@",[NSHTTPCookieStorage sharedHTTPCookieStorage]);
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // do something after logged in
+        NSLog(@"I have joined the event %@",JOIN_EVENT );
+        // begin the jump
+        UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myTabs"];
+        [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"join event failed");
+                
+        NSLog(@"failed %@",error );
+    }];
+    [operation start];
 }
 
 @end
