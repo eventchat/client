@@ -8,6 +8,7 @@
 
 #import "ECData.h"
 #import "Message.h"
+#import "Event.h"
 
 NSMutableDictionary *conversationsDict;
 NSMutableDictionary *eventsDict;
@@ -38,8 +39,8 @@ NSMutableDictionary *friendsDict;
     return eventsDict;
 }
 
-- (void) addEvent {
-    
+- (void) addEvent: (Event *)event {
+    [eventsDict setObject:event forKey:event.mId];
 }
 
 - (NSMutableDictionary *) getFriendsDict {
