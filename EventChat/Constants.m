@@ -55,6 +55,7 @@ NSString *const SESSION = @"/session";
 // User
 NSString *const GET_USER = @"/users/%@";
 NSString *const CREATE_USER = @"/users";
+NSString *const GET_ALL_EVENTS_A_USER_ATTENDS = @"/users/%@/events";
 // Post
 NSString *const GET_POST = @"/posts/%@";
 NSString *const CREATE_POST = @"/posts";
