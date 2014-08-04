@@ -18,6 +18,8 @@
 
 - (id) init {
     self = [super init];
+    mResponder = [[User alloc] init];
+    mMessagesArray = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -28,7 +30,7 @@
 }
 
 - (void) addMessageWithMessage: (Message *) message {
-    
+    [mMessagesArray addObject:message];
 }
 
 @end
