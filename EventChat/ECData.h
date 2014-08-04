@@ -9,4 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ECData : NSObject
+@property NSMutableDictionary *conversationsDict;
+@property NSMutableDictionary *eventsDict;
+@property NSMutableDictionary *friendsDict;
 @end

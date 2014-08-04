@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Message.h"
+#import "User.h"
 
 @interface Conversation : NSObject
 
+@property User *responder;
+@property NSMutableArray *messagesArray;
+
+- (void) addMessageWithMessage: (Message *) message;
 @end

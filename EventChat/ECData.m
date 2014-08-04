@@ -8,12 +8,14 @@
 
 #import "ECData.h"
 #import "Message.h"
+#import "Conversation.h"
 
-NSMutableDictionary *conversationsDict;
-NSMutableDictionary *eventsDict;
-NSMutableDictionary *friendsDict;
 
 @implementation ECData
+
+@synthesize conversationsDict;
+@synthesize eventsDict;
+@synthesize friendsDict;
 
 - (ECData *) init {
     self = [super init];
@@ -27,11 +29,23 @@ NSMutableDictionary *friendsDict;
     return conversationsDict;
 }
 
+- (Conversation *) getConversationByUserId: (NSString *) responderId {
+    return [conversationsDict objectForKey:responderId];
+}
 
 - (void) addConversationWithResponderId: (NSString *) responderId WithMessage: (Message *) message {
+    if ([self getConversationByUserId:responderId] == Nil) {
+        Conversation *newConversation = [[Conversation alloc] init];
+        // add in the user as responder
+        
+        // add in the new message to the conversation
+        [newConversation addMessageWithMessage:message];
+    }
+    else {
+        [conversationsDict setObject:message forKey:responderId];
+    }
     
-    
-    [conversationsDict setObject:message forKey:responderId];
+
 }
 
 - (NSMutableDictionary *) getEventsDict {
