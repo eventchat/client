@@ -15,5 +15,5 @@
 @property (strong, nonatomic) ECData *data;
 
 - (User *) getUser;
-
+- (void) setUser: (User *) user;
 @end

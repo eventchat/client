@@ -8,7 +8,6 @@
 #import "AFNetworking.h"
 #import "ViewController.h"
 #import "ApiUtil.h"
-#import "AppDelegate.h"
 
 @interface ViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *dialogView;
@@ -25,6 +24,7 @@
 @end
 
 @implementation ViewController
+@synthesize appDelegate;
 @synthesize user;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,7 +40,7 @@
     [super viewDidLoad];
     
     // initialization
-    user = [(AppDelegate *)[[UIApplication sharedApplication] delegate] getUser];
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // load the cookies
     [ApiUtil loadCookies];
@@ -53,6 +53,8 @@
         NSDictionary *loginResponse = (NSDictionary *)responseObject;
         if(loginResponse[@"logged_in"] && [loginResponse[@"logged_in"] intValue] == 1){
             NSLog(@"already logged in! should be no login window");
+            
+            [self pullingMessage];
             // now go to join page
             UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Join" bundle:nil];
             UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myJoin"];
@@ -160,10 +162,13 @@
         // logged in successfully
         
         // get response data
-        NSDictionary *userData = (NSDictionary *)responseObject;
-        NSLog(@"%@", userData);
+        NSDictionary *userDataDict = (NSDictionary *)responseObject;
+        NSLog(@"%@", userDataDict);
+        
+        User *userData = [[User alloc] initWithId:[userDataDict objectForKey:@""] withEmail:[userDataDict objectForKey:@""] withInfo:[userDataDict objectForKey:@""] withName:[userDataDict objectForKey:@""] withAvatarUrl:[userDataDict objectForKey:@""]];
         // do something after logged in
         NSLog(@"I am logged in!");
+        [appDelegate setUser:userData];
 
         // save the cookie
         [ApiUtil saveCookies];
@@ -174,7 +179,7 @@
         [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        // failt to log in
+        // fail to log in
         [self doErrorMessage];
     }];
     [operation start];

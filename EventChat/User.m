@@ -33,6 +33,14 @@
     return self;
 }
 
+- (void) copy: (User *)user {
+    mId = [NSString stringWithString:user.mId];
+    mEmail = [NSString stringWithString:user.mEmail];
+    mInfo = [NSString stringWithString:user.mInfo];
+    mName = [NSString stringWithString:user.mName];
+    mAvatarUrl = [NSString stringWithString:user.mAvatarUrl];
+}
+
 - (NSDictionary *) toDictionary {
     return nil;
 }

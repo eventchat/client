@@ -55,4 +55,12 @@
     return [data mUser];
 }
 
+- (void) setUser:(User *)user {
+    if (data.mUser == Nil) {
+        [data initUser:user];
+    } else {
+        [data.mUser copy:user];
+    }
+}
+
 @end

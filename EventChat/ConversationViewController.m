@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
 
-#import "ChatSelectViewController.h"
+#import "ConversationViewController.h"
 //#import "ChatterCell.h"
 #import "ChatMessageViewController.h"
 #import "ConversationCell.h"
 
-@interface ChatSelectViewController ()
+@interface ConversationViewController ()
 @property NSMutableArray *chatters;
 @end
 
 NSDictionary *data;
 
-@implementation ChatSelectViewController
+@implementation ConversationViewController
 
 @synthesize chatterTable = _chatterTable;
 

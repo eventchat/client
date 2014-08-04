@@ -28,12 +28,16 @@
 
 - (ECData *) initWithUser: (User *) user {
     self = [self init];
-    [self setUser:user];
+    [self initUser:user];
     return self;
 }
 
-- (void) setUser: (User *) user {
+- (void) initUser: (User *) user {
     mUser = [[User alloc] initWithId:user.mId withEmail:user.mEmail withInfo:user.mInfo withName:user.mName withAvatarUrl:user.mAvatarUrl];
+}
+
+- (void) setUser: (User *) user {
+    
 }
 
 - (User *) getUser {

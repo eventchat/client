@@ -10,7 +10,7 @@
 		6C19C140197CCAD0003CB295 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C19C13F197CCAD0003CB295 /* ViewController.m */; };
 		6C4E635A196C81260009505F /* ChatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6359196C81260009505F /* ChatterCell.m */; };
 		6C4E635E196CA8970009505F /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E635D196CA8970009505F /* ChatMessageCell.m */; };
-		6C4E6361196CACC90009505F /* ChatSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6360196CACC90009505F /* ChatSelectViewController.m */; };
+		6C4E6361196CACC90009505F /* ConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6360196CACC90009505F /* ConversationViewController.m */; };
 		6C4E6364196D1A590009505F /* ChatMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6363196D1A590009505F /* ChatMessageViewController.m */; };
 		6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53D14B1980A9EB0061DC2A /* EventCell.m */; };
 		6C53D14F1980AB770061DC2A /* MyEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53D14E1980AB770061DC2A /* MyEventsViewController.m */; };
@@ -79,8 +79,8 @@
 		6C4E6359196C81260009505F /* ChatterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatterCell.m; sourceTree = "<group>"; };
 		6C4E635C196CA8970009505F /* ChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageCell.h; sourceTree = "<group>"; };
 		6C4E635D196CA8970009505F /* ChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageCell.m; sourceTree = "<group>"; };
-		6C4E635F196CACC90009505F /* ChatSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatSelectViewController.h; sourceTree = "<group>"; };
-		6C4E6360196CACC90009505F /* ChatSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatSelectViewController.m; sourceTree = "<group>"; };
+		6C4E635F196CACC90009505F /* ConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationViewController.h; sourceTree = "<group>"; };
+		6C4E6360196CACC90009505F /* ConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationViewController.m; sourceTree = "<group>"; };
 		6C4E6362196D1A590009505F /* ChatMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageViewController.h; sourceTree = "<group>"; };
 		6C4E6363196D1A590009505F /* ChatMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageViewController.m; sourceTree = "<group>"; };
 		6C53D14A1980A9EB0061DC2A /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
@@ -342,8 +342,8 @@
 				E89E5F97197F3094002CA342 /* ProfileViewController.m */,
 				6C53D14D1980AB770061DC2A /* MyEventsViewController.h */,
 				6C53D14E1980AB770061DC2A /* MyEventsViewController.m */,
-				6C4E635F196CACC90009505F /* ChatSelectViewController.h */,
-				6C4E6360196CACC90009505F /* ChatSelectViewController.m */,
+				6C4E635F196CACC90009505F /* ConversationViewController.h */,
+				6C4E6360196CACC90009505F /* ConversationViewController.m */,
 				E8377FA9194BBF2B00E33C6D /* CommentsTableViewController.h */,
 				E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */,
 				E88DF219193FD39E004FECFC /* FeedsTableViewController.h */,
@@ -509,7 +509,7 @@
 				AB724E8919340A8000F29EC8 /* AppDelegate.m in Sources */,
 				ABDC793F1934131100607CE3 /* JsonParser.m in Sources */,
 				6C551B1619832274003805B6 /* TempCell.m in Sources */,
-				6C4E6361196CACC90009505F /* ChatSelectViewController.m in Sources */,
+				6C4E6361196CACC90009505F /* ConversationViewController.m in Sources */,
 				AB724E8519340A8000F29EC8 /* main.m in Sources */,
 				E89E5F98197F3094002CA342 /* ProfileViewController.m in Sources */,
 				E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */,

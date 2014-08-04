@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatSelectViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface ConversationViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)IBOutlet UITableView *chatterTable;
 

@@ -14,4 +14,6 @@
 @property NSMutableDictionary *mConversationsDict;
 @property NSMutableDictionary *mEventsDict;
 @property NSMutableDictionary *mFriendsDict;
+
+- (void) initUser: (User *) user;
 @end

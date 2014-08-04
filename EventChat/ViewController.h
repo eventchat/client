@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 #import "ECData.h"
 
 @interface ViewController : UIViewController
 @property User *user;
+@property AppDelegate *appDelegate;
 @end
