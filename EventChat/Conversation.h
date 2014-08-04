@@ -12,8 +12,9 @@
 
 @interface Conversation : NSObject
 
-@property User *responder;
-@property NSMutableArray *messagesArray;
+@property User *mResponder;
+@property NSMutableArray *mMessagesArray;
 
+- (id) initWithResponder: (User *) responder;
 - (void) addMessageWithMessage: (Message *) message;
 @end

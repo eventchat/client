@@ -12,44 +12,62 @@
 
 
 @implementation ECData
-
-@synthesize conversationsDict;
-@synthesize eventsDict;
-@synthesize friendsDict;
+@synthesize mUser;
+@synthesize mConversationsDict;
+@synthesize mEventsDict;
+@synthesize mFriendsDict;
 
 - (ECData *) init {
     self = [super init];
-    conversationsDict = [[NSMutableDictionary alloc] init];
-    eventsDict = [[NSMutableDictionary alloc] init];
-    friendsDict = [[NSMutableDictionary alloc] init];
+    mConversationsDict = [[NSMutableDictionary alloc] init];
+    mEventsDict = [[NSMutableDictionary alloc] init];
+    mFriendsDict = [[NSMutableDictionary alloc] init];
+    return self;
+}
+
+- (ECData *) initWithUser: (User *) user {
+    self = [self init];
+    self.mUser = user;
     return self;
 }
 
 - (NSMutableDictionary *) getConversationsDict {
-    return conversationsDict;
+    return mConversationsDict;
 }
 
 - (Conversation *) getConversationByUserId: (NSString *) responderId {
-    return [conversationsDict objectForKey:responderId];
+    return [mConversationsDict objectForKey:responderId];
 }
 
-- (void) addConversationWithResponderId: (NSString *) responderId WithMessage: (Message *) message {
-    if ([self getConversationByUserId:responderId] == Nil) {
-        Conversation *newConversation = [[Conversation alloc] init];
-        // add in the user as responder
-        
-        // add in the new message to the conversation
-        [newConversation addMessageWithMessage:message];
+- (void) addConversationWithMessage: (Message *) message {
+    User *responder;
+    BOOL receivedMessage; // TRUE for received message; FALSE for sent-out message
+    if ([message.mAuthor.mId isEqual:mUser.mId]) {
+        // sent-out message
+        receivedMessage = FALSE;
+        responder = message.mReceiver;
     }
     else {
-        [conversationsDict setObject:message forKey:responderId];
+        // received message
+        receivedMessage = TRUE;
+        responder = message.mAuthor;
     }
-    
-
+    if ([self getConversationByUserId:responder.mId]) {
+        // if responder already in conversation list, add message into corresponding conversation
+        [[mConversationsDict objectForKey:responder.mId] addMessageWithMessage:message];
+    }
+    else {
+        // if responder not in conversation list:
+        // create new conversation with responder then add the message into it;
+        // add the created conversation into mConversationDict
+        Conversation *newConversation = [[Conversation alloc] initWithResponder:responder];
+        [newConversation addMessageWithMessage:message];
+        [mConversationsDict setObject:newConversation forKey:responder.mId];
+    }
 }
 
 - (NSMutableDictionary *) getEventsDict {
-    return eventsDict;
+    return mEventsDict;
 }
 
 - (void) addEvent {
@@ -57,7 +75,7 @@
 }
 
 - (NSMutableDictionary *) getFriendsDict {
-    return friendsDict;
+    return mFriendsDict;
 }
 
 - (void) addFriend {

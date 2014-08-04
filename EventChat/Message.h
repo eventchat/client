@@ -13,12 +13,14 @@
 @interface Message : NSObject <ModelProtocol> {
     NSString *mId;
     User *mAuthor;
+    User *mReceiver;
     NSString *mBody;
     NSString *mCreatedAt;
 }
 
 @property (nonatomic, readwrite) NSString *mId;
 @property (nonatomic, readwrite) User *mAuthor;
+@property (nonatomic, readwrite) User *mReceiver;
 @property (nonatomic, readwrite) NSString *mBody;
 @property (nonatomic, readwrite) NSString *mCreatedAt;
 

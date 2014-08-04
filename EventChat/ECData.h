@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface ECData : NSObject
-@property NSMutableDictionary *conversationsDict;
-@property NSMutableDictionary *eventsDict;
-@property NSMutableDictionary *friendsDict;
+@property User *mUser;
+@property NSMutableDictionary *mConversationsDict;
+@property NSMutableDictionary *mEventsDict;
+@property NSMutableDictionary *mFriendsDict;
 @end

@@ -12,6 +12,7 @@
 
 @synthesize mId;
 @synthesize mAuthor;
+@synthesize mReceiver;
 @synthesize mBody;
 @synthesize mCreatedAt;
 

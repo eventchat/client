@@ -13,8 +13,8 @@
 
 @implementation Conversation
 
-@synthesize responder;
-@synthesize messagesArray;
+@synthesize mResponder;
+@synthesize mMessagesArray;
 
 - (id) init {
     self = [super init];
@@ -23,7 +23,7 @@
 
 - (id) initWithResponder: (User *) responder {
     self = [self init];
-    
+    mResponder = responder;
     return self;
 }
 
