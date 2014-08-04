@@ -21,6 +21,8 @@
 		6CBCB74B1942F8860031895F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCB74A1942F8860031895F /* ItemCell.m */; };
 		6CC216091943ACE400BC2FE3 /* profile-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC216081943ACE400BC2FE3 /* profile-placeholder.png */; };
 		6CC288C3198EF87F007F9817 /* ECData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC288C2198EF87F007F9817 /* ECData.m */; };
+		6CC288C6198F3A51007F9817 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC288C5198F3A51007F9817 /* Conversation.m */; };
+		6CC288C8198F3D95007F9817 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC288C7198F3D95007F9817 /* Comment.m */; };
 		6CCF3419196E0987001DEA77 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCF3418196E0987001DEA77 /* ChatMessage.m */; };
 		6CF7533A198846030011A733 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF75339198846030011A733 /* EventViewController.m */; };
 		6CF8B5BF197CA2F3002D5950 /* ConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8B5BE197CA2F3002D5950 /* ConversationCell.m */; };
@@ -44,7 +46,6 @@
 		ABDC793F1934131100607CE3 /* JsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC793E1934131100607CE3 /* JsonParser.m */; };
 		ABDC7946193436E600607CE3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC7945193436E600607CE3 /* User.m */; };
 		ABDC79491934380900607CE3 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79481934380900607CE3 /* Post.m */; };
-		ABDC794C1934381500607CE3 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC794B1934381500607CE3 /* Comment.m */; };
 		ABDC794F1934382100607CE3 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC794E1934382100607CE3 /* Event.m */; };
 		ABDC79521934382F00607CE3 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79511934382F00607CE3 /* Message.m */; };
 		ABDC79551934384900607CE3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79541934384900607CE3 /* Notification.m */; };
@@ -99,6 +100,9 @@
 		6CC216081943ACE400BC2FE3 /* profile-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-placeholder.png"; sourceTree = "<group>"; };
 		6CC288C1198EF87F007F9817 /* ECData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECData.h; sourceTree = "<group>"; };
 		6CC288C2198EF87F007F9817 /* ECData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECData.m; sourceTree = "<group>"; };
+		6CC288C4198F3A51007F9817 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		6CC288C5198F3A51007F9817 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		6CC288C7198F3D95007F9817 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		6CCF3417196E0987001DEA77 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		6CCF3418196E0987001DEA77 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		6CF75338198846030011A733 /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
@@ -137,7 +141,6 @@
 		ABDC79471934380900607CE3 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		ABDC79481934380900607CE3 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		ABDC794A1934381500607CE3 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		ABDC794B1934381500607CE3 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		ABDC794D1934382100607CE3 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		ABDC794E1934382100607CE3 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		ABDC79501934382F00607CE3 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
@@ -305,13 +308,12 @@
 		ABDC79431934364800607CE3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ABDC794B1934381500607CE3 /* Comment.m */,
+				6CC288C7198F3D95007F9817 /* Comment.m */,
 				ABDC7944193436E600607CE3 /* User.h */,
 				ABDC7945193436E600607CE3 /* User.m */,
 				ABDC79471934380900607CE3 /* Post.h */,
 				ABDC79481934380900607CE3 /* Post.m */,
 				ABDC794A1934381500607CE3 /* Comment.h */,
-				ABDC794B1934381500607CE3 /* Comment.m */,
 				ABDC794D1934382100607CE3 /* Event.h */,
 				ABDC794E1934382100607CE3 /* Event.m */,
 				ABDC79501934382F00607CE3 /* Message.h */,
@@ -323,6 +325,8 @@
 				6CCF3418196E0987001DEA77 /* ChatMessage.m */,
 				6CC288C1198EF87F007F9817 /* ECData.h */,
 				6CC288C2198EF87F007F9817 /* ECData.m */,
+				6CC288C4198F3A51007F9817 /* Conversation.h */,
+				6CC288C5198F3A51007F9817 /* Conversation.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -510,15 +514,16 @@
 				E89E5F98197F3094002CA342 /* ProfileViewController.m in Sources */,
 				E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */,
 				6C4E635A196C81260009505F /* ChatterCell.m in Sources */,
-				ABDC794C1934381500607CE3 /* Comment.m in Sources */,
 				ABDC79521934382F00607CE3 /* Message.m in Sources */,
 				6CF8B5BF197CA2F3002D5950 /* ConversationCell.m in Sources */,
 				6CB2743E19879265009E6375 /* PostImageCell.m in Sources */,
 				E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */,
 				6CF7533A198846030011A733 /* EventViewController.m in Sources */,
 				6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */,
+				6CC288C8198F3D95007F9817 /* Comment.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				6CB2743B19878005009E6375 /* PostBasicCell.m in Sources */,
+				6CC288C6198F3A51007F9817 /* Conversation.m in Sources */,
 				6CC288C3198EF87F007F9817 /* ECData.m in Sources */,
 				E846E91219864DF300154822 /* JoinViewController.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
