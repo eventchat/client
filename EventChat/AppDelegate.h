@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECData.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) ECData *data;
+
+- (User *) getUser;
 
 @end

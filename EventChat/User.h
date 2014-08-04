@@ -14,13 +14,15 @@
     NSString *mName;
     NSString *mEmail;
     NSString *mInfo;
-    NSURL *mAvatarUrl;
+    NSString *mAvatarUrl;
 }
 
 @property (nonatomic, readwrite) NSString *mId;
 @property (nonatomic, readwrite) NSString *mName;
 @property (nonatomic, readwrite) NSString *mEmail;
 @property (nonatomic, readwrite) NSString *mInfo;
-@property (nonatomic, readwrite) NSURL *mAvatarUrl;
+@property (nonatomic, readwrite) NSString *mAvatarUrl;
+
+- (id) initWithId: (NSString *) userId withEmail: (NSString *) email withInfo: (NSString *) info withName: (NSString *)name withAvatarUrl: (NSString *) avatarUrl;
 
 @end

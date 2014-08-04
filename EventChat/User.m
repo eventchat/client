@@ -29,12 +29,13 @@
     mEmail = [[NSString alloc] initWithString:email];
     mInfo = [[NSString alloc] initWithString:info];
     mName = [[NSString alloc] initWithString:name];
-    mAvatarUrl = [[NSURL alloc] initWithString:avatarUrl];
+    mAvatarUrl = [[NSString alloc] initWithString:avatarUrl];
     return self;
 }
 
 - (NSDictionary *) toDictionary {
     return nil;
 }
+
 
 @end

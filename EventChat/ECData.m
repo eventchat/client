@@ -28,8 +28,16 @@
 
 - (ECData *) initWithUser: (User *) user {
     self = [self init];
-    self.mUser = user;
+    [self setUser:user];
     return self;
+}
+
+- (void) setUser: (User *) user {
+    mUser = [[User alloc] initWithId:user.mId withEmail:user.mEmail withInfo:user.mInfo withName:user.mName withAvatarUrl:user.mAvatarUrl];
+}
+
+- (User *) getUser {
+    return mUser;
 }
 
 - (NSMutableDictionary *) getConversationsDict {

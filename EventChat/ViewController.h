@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECData.h"
 
 @interface ViewController : UIViewController
-@property (strong, nonatomic) NSDictionary *data;
+@property User *user;
 @end

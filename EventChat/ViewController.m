@@ -8,6 +8,7 @@
 #import "AFNetworking.h"
 #import "ViewController.h"
 #import "ApiUtil.h"
+#import "AppDelegate.h"
 
 @interface ViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *dialogView;
@@ -24,6 +25,7 @@
 @end
 
 @implementation ViewController
+@synthesize user;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +38,9 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    // initialization
+    user = [(AppDelegate *)[[UIApplication sharedApplication] delegate] getUser];
     
     // load the cookies
     [ApiUtil loadCookies];
@@ -142,47 +147,6 @@
     // hide loadingView
     self.loadingView.hidden = NO;
     
-//    NSString *email = self.emailTextField.text;
-//    NSString *password = self.passwordTextField.text;
-//    NSDictionary *param = @{@"grant_type":@"password",
-//                            @"username":email,
-//                            @"password":password,
-//                            @"client_id":@"750ab22aac78be1c6d4bbe584f0e3477064f646720f327c5464bc127100a1a6d",
-//                            @"client_secret":@"53e3822c49287190768e009a8f8e55d09041c5bf26d0ef982693f215c72d87da"
-//                            };
-//    NSURLRequest *request = [NSURLRequest postRequest:ECAPILogin
-//                                           parameters:param];
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURLSessionTask *task = [session dataTaskWithRequest:request
-//                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                                            NSError *serializeError;
-//                                            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializeError];
-//                                            double delayInSeconds = 1.0f;   // Just for debug
-//                                            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-//                                            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//
-//                                                                                                self.loadingView.hidden = YES;
-//                                                // Get response
-//                                                self.data = json;
-//                                                NSString *token = [self.data valueForKeyPath:@"access_token"];
-//                                                NSLog(@"%@", self.data);
-//
-//                                                // if logged in
-//                                                if (token) {
-//                                                    // do something after logged in
-//                                                    NSLog(@"I am logged in!");
-//                                                    // perform segue
-//                                                    [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
-//                                                } else {
-//                                                    [self doErrorMessage];
-//                                                }
-//                                                
-//                                                
-//                                            });
-//                                        }];
-//    [task resume];
-    
-    
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
     NSDictionary *param = @{@"name":email,
@@ -196,8 +160,8 @@
         // logged in successfully
         
         // get response data
-        self.data = (NSDictionary *)responseObject;
-        NSLog(@"%@", self.data);
+        NSDictionary *userData = (NSDictionary *)responseObject;
+        NSLog(@"%@", userData);
         // do something after logged in
         NSLog(@"I am logged in!");
 
