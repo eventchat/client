@@ -256,25 +256,27 @@ NSString *const ECAPILogin    = @"/oauth/token";
 
 @implementation ApiUtil
 
-+ (void)saveCookies{
++ (void)saveCookiesWithId:(NSString *)mId{
     
     NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject: cookiesData forKey: @"sessionCookies"];
+    [defaults setObject:mId forKey:@"mId"];
+    
     [defaults synchronize];
     
 }
 
 
-+ (void)loadCookies{
-    
++ (NSString *)loadCookies{
     NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData: [[NSUserDefaults standardUserDefaults] objectForKey: @"sessionCookies"]];
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     
     for (NSHTTPCookie *cookie in cookies){
         [cookieStorage setCookie: cookie];
     }
-    
+    // return the user id
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"mId"];
 }
 
 @end

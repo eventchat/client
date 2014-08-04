@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Join View Controller - Join Event-->
+        <!--View Controller - Join Event-->
         <scene sceneID="NeL-id-jZv">
             <objects>
-                <viewController storyboardIdentifier="myJoin" title="Join Event" id="D4S-95-1z0" customClass="JoinViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myJoin" title="Join Event" id="D4S-95-1z0" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nOj-eN-igy"/>
                         <viewControllerLayoutGuide type="bottom" id="W5J-f3-dVv"/>

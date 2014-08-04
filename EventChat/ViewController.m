@@ -39,34 +39,13 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+
     // initialization
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    // load the cookies
-    [ApiUtil loadCookies];
-    
-    // check logged in or not
-    NSURLRequest *loginRequest = [NSURLRequest requestWithMethod:@"GET" url:SESSION parameters:nil];
-    AFHTTPRequestOperation *loginOperation = [[AFHTTPRequestOperation alloc] initWithRequest:loginRequest];
-    loginOperation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [loginOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *loginResponse = (NSDictionary *)responseObject;
-        if(loginResponse[@"logged_in"] && [loginResponse[@"logged_in"] intValue] == 1){
-            NSLog(@"already logged in! should be no login window");
-            
-            [self pullingMessage];
-            // now go to join page
-            UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Join" bundle:nil];
-            UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myJoin"];
-            [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
-        }else{
-            NSLog(@"not logged in! should be no login window");
-            
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self doErrorMessage];
-    }];
-    [loginOperation start];
+
+    // load the cookies and check login
+    NSString * userId = [ApiUtil loadCookies];
+    [self checkloginStatus:userId];
     
     
     // Change status bar
@@ -79,11 +58,37 @@
     // Add listener for textfield change
     [self.emailTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
-    
+}
 
+- (void)checkloginStatus:(NSString *)userId{
+    // check logged in or not
+    NSURLRequest *loginRequest = [NSURLRequest requestWithMethod:@"GET" url:SESSION parameters:nil];
+    AFHTTPRequestOperation *loginOperation = [[AFHTTPRequestOperation alloc] initWithRequest:loginRequest];
+    loginOperation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [loginOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *loginResponse = (NSDictionary *)responseObject;
+        if(loginResponse[@"logged_in"] && [loginResponse[@"logged_in"] intValue] == 1){
 
-    
-    
+            NSLog(@"userid: %@ already logged in! should be no login window", userId);
+            
+            // now start pulling the message
+            [self pullingMessage];
+            
+            // login to the event tab
+            UITabBarController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabs"];
+            nextViewController.selectedViewController = [nextViewController.viewControllers objectAtIndex:1];
+            
+
+            [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+            
+        }else{
+            NSLog(@"not logged in! should be no login window");
+            
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self doErrorMessage];
+    }];
+    [loginOperation start];
 }
 
 -(UIStatusBarStyle) preferredStatusBarStyle {
@@ -170,13 +175,18 @@
         NSLog(@"I am logged in!");
         [appDelegate setUser:userData];
 
+        NSDictionary *responseDict = (NSDictionary *)responseObject;
         // save the cookie
-        [ApiUtil saveCookies];
+        NSLog(@"!!!!!!!!!!!!!!!!!\nmy id is %@",(NSString*)responseDict[@"id"]);
+        [ApiUtil saveCookiesWithId:(NSString*)responseDict[@"id"]];
         
         [self pullingMessage];
         NSLog(@"passed send get request");
-        // perform segue
-        [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
+
+        // login to the event tab
+        UITabBarController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabs"];
+        nextViewController.selectedViewController = [nextViewController.viewControllers objectAtIndex:1];
+
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // fail to log in

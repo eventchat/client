@@ -44,6 +44,7 @@ static NSString * const EVENT_B = @"53d6d749da0e0f0200e69de7";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     // load the pattern to join event
     NSLog(@"join page is loaded");
     [_buttonA addTarget:self action:@selector(buttonAClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -156,7 +157,9 @@ static NSString * const EVENT_B = @"53d6d749da0e0f0200e69de7";
         NSLog(@"I have joined the event %@",JOIN_EVENT );
         // begin the jump
         UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-        UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myTabs"];
+        UITabBarController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myTabs"];
+        nextViewController.selectedViewController = [nextViewController.viewControllers objectAtIndex:1];
+        
         [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
