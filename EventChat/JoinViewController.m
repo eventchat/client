@@ -7,20 +7,28 @@
 //
 
 #import "JoinViewController.h"
+#import "AFNetworking.h"
+#import "Constants.h"
+#import "ApiUtil.h"
 
 @interface JoinViewController ()
 
 @end
 
-// mock the unlock pattern
-static NSString const *PATTERN = @"2143";
 static NSInteger const SESSION_TIMEOUT = 3; // 5 secs or give up
 static NSInteger unlockCount = 0;
 static NSTimeInterval elapsedTime;
 static NSInteger prevNumber = -1;
 
+// two predefined events
+static NSString * const EVENT_A = @"53d6d5a7da0e0f0200e69de6";
+static NSString * const EVENT_B = @"53d6d749da0e0f0200e69de7";
 
-@implementation JoinViewController
+@implementation JoinViewController{
+    // mock the unlock pattern
+    NSDictionary *patterns;
+    NSString *currentPattern;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +51,8 @@ static NSInteger prevNumber = -1;
     [_buttonC addTarget:self action:@selector(buttonCClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_buttonD addTarget:self action:@selector(buttonDClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    // now having the two predefined patterns
+    patterns = [[NSDictionary alloc] initWithObjectsAndKeys:EVENT_A, @"1234", EVENT_B, @"4321", nil];
     elapsedTime = CFAbsoluteTimeGetCurrent();
 }
 
@@ -66,7 +76,7 @@ static NSInteger prevNumber = -1;
 - (void) resetButtons{
     unlockCount = 0;
     prevNumber = -1;
-    
+    currentPattern = nil;
 }
 - (void) parsePattern:(id)sender{
     UIButton * pressedButton = (UIButton *)sender;
@@ -84,19 +94,37 @@ static NSInteger prevNumber = -1;
     if (prevNumber == buttonTag) {
         return;
     }
-    NSInteger pos = [PATTERN rangeOfString:[NSString stringWithFormat:@"%ld",(long)buttonTag]].location;
-    if ((prevNumber == -1 && buttonTag == [[PATTERN substringToIndex:1] integerValue]) || [PATTERN rangeOfString:[NSString stringWithFormat:@"%ld",(long)prevNumber]].location == pos - 1) {
+    if (!currentPattern) {
+        for (NSString *key in patterns) {
+            currentPattern = [NSString stringWithString:key];
+            
+            BOOL breakFlag = [self verifyPattern:buttonTag];
+            if (breakFlag) {
+                break;
+            }
+        }
+    }else{
+        [self verifyPattern:buttonTag];
+    }
+    
+    
+    if (unlockCount == 4 && currentPattern) {
+        NSLog(@"current pattern: %@, key: %@", currentPattern, [patterns objectForKey:currentPattern] );
+        [self jumpToEventPage:[patterns objectForKey:currentPattern]];
+    }
+}
+
+- (BOOL) verifyPattern:(NSInteger) buttonTag{
+    NSInteger pos = [currentPattern rangeOfString:[NSString stringWithFormat:@"%ld",(long)buttonTag]].location;
+    if ((prevNumber == -1 && buttonTag == [[currentPattern substringToIndex:1] integerValue]) || [currentPattern rangeOfString:[NSString stringWithFormat:@"%ld",(long)prevNumber]].location == pos - 1) {
         
         NSLog(@"unlock: %ld, prevNumber: %ld, buttonTag: %ld\n", (long)unlockCount, (long)prevNumber, (long)buttonTag);
         prevNumber = buttonTag;
         unlockCount++;
+        return YES;
     }else{
         [self resetButtons];
-        return;
-    }
-    
-    if (unlockCount == 4) {
-        [self jumpToEventPage:@""];
+        return NO;
     }
 }
 
@@ -116,13 +144,27 @@ static NSInteger prevNumber = -1;
     [self parsePattern:sender];
 }
 
-- (void) jumpToEventPage:(NSString *)myEvent{
-    // TODO: choose the event
+- (void) jumpToEventPage:(NSString *)eventId{
+    NSURLRequest *request = [NSURLRequest postRequest: [NSString stringWithFormat:JOIN_EVENT, eventId]  parameters:nil];
     
-    // begin the jump
-    UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myTabs"];
-    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+            NSLog(@"%@",[NSHTTPCookieStorage sharedHTTPCookieStorage]);
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // do something after logged in
+        NSLog(@"I have joined the event %@",JOIN_EVENT );
+        // begin the jump
+        UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myTabs"];
+        [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"join event failed");
+                
+        NSLog(@"failed %@",error );
+    }];
+    [operation start];
 }
 
 @end

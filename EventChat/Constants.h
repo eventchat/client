@@ -67,6 +67,7 @@ extern NSString *const GET_EVENT_BY_EVENT_ID;
 extern NSString *const CREATE_EVENT;
 extern NSString *const UPDATE_EVENT;
 extern NSString *const DELETE_EVENT;
+extern NSString *const JOIN_EVENT;
 // Message
 extern NSString *const GET_MESSAGE_BY_EVENT_ID;
 // Notification

@@ -54,6 +54,8 @@ extern NSString *const ECAPILogin;
 
 + (NSMutableURLRequest *) buildReadNotificationRequest;
 
+// Added by Lyman
++ (NSMutableURLRequest *) buildGetSessionRequest:(NSString *) parameters ;
 
 // functions we'll need
 + (instancetype)requestWithPattern:(NSString *)string object:(id)object;
@@ -63,6 +65,11 @@ extern NSString *const ECAPILogin;
 + (instancetype)requestWithMethod:(NSString *)method
                               url:(NSString *)url
                        parameters:(NSDictionary *)parameters;
+@end
 
+@interface ApiUtil : NSObject
+
++ (void)saveCookies;
++ (void)loadCookies;
 
 @end

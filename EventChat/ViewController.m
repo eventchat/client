@@ -36,9 +36,32 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-//    NSURL *url = [[NSURL alloc] initWithString:HOST];
-//    NSLog(@"%@", [NSHTTPCookieStorage sharedHTTPCookieStorage]);
-
+    
+    // load the cookies
+    [ApiUtil loadCookies];
+    
+    // check logged in or not
+    NSURLRequest *loginRequest = [NSURLRequest requestWithMethod:@"GET" url:SESSION parameters:nil];
+    AFHTTPRequestOperation *loginOperation = [[AFHTTPRequestOperation alloc] initWithRequest:loginRequest];
+    loginOperation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [loginOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *loginResponse = (NSDictionary *)responseObject;
+        if(loginResponse[@"logged_in"] && [loginResponse[@"logged_in"] intValue] == 1){
+            NSLog(@"already logged in! should be no login window");
+            // now go to join page
+            UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Join" bundle:nil];
+            UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myJoin"];
+            [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+        }else{
+            NSLog(@"not logged in! should be no login window");
+            
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self doErrorMessage];
+    }];
+    [loginOperation start];
+    
+    
     // Change status bar
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -50,10 +73,9 @@
     [self.emailTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     
-    // now test for join page
-//    UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Join" bundle:nil];
-//    UIViewController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myJoin"];
-//    [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
+
+
+    
     
 }
 
@@ -160,6 +182,7 @@
 //                                        }];
 //    [task resume];
     
+    
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
     NSDictionary *param = @{@"name":email,
@@ -172,18 +195,20 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         // logged in successfully
         
-        // get cookies
-//        NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:responseObject forURL:[[NSURL alloc] initWithString:HOST]];
-        
         // get response data
         self.data = (NSDictionary *)responseObject;
         NSLog(@"%@", self.data);
         // do something after logged in
         NSLog(@"I am logged in!");
+
+        // save the cookie
+        [ApiUtil saveCookies];
+        
         [self pullingMessage];
         NSLog(@"passed send get request");
         // perform segue
         [self performSegueWithIdentifier:@"loginToHomeScene" sender:self];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // failt to log in
         [self doErrorMessage];
