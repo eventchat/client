@@ -20,6 +20,7 @@
 		6CB2743E19879265009E6375 /* PostImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB2743D19879265009E6375 /* PostImageCell.m */; };
 		6CBCB74B1942F8860031895F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCB74A1942F8860031895F /* ItemCell.m */; };
 		6CC216091943ACE400BC2FE3 /* profile-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC216081943ACE400BC2FE3 /* profile-placeholder.png */; };
+		6CC288C3198EF87F007F9817 /* ECData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC288C2198EF87F007F9817 /* ECData.m */; };
 		6CCF3419196E0987001DEA77 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCF3418196E0987001DEA77 /* ChatMessage.m */; };
 		6CF7533A198846030011A733 /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF75339198846030011A733 /* EventViewController.m */; };
 		6CF8B5BF197CA2F3002D5950 /* ConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF8B5BE197CA2F3002D5950 /* ConversationCell.m */; };
@@ -96,6 +97,8 @@
 		6CBCB7491942F8860031895F /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		6CBCB74A1942F8860031895F /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		6CC216081943ACE400BC2FE3 /* profile-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-placeholder.png"; sourceTree = "<group>"; };
+		6CC288C1198EF87F007F9817 /* ECData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECData.h; sourceTree = "<group>"; };
+		6CC288C2198EF87F007F9817 /* ECData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECData.m; sourceTree = "<group>"; };
 		6CCF3417196E0987001DEA77 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		6CCF3418196E0987001DEA77 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		6CF75338198846030011A733 /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 				ABCF7DD91938079F00C49CA0 /* ModelProtocol.h */,
 				6CCF3417196E0987001DEA77 /* ChatMessage.h */,
 				6CCF3418196E0987001DEA77 /* ChatMessage.m */,
+				6CC288C1198EF87F007F9817 /* ECData.h */,
+				6CC288C2198EF87F007F9817 /* ECData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -514,6 +519,7 @@
 				6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				6CB2743B19878005009E6375 /* PostBasicCell.m in Sources */,
+				6CC288C3198EF87F007F9817 /* ECData.m in Sources */,
 				E846E91219864DF300154822 /* JoinViewController.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
 				E8377FAE194BBF4E00E33C6D /* CreateCommentViewController.m in Sources */,
