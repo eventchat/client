@@ -112,6 +112,8 @@ NSArray *timelyOrderedConversationArray;
         NSString *key = [timelyOrderedConversationArray objectAtIndex:indexPath.row];
         destViewController.mConversation = [conversationDict objectForKey:key];
         destViewController.mAppUser = appData.mUser;
+        NSLog(@" the current user is %@", appData.mUser);
+        NSLog(@"the current responder is %@", destViewController.mConversation.mResponder);
         destViewController.navigationItem.title = destViewController.mConversation.mResponder.mName;
         
         // hide the bottom bar

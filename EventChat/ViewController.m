@@ -197,12 +197,6 @@
         NSDictionary *userDataDict = (NSDictionary *)responseObject;
         NSLog(@"%@", userDataDict);
         
-        NSLog(@"User Data is: id - %@, email - %@, info - %@, name - %@, avatar - %@",
-              [userDataDict objectForKey:@"id"],
-              [userDataDict objectForKey:@"email"],
-              [userDataDict objectForKey:@"info"],
-              [userDataDict objectForKey:@"name"],
-              [userDataDict objectForKey:@"avatar_url"]);
         
         User *userData = [[User alloc] initWithId:[userDataDict objectForKey:@"id"] withEmail:[userDataDict objectForKey:@"email"] withInfo:[userDataDict objectForKey:@"info"] withName:[userDataDict objectForKey:@"name"] withAvatarUrl:[userDataDict objectForKey:@"avatar_url"]];
         // do something after logged in

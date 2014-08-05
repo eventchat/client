@@ -18,8 +18,6 @@
 - (id) initWithResponder: (User *) responder;
 - (void) addMessageWithMessage: (Message *) message;
 
-- (User *) getResponder;
-
 - (NSString *) getMostRecentMessageTime;
 - (NSString *) getMostRecentMessageBody;
 @end

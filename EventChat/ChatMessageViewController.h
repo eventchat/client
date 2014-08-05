@@ -18,8 +18,6 @@
 @property (nonatomic, strong)IBOutlet UIButton *sendImage;
 @property (nonatomic, strong)IBOutlet UITextField *textField;
 
-@property AppDelegate *appDelegate;
-@property ECData *mData;
 @property Conversation *mConversation;
 @property User *mAppUser;
 @end

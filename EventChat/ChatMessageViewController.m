@@ -9,6 +9,8 @@
 #import "ChatMessageViewController.h"
 #import "ChatMessageCell.h"
 #import "ChatMessage.h"
+#import "ApiUtil.h"
+#import "AFNetworking.h"
 
 @interface ChatMessageViewController ()
 @property (nonatomic, strong) NSMutableArray *messages;
@@ -16,8 +18,6 @@
 
 @implementation ChatMessageViewController
 
-@synthesize appDelegate;
-@synthesize mData;
 @synthesize mConversation;
 @synthesize mAppUser;
 
@@ -229,18 +229,46 @@ bool keyboardIsShown;
     [self dismissKeyboard]; //dismiss keyboard
     
     // text processing
-    ChatMessage *newMessage = [ChatMessage messageWithString:self.textField.text image:[UIImage imageNamed:@"placeholder"]];
+//    ChatMessage *newMessage = [ChatMessage messageWithString:self.textField.text image:[UIImage imageNamed:@"placeholder"]];
+    NSDate * currentDate = [NSDate date];
+    Message *newMessage = [[Message alloc] initWithAuthor:mAppUser withReceiver:mConversation.mResponder withBody:self.textField.text withCreatedAt:[ApiUtil ISO8601StringFromDate:currentDate]];
+    [mConversation.mMessagesArray addObject:newMessage];
     self.textField.text = @"";  // clear text field
+    NSLog(@"the new mesasge content: %@", newMessage);
+    NSLog(@"the post request parm are: %@", [newMessage toDictionary]);
+    
+    // send out message
 
-    [self.messages addObject:newMessage];
-    [self refreshDisplay:self.messageTable atLastRow:[self.messages count]];
+    NSURLRequest *request = [NSURLRequest postRequest: CHAT parameters:[newMessage toDictionary]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        // get response data
+        NSString *responseNotification = (NSString *)responseObject;
+        NSLog(@"response is :%@", responseNotification);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // fail to log in
+        NSLog(@"error is %@", error);
+
+    }];
+    [operation start];
+    
+    
+    // refresh message table
+    [self refreshDisplay:self.messageTable atLastRow:[mConversation.mMessagesArray count]];
+
+//    [self.messages addObject:newMessage];
+//    [self refreshDisplay:self.messageTable atLastRow:[self.messages count]];
 }
 
 
 #pragma mark - refresh UI methods
 - (void)refreshDisplay:(UITableView *)tableView atLastRow:(NSInteger) lastRow{
     [tableView reloadData];
-    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messages count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[mConversation.mMessagesArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 
