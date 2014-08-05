@@ -279,4 +279,10 @@ NSString *const ECAPILogin    = @"/oauth/token";
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"mId"];
 }
 
++ (NSString *)convertTimeStampWithUTCString: (NSString *)utcString {
+    // TODO: add more comprehensive methods for displaying time
+    
+    return [utcString substringToIndex:[utcString length]-3];
+}
+
 @end

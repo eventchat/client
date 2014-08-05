@@ -17,6 +17,7 @@
 @end
 
 NSDictionary *testData;
+NSArray *timelyOrderedConversationArray;
 
 @implementation ConversationViewController
 @synthesize appDelegate;
@@ -42,6 +43,7 @@ NSDictionary *testData;
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appData = appDelegate.mData;
     conversationDict = [appData getConversationsDict];
+    timelyOrderedConversationArray = [conversationDict allKeys];
     
     self.chatters = [[NSMutableArray alloc] initWithObjects:@"Michael", @"Jason", @"Rose", nil];
     
@@ -90,12 +92,13 @@ NSDictionary *testData;
 }
 
 - (void) configureCell: (ConversationCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *keys = [conversationDict allKeys];
-    NSString *key = [keys objectAtIndex:indexPath.row];
+    NSString *key = [timelyOrderedConversationArray objectAtIndex:indexPath.row];
     Conversation *conversation = [conversationDict objectForKey:key];
-    User *responder = [conversation getResponder];
+    User *responder = conversation.mResponder;
     NSLog(@"responder is %@", responder);
     cell.nameLabel.text = responder.mName;
+    cell.timeLabel.text = [conversation getMostRecentMessageTime];
+    cell.previewLabel.text = [conversation getMostRecentMessageBody];
     
 }
 
@@ -106,7 +109,10 @@ NSDictionary *testData;
         ChatMessageViewController *destViewController = segue.destinationViewController;
 
         // update the title of destination view controller to be chatter's name
-        destViewController.navigationItem.title = [self.chatters objectAtIndex:indexPath.row];
+        NSString *key = [timelyOrderedConversationArray objectAtIndex:indexPath.row];
+        destViewController.mConversation = [conversationDict objectForKey:key];
+        destViewController.mAppUser = appData.mUser;
+        destViewController.navigationItem.title = destViewController.mConversation.mResponder.mName;
         
         // hide the bottom bar
         destViewController.hidesBottomBarWhenPushed = YES;

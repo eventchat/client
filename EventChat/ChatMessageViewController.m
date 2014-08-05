@@ -16,6 +16,11 @@
 
 @implementation ChatMessageViewController
 
+@synthesize appDelegate;
+@synthesize mData;
+@synthesize mConversation;
+@synthesize mAppUser;
+
 @synthesize messageTable = _messageTable;
 @synthesize sendMessage = _sendMessage;
 @synthesize sendImage = _sendImage;
@@ -39,6 +44,7 @@ bool keyboardIsShown;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
     self.messages = [[NSMutableArray alloc] initWithObjects:
                      [ChatMessage messageWithString:@"How is that bubble component of yours coming along?" image:[UIImage imageNamed:@"placeholder"]],
                      [ChatMessage messageWithString:@"Great, I just finished avatar support." image:[UIImage imageNamed:@"placeholder"]],
@@ -81,7 +87,7 @@ bool keyboardIsShown;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.messages count];
+    return [mConversation.mMessagesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,14 +104,14 @@ bool keyboardIsShown;
         cell.delegate = self.messageTable;
     }
     
-    ChatMessage *message = [self.messages objectAtIndex:indexPath.row];
+    Message *message = [mConversation.mMessagesArray objectAtIndex:indexPath.row];
 
     cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
-    cell.textLabel.text = message.message;
-    cell.imageView.image = message.avatar;
+    cell.textLabel.text = message.mBody;
+    cell.imageView.image = nil;
     
     // Put logic here to determine the author
-    if (indexPath.row %2 != 0 ||indexPath.row == 4) {
+    if ([message.mAuthor.mId isEqualToString:mAppUser.mId]) {
         cell.authorType = ChatMessageCellAuthorTypeSelf;
         cell.bubbleColor = ChatMessageCellBubbleColorGreen;
     }

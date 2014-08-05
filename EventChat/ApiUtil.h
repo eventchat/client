@@ -14,11 +14,6 @@
 #import "Message.h"
 #import "Notification.h"
 
-// Referencing variables
-extern NSString *const ECAPIBaseURL;
-extern NSString *const ECAPIStories;
-extern NSString *const ECAPIComments;
-extern NSString *const ECAPILogin;
 
 @interface NSURLRequest (ApiUtil)
 
@@ -71,5 +66,5 @@ extern NSString *const ECAPILogin;
 
 + (void)saveCookiesWithId:(NSString *)mId;
 + (NSString *)loadCookies;
-
++ (NSString *)convertTimeStampWithUTCString: (NSString *)utcString;
 @end
