@@ -210,6 +210,7 @@
         
         // set the user in appData
         [appData setUser:userData];
+        appData.mId = userDataDict[@"id"];
         
         //TODO: set the events
         

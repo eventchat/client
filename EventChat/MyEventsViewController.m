@@ -63,27 +63,17 @@ static NSString * const  EventCellIdentifier = @"EventCell";
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *allEvents = (NSArray *)responseObject;
-        NSLog(@"all events: %@", allEvents);
         
         // empty all the events first
         [appData clearAllEvents];
         
         for (NSDictionary *singleEvent in allEvents) {
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"MM dd, yyyy"];
-            
-            NSDate *eventDate = [ApiUtil dateFromISO8601String:singleEvent[@"start_time"]];
-            
-            NSLog(@"date: %@",eventDate);
-            
-            NSDictionary *eventCell = [[NSDictionary alloc] initWithObjectsAndKeys:singleEvent[@"name"], @"EventName", [dateFormat stringFromDate:eventDate] , @"EventTime", @"Attended", @"EventRole", nil];
-            [appData.mEvents addObject:eventCell];
+            [appData.mEvents addObject:singleEvent];
         }
-        NSLog(@"all events: %@",appData.mEvents);
         [self.eventsTableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failed to get all events info");
+        NSLog(@"failed to get all events info. id: %@. Error %@",appData.mId ,error);
     }];
     [operation start];
 }
@@ -104,8 +94,14 @@ static NSString * const  EventCellIdentifier = @"EventCell";
 
 - (void) configureCell: (EventCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *cellData = [appData.mEvents objectAtIndex:indexPath.row];
-    cell.eventTitleLabel.text = [cellData valueForKey:@"EventName"];
-    cell.eventTimeLabel.text = [cellData valueForKey:@"EventTime"];
+    cell.eventTitleLabel.text = cellData[@"name"];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM'-'dd'-'yyyy"];
+    [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
+    
+    NSDate *eventDate = [ApiUtil dateFromISO8601String:cellData[@"start_time"]];
+    cell.eventTimeLabel.text = [dateFormat stringFromDate:eventDate];
 }
 
 @end
