@@ -19,4 +19,7 @@
 - (void) addMessageWithMessage: (Message *) message;
 
 - (User *) getResponder;
+
+- (NSString *) getMostRecentMessageTime;
+- (NSString *) getMostRecentMessageBody;
 @end

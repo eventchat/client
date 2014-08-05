@@ -96,6 +96,8 @@ NSDictionary *testData;
     User *responder = [conversation getResponder];
     NSLog(@"responder is %@", responder);
     cell.nameLabel.text = responder.mName;
+    cell.timeLabel.text = [conversation getMostRecentMessageTime];
+    cell.previewLabel.text = [conversation getMostRecentMessageBody];
     
 }
 

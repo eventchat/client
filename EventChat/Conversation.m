@@ -8,6 +8,7 @@
 
 #import "Conversation.h"
 #import "Message.h"
+#import "ApiUtil.h"
 
 
 
@@ -35,6 +36,16 @@
 
 - (void) addMessageWithMessage: (Message *) message {
     [mMessagesArray addObject:message];
+}
+
+- (NSString *) getMostRecentMessageTime {
+    Message *mostRecentMessage = [mMessagesArray lastObject];
+    return [ApiUtil convertTimeStampWithUTCString:mostRecentMessage.mCreatedAt];
+}
+
+- (NSString *) getMostRecentMessageBody {
+    Message *mostRecentMessage = [mMessagesArray lastObject];
+    return mostRecentMessage.mBody;
 }
 
 @end
