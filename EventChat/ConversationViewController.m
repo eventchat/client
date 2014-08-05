@@ -40,7 +40,7 @@ NSDictionary *testData;
     
     // Initialize
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appData = [appDelegate getData];
+    appData = appDelegate.mData;
     conversationDict = [appData getConversationsDict];
     
     self.chatters = [[NSMutableArray alloc] initWithObjects:@"Michael", @"Jason", @"Rose", nil];
@@ -59,6 +59,8 @@ NSDictionary *testData;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"conversationDict is %@", conversationDict);
+    NSLog(@"%lu", (unsigned long)[conversationDict count]);
     return [conversationDict count];
 }
 
@@ -82,7 +84,7 @@ NSDictionary *testData;
     cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
 //        NSLog(@"description = %@",[cell description]);
     // configure cell
-//    [self configureCell:cell cellForRowAtIndexPath:indexPath];
+    [self configureCell:cell cellForRowAtIndexPath:indexPath];
     
     return cell;
 }
@@ -92,7 +94,7 @@ NSDictionary *testData;
     NSString *key = [keys objectAtIndex:indexPath.row];
     Conversation *conversation = [conversationDict objectForKey:key];
     User *responder = [conversation getResponder];
-    
+    NSLog(@"responder is %@", responder);
     cell.nameLabel.text = responder.mName;
     
 }

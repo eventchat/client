@@ -79,7 +79,8 @@
             UITabBarController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabs"];
             nextViewController.selectedViewController = [nextViewController.viewControllers objectAtIndex:1];
             
-
+            NSLog(@"%@", appData.mUser);
+            NSLog(@"%@", appData.mConversationsDict);
             [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
             
         }else{
@@ -217,7 +218,9 @@
         // package received messageArray
         NSMutableArray *messageArray = [[NSMutableArray alloc] init];
         for (NSDictionary *data in dataArray) {
-            
+            Message *newMessage = [Message createMessageWithData:data];
+            [messageArray addObject:newMessage];
+            NSLog(@"the newly added message is %@", newMessage);
         }
         
         // add into conversation

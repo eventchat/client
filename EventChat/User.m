@@ -61,6 +61,9 @@
     return nil;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<User: {mId: %@\n mEmail: %@\n mInfo: %@\n mName: %@\n mAvatarUrl: %@}>", mId, mEmail, mInfo, mName, mAvatarUrl];
+}
 
 
 
