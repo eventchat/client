@@ -29,6 +29,10 @@
     return self;
 }
 
+- (User *) getResponder {
+    return mResponder;
+}
+
 - (void) addMessageWithMessage: (Message *) message {
     [mMessagesArray addObject:message];
 }

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @interface ConversationViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong)IBOutlet UITableView *chatterTable;
-
+@property AppDelegate *appDelegate;
+@property ECData *appData;
+@property NSMutableDictionary *conversationDict;
 @end

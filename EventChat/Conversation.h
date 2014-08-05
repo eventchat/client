@@ -17,4 +17,6 @@
 
 - (id) initWithResponder: (User *) responder;
 - (void) addMessageWithMessage: (Message *) message;
+
+- (User *) getResponder;
 @end

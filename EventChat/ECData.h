@@ -16,4 +16,9 @@
 @property NSMutableDictionary *mFriendsDict;
 
 - (void) initUser: (User *) user;
+- (void) setUser: (User *) user;
+
+- (NSMutableDictionary *) getConversationsDict;
+
+- (void) addConversationWithReceivedMessageArray: (NSArray *) messageArray;
 @end

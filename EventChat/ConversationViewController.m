@@ -7,18 +7,21 @@
 //
 
 #import "ConversationViewController.h"
-//#import "ChatterCell.h"
 #import "ChatMessageViewController.h"
 #import "ConversationCell.h"
+#import "Conversation.h"
+#import "User.h"
 
 @interface ConversationViewController ()
 @property NSMutableArray *chatters;
 @end
 
-NSDictionary *data;
+NSDictionary *testData;
 
 @implementation ConversationViewController
-
+@synthesize appDelegate;
+@synthesize appData;
+@synthesize conversationDict;
 @synthesize chatterTable = _chatterTable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,9 +38,14 @@ NSDictionary *data;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Initialize
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appData = [appDelegate getData];
+    conversationDict = [appData getConversationsDict];
+    
     self.chatters = [[NSMutableArray alloc] initWithObjects:@"Michael", @"Jason", @"Rose", nil];
     
-    data = [[NSDictionary alloc] init];
+    testData = [[NSDictionary alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,7 +59,7 @@ NSDictionary *data;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.chatters count];
+    return [conversationDict count];
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -80,9 +88,13 @@ NSDictionary *data;
 }
 
 - (void) configureCell: (ConversationCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if ([cell isKindOfClass:[ConversationCell class]]) {
-//        NSLog(@"check ConversationCell");
-//    }
+    NSArray *keys = [conversationDict allKeys];
+    NSString *key = [keys objectAtIndex:indexPath.row];
+    Conversation *conversation = [conversationDict objectForKey:key];
+    User *responder = [conversation getResponder];
+    
+    cell.nameLabel.text = responder.mName;
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

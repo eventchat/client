@@ -11,7 +11,6 @@
 #import "ModelProtocol.h"
 
 @interface Message : NSObject <ModelProtocol> {
-    NSString *mId;
     User *mAuthor;
     User *mReceiver;
     NSString *mBody;
@@ -23,5 +22,8 @@
 @property (nonatomic, readwrite) User *mReceiver;
 @property (nonatomic, readwrite) NSString *mBody;
 @property (nonatomic, readwrite) NSString *mCreatedAt;
+
+
+- (id) initWithAuthor: (User *)author withReceiver: (User *)receiver withBody: (NSString *)body withCreatedAt: (NSString *)createdAt;
 
 @end

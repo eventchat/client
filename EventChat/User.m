@@ -25,11 +25,27 @@
 
 - (id) initWithId: (NSString *) userId withEmail: (NSString *) email withInfo: (NSString *) info withName: (NSString *)name withAvatarUrl: (NSString *) avatarUrl {
     self = [self init];
-    mId = [[NSString alloc] initWithString:userId];
-    mEmail = [[NSString alloc] initWithString:email];
-    mInfo = [[NSString alloc] initWithString:info];
-    mName = [[NSString alloc] initWithString:name];
-    mAvatarUrl = [[NSString alloc] initWithString:avatarUrl];
+    if (userId) {
+        mId = [[NSString alloc] initWithString:userId];
+    }
+    if (email) {
+        mEmail = [[NSString alloc] initWithString:email];
+    }
+    if (![info isKindOfClass:[NSNull class]]) {
+        mInfo = [[NSString alloc] initWithString:info];
+    } else {
+        // handle null case
+        mInfo = @"";
+    }
+    if (name) {
+        mName = [[NSString alloc] initWithString:name];
+    }
+    if (![avatarUrl isKindOfClass:[NSNull class]]) {
+        mAvatarUrl = [[NSString alloc] initWithString:avatarUrl];
+    } else {
+        // handle null case
+        mAvatarUrl = @"";
+    }
     return self;
 }
 
@@ -44,6 +60,9 @@
 - (NSDictionary *) toDictionary {
     return nil;
 }
+
+
+
 
 
 @end

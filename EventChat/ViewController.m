@@ -25,7 +25,7 @@
 
 @implementation ViewController
 @synthesize appDelegate;
-@synthesize user;
+@synthesize appData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +41,7 @@
     
     // initialization
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appData = appDelegate.data;
     
     // load the cookies
     [ApiUtil loadCookies];
@@ -165,10 +166,17 @@
         NSDictionary *userDataDict = (NSDictionary *)responseObject;
         NSLog(@"%@", userDataDict);
         
-        User *userData = [[User alloc] initWithId:[userDataDict objectForKey:@""] withEmail:[userDataDict objectForKey:@""] withInfo:[userDataDict objectForKey:@""] withName:[userDataDict objectForKey:@""] withAvatarUrl:[userDataDict objectForKey:@""]];
+        NSLog(@"User Data is: id - %@, email - %@, info - %@, name - %@, avatar - %@",
+              [userDataDict objectForKey:@"id"],
+              [userDataDict objectForKey:@"email"],
+              [userDataDict objectForKey:@"info"],
+              [userDataDict objectForKey:@"name"],
+              [userDataDict objectForKey:@"avatar_url"]);
+        
+        User *userData = [[User alloc] initWithId:[userDataDict objectForKey:@"id"] withEmail:[userDataDict objectForKey:@"email"] withInfo:[userDataDict objectForKey:@"info"] withName:[userDataDict objectForKey:@"name"] withAvatarUrl:[userDataDict objectForKey:@"avatar_url"]];
         // do something after logged in
         NSLog(@"I am logged in!");
-        [appDelegate setUser:userData];
+        [appData setUser:userData];
 
         // save the cookie
         [ApiUtil saveCookies];
@@ -193,8 +201,19 @@
     chat_operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [chat_operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"successfully get chat info");
-        NSArray *chatData = [[NSArray alloc] initWithArray:(NSArray *) responseObject];
-        NSLog(@"%@", chatData);
+        NSArray *dataArray = [[NSArray alloc] initWithArray:(NSArray *) responseObject];
+        NSLog(@"%@", dataArray);
+        
+        // package received messageArray
+        NSMutableArray *messageArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *data in dataArray) {
+            
+        }
+        
+        // add into conversation
+        [appData addConversationWithReceivedMessageArray:messageArray];
+        
+        
         [self pullingMessage];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failed to get chat info");

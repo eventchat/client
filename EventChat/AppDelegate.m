@@ -11,12 +11,12 @@
 
 @implementation AppDelegate
 
-@synthesize data;
+@synthesize mData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    data = [[ECData alloc] init];
+    mData = [[ECData alloc] init];
     return YES;
 }
 							
@@ -47,20 +47,6 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (ECData *) getData {
-    return data;
-}
 
-- (User *) getUser {
-    return [data mUser];
-}
-
-- (void) setUser:(User *)user {
-    if (data.mUser == Nil) {
-        [data initUser:user];
-    } else {
-        [data.mUser copy:user];
-    }
-}
 
 @end

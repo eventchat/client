@@ -772,13 +772,17 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6:05 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTB-JT-l6N" userLabel="msg time">
                                                     <rect key="frame" x="262" y="12" width="48" height="16"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                                    <color key="textColor" red="0.60784313725490191" green="0.61176470588235299" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.99215686274509807" green="0.63137254901960782" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="avatarImageView" destination="qo4-hL-dND" id="cjv-Jd-Rl8"/>
+                                            <outlet property="nameLabel" destination="9P5-D8-fYz" id="3Y1-Ha-9JK"/>
+                                            <outlet property="previewLabel" destination="TGv-Gb-dJ8" id="hTV-W6-dGa"/>
+                                            <outlet property="timeLabel" destination="JTB-JT-l6N" id="x7h-A5-u5e"/>
                                             <segue destination="1TU-iT-wNT" kind="push" identifier="showChatMessage" id="J7b-4M-Mc2"/>
                                         </connections>
                                     </tableViewCell>

@@ -12,8 +12,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) ECData *data;
+@property (strong, nonatomic) ECData *mData;
 
-- (User *) getUser;
-- (void) setUser: (User *) user;
 @end

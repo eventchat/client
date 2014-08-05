@@ -37,11 +37,7 @@
 }
 
 - (void) setUser: (User *) user {
-    
-}
-
-- (User *) getUser {
-    return mUser;
+    mUser = user;
 }
 
 - (NSMutableDictionary *) getConversationsDict {
@@ -76,6 +72,45 @@
         Conversation *newConversation = [[Conversation alloc] initWithResponder:responder];
         [newConversation addMessageWithMessage:message];
         [mConversationsDict setObject:newConversation forKey:responder.mId];
+    }
+}
+
+- (void) addConversationWithReceivedMessage: (Message *) message {
+    User *responder = message.mAuthor;
+    if ([self getConversationByUserId:responder.mId]) {
+        // if responder already in conversation list, add message into corresponding conversation
+        [[mConversationsDict objectForKey:responder.mId] addMessageWithMessage:message];
+    }
+    else {
+        // if responder not in conversation list:
+        // create new conversation with responder then add the message into it;
+        // add the created conversation into mConversationDict
+        Conversation *newConversation = [[Conversation alloc] initWithResponder:responder];
+        [newConversation addMessageWithMessage:message];
+        [mConversationsDict setObject:newConversation forKey:responder.mId];
+    }
+}
+
+- (void) addConversationWithSentMessage:(Message *) message {
+    User *responder = message.mReceiver;
+    if ([self getConversationByUserId:responder.mId]) {
+        // if responder already in conversation list, add message into corresponding conversation
+        [[mConversationsDict objectForKey:responder.mId] addMessageWithMessage:message];
+    }
+    else {
+        // if responder not in conversation list:
+        // create new conversation with responder then add the message into it;
+        // add the created conversation into mConversationDict
+        Conversation *newConversation = [[Conversation alloc] initWithResponder:responder];
+        [newConversation addMessageWithMessage:message];
+        [mConversationsDict setObject:newConversation forKey:responder.mId];
+    }
+    
+}
+
+- (void) addConversationWithReceivedMessageArray: (NSArray *) messageArray {
+    for (Message *message in messageArray) {
+        [self addConversationWithReceivedMessage:message];
     }
 }
 
