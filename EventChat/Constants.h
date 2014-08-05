@@ -54,6 +54,7 @@ extern NSString *const PORT;
 // User
 extern NSString *const GET_USER;
 extern NSString *const CREATE_USER;
+extern NSString *const GET_ALL_EVENTS_A_USER_ATTENDS;
 // Post
 extern NSString *const GET_POST;
 extern NSString *const CREATE_POST;

@@ -69,7 +69,7 @@ extern NSString *const ECAPILogin;
 
 @interface ApiUtil : NSObject
 
-+ (void)saveCookies;
-+ (void)loadCookies;
++ (void)saveCookiesWithId:(NSString *)mId;
++ (NSString *)loadCookies;
 
 @end
