@@ -21,5 +21,7 @@
 
 - (NSMutableDictionary *) getConversationsDict;
 
+- (void)clearAllEvents;
+
 - (void) addConversationWithReceivedMessageArray: (NSArray *) messageArray;
 @end

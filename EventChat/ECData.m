@@ -122,5 +122,8 @@
     
 }
 
+- (void)clearAllEvents{
+    mEvents = [[NSMutableArray alloc] init];
+}
 
 @end

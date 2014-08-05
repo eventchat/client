@@ -67,4 +67,5 @@
 + (void)saveCookiesWithId:(NSString *)mId;
 + (NSString *)loadCookies;
 + (NSString *)convertTimeStampWithUTCString: (NSString *)utcString;
++ (NSDate *)dateFromISO8601String:(NSString *)dateString;
 @end

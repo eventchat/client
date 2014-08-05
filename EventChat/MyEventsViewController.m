@@ -65,8 +65,18 @@ static NSString * const  EventCellIdentifier = @"EventCell";
         NSArray *allEvents = (NSArray *)responseObject;
         NSLog(@"all events: %@", allEvents);
         
+        // empty all the events first
+        [appData clearAllEvents];
+        
         for (NSDictionary *singleEvent in allEvents) {
-            NSDictionary *eventCell = [[NSDictionary alloc] initWithObjectsAndKeys:singleEvent[@"name"], @"EventName", singleEvent[@"start_time"], @"EventTime", @"Attended", @"EventRole", nil];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"MM dd, yyyy"];
+            
+            NSDate *eventDate = [ApiUtil dateFromISO8601String:singleEvent[@"start_time"]];
+            
+            NSLog(@"date: %@",eventDate);
+            
+            NSDictionary *eventCell = [[NSDictionary alloc] initWithObjectsAndKeys:singleEvent[@"name"], @"EventName", [dateFormat stringFromDate:eventDate] , @"EventTime", @"Attended", @"EventRole", nil];
             [appData.mEvents addObject:eventCell];
         }
         NSLog(@"all events: %@",appData.mEvents);
