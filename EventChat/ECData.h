@@ -12,8 +12,9 @@
 @interface ECData : NSObject
 @property User *mUser;
 @property NSMutableDictionary *mConversationsDict;
-@property NSMutableDictionary *mEventsDict;
+@property NSMutableArray *mEvents;
 @property NSMutableDictionary *mFriendsDict;
+@property NSString *mId; // user's id, now for temporary usage
 
 - (void) initUser: (User *) user;
 - (void) setUser: (User *) user;

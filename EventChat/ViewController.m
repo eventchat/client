@@ -72,6 +72,14 @@
 
             NSLog(@"userid: %@ already logged in! should be no login window", userId);
             
+            // set the user in appData
+            [self setUserDataById:userId];
+            appData.mId = userId;
+            
+            //TODO: set the events
+            
+            //TODO: set friend
+            
             // now start pulling the message
             [self pullingMessage];
             
@@ -79,7 +87,7 @@
             UITabBarController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabs"];
             nextViewController.selectedViewController = [nextViewController.viewControllers objectAtIndex:1];
             
-            NSLog(@"%@", appData.mUser);
+            NSLog(@"in checkloginstatus user: %@", appData.mUser);
             NSLog(@"%@", appData.mConversationsDict);
             [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
             
@@ -91,6 +99,23 @@
         [self doErrorMessage];
     }];
     [loginOperation start];
+}
+
+- (void) setUserDataById:(NSString *)userId{
+    NSURLRequest *request = [NSURLRequest requestWithMethod:@"GET" url: [NSString stringWithFormat: GET_USER, userId] parameters:nil];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSDictionary *userDataDict = (NSDictionary *)responseObject;
+        
+        User *loggedInUser = [[User alloc] initWithId:[userDataDict objectForKey:@"id"] withEmail:[userDataDict objectForKey:@"email"] withInfo:[userDataDict objectForKey:@"info"] withName:[userDataDict objectForKey:@"name"] withAvatarUrl:[userDataDict objectForKey:@"avatar_url"]];
+        
+        [appData setUser:loggedInUser];
+
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self doErrorMessage];
+    }];
+    [operation start];
 }
 
 -(UIStatusBarStyle) preferredStatusBarStyle {
@@ -182,7 +207,15 @@
         User *userData = [[User alloc] initWithId:[userDataDict objectForKey:@"id"] withEmail:[userDataDict objectForKey:@"email"] withInfo:[userDataDict objectForKey:@"info"] withName:[userDataDict objectForKey:@"name"] withAvatarUrl:[userDataDict objectForKey:@"avatar_url"]];
         // do something after logged in
         NSLog(@"I am logged in!");
+        
+        // set the user in appData
         [appData setUser:userData];
+        
+        //TODO: set the events
+        
+        //TODO: set friend
+        
+
 
         NSDictionary *responseDict = (NSDictionary *)responseObject;
         // save the cookie

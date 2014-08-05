@@ -8,6 +8,11 @@
 
 #import "MyEventsViewController.h"
 #import "EventCell.h"
+#import "AFNetworking.h"
+#import "Constants.h"
+#import "ECData.h"
+#import "AppDelegate.h"
+#import "ApiUtil.h"
 
 static NSString * const  EventCellIdentifier = @"EventCell";
 
@@ -15,7 +20,10 @@ static NSString * const  EventCellIdentifier = @"EventCell";
 @property (nonatomic, strong) NSMutableArray *data;
 @end
 
-@implementation MyEventsViewController
+@implementation MyEventsViewController{
+    AppDelegate *appDelegate;
+    ECData *appData;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,11 +37,17 @@ static NSString * const  EventCellIdentifier = @"EventCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appData = appDelegate.mData;
+    
 	// Do any additional setup after loading the view.
     NSDictionary *event1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"The Foodies Restaurant Exploring Trip", @"EventName", @"Sept. 31, 2014", @"EventTime", @"Attended", @"EventRole", nil];
     NSDictionary *event2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"The Random Photography Meetup", @"EventName", @"Oct. 12, 2014", @"EventTime", @"Attended", @"EventRole", nil];
     NSDictionary *event3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Academic Conference", @"EventName", @"Oct. 18, 2014", @"EventTime", @"Attended", @"EventRole", nil];
     
+    // update all the events
+    [self updateAllEvents];
     
     self.data = [[NSMutableArray alloc] init];
     [self.data addObject:event1];
@@ -42,12 +56,34 @@ static NSString * const  EventCellIdentifier = @"EventCell";
     
 }
 
+- (void)updateAllEvents {
+    NSURLRequest *allEventsRequest = [NSURLRequest requestWithMethod:@"GET" url:[NSString stringWithFormat: GET_ALL_EVENTS_A_USER_ATTENDS, appData.mId] parameters:nil];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:allEventsRequest];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *allEvents = (NSArray *)responseObject;
+        NSLog(@"all events: %@", allEvents);
+        
+        for (NSDictionary *singleEvent in allEvents) {
+            NSDictionary *eventCell = [[NSDictionary alloc] initWithObjectsAndKeys:singleEvent[@"name"], @"EventName", singleEvent[@"start_time"], @"EventTime", @"Attended", @"EventRole", nil];
+            [appData.mEvents addObject:eventCell];
+        }
+        NSLog(@"all events: %@",appData.mEvents);
+        [self.eventsTableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to get all events info");
+    }];
+    [operation start];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.data count];
+    return [appData.mEvents count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -57,7 +93,7 @@ static NSString * const  EventCellIdentifier = @"EventCell";
 }
 
 - (void) configureCell: (EventCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *cellData = [self.data objectAtIndex:indexPath.row];
+    NSDictionary *cellData = [appData.mEvents objectAtIndex:indexPath.row];
     cell.eventTitleLabel.text = [cellData valueForKey:@"EventName"];
     cell.eventTimeLabel.text = [cellData valueForKey:@"EventTime"];
 }

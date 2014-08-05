@@ -15,13 +15,13 @@
 @implementation ECData
 @synthesize mUser;
 @synthesize mConversationsDict;
-@synthesize mEventsDict;
+@synthesize mEvents;
 @synthesize mFriendsDict;
 
 - (ECData *) init {
     self = [super init];
     mConversationsDict = [[NSMutableDictionary alloc] init];
-    mEventsDict = [[NSMutableDictionary alloc] init];
+    mEvents = [[NSMutableArray alloc] init];
     mFriendsDict = [[NSMutableDictionary alloc] init];
     return self;
 }
@@ -112,14 +112,6 @@
     for (Message *message in messageArray) {
         [self addConversationWithReceivedMessage:message];
     }
-}
-
-- (NSMutableDictionary *) getEventsDict {
-    return mEventsDict;
-}
-
-- (void) addEvent: (Event *)event {
-    [mEventsDict setObject:event forKey:event.mId];
 }
 
 - (NSMutableDictionary *) getFriendsDict {
