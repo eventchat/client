@@ -42,7 +42,7 @@
 
     // initialization
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appData = appDelegate.data;
+    appData = appDelegate.mData;
 
     // load the cookies and check login
     NSString * userId = [ApiUtil loadCookies];
@@ -185,7 +185,6 @@
 
         NSDictionary *responseDict = (NSDictionary *)responseObject;
         // save the cookie
-        NSLog(@"!!!!!!!!!!!!!!!!!\nmy id is %@",(NSString*)responseDict[@"id"]);
         [ApiUtil saveCookiesWithId:(NSString*)responseDict[@"id"]];
         
         [self pullingMessage];
@@ -195,6 +194,7 @@
         UITabBarController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabs"];
         nextViewController.selectedViewController = [nextViewController.viewControllers objectAtIndex:1];
 
+        [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         // fail to log in
