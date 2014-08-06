@@ -45,13 +45,13 @@ bool keyboardIsShown;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.messages = [[NSMutableArray alloc] initWithObjects:
-                     [ChatMessage messageWithString:@"How is that bubble component of yours coming along?" image:[UIImage imageNamed:@"placeholder"]],
-                     [ChatMessage messageWithString:@"Great, I just finished avatar support." image:[UIImage imageNamed:@"placeholder"]],
-                     [ChatMessage messageWithString:@"That is awesome! blahblahblahblahblahblahblahblah!!!!!!!!! I hope people will like that addition." image:[UIImage imageNamed:@"placeholder"]],
-                     [ChatMessage messageWithString:@"Now you see me.." image:[UIImage imageNamed:@"placeholder"]],
-                     [ChatMessage messageWithString:@"And now you don't. :)"],
-                     nil];
+//    self.messages = [[NSMutableArray alloc] initWithObjects:
+//                     [ChatMessage messageWithString:@"How is that bubble component of yours coming along?" image:[UIImage imageNamed:@"placeholder"]],
+//                     [ChatMessage messageWithString:@"Great, I just finished avatar support." image:[UIImage imageNamed:@"placeholder"]],
+//                     [ChatMessage messageWithString:@"That is awesome! blahblahblahblahblahblahblahblah!!!!!!!!! I hope people will like that addition." image:[UIImage imageNamed:@"placeholder"]],
+//                     [ChatMessage messageWithString:@"Now you see me.." image:[UIImage imageNamed:@"placeholder"]],
+//                     [ChatMessage messageWithString:@"And now you don't. :)"],
+//                     nil];
     
     
     self.messageTable.backgroundColor = [UIColor whiteColor];
@@ -60,6 +60,7 @@ bool keyboardIsShown;
     
     // keyboard observer registration
     keyboardIsShown = NO;
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
@@ -71,6 +72,8 @@ bool keyboardIsShown;
     // button observer registration
     [self.sendMessage addTarget:self action:@selector(sendPressed:) forControlEvents:UIControlEventTouchUpInside];
     
+    // register observer for new message
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDisplay:atLastRow::) name:@"MessageWillUpdateNotification" object:Nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -270,6 +273,5 @@ bool keyboardIsShown;
     [tableView reloadData];
     [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[mConversation.mMessagesArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
-
 
 @end

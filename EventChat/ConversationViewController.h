@@ -11,8 +11,8 @@
 
 @interface ConversationViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong)IBOutlet UITableView *chatterTable;
-@property AppDelegate *appDelegate;
-@property ECData *appData;
-@property NSMutableDictionary *conversationDict;
+@property (nonatomic, strong)IBOutlet UITableView *mConversationTable;
+@property AppDelegate *mAppDelegate;
+@property ECData *mAppData;
+@property NSMutableDictionary *mConversationDict;
 @end

@@ -253,7 +253,7 @@
         
         // add into conversation
         [appData addConversationWithReceivedMessageArray:messageArray];
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ConversationWillUpdateNotification" object:Nil];
         
         [self pullingMessage];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

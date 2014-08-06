@@ -822,7 +822,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="mPX-QB-b9q"/>
                     <connections>
-                        <outlet property="chatterTable" destination="RSn-ae-EcR" id="lUZ-VG-oYq"/>
+                        <outlet property="mConversationTable" destination="RSn-ae-EcR" id="6wH-k6-dU0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0YI-ns-G3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
