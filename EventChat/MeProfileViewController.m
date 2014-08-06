@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
 
-#import "ProfileViewController.h"
+#import "MeProfileViewController.h"
 
-@interface ProfileViewController ()
+@interface MeProfileViewController ()
 
 @end
 
-@implementation ProfileViewController
+@implementation MeProfileViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +27,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Disable navigation bar shadow
+    [self.navigationController.navigationBar setShadowImage:[UIImage imageNamed:@"header_line"]];
 }
 
 - (void)didReceiveMemoryWarning

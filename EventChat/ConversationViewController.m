@@ -13,7 +13,6 @@
 #import "User.h"
 
 @interface ConversationViewController ()
-@property NSMutableArray *chatters;
 @end
 
 NSDictionary *testData;
@@ -44,10 +43,6 @@ NSArray *timelyOrderedConversationArray;
     appData = appDelegate.mData;
     conversationDict = [appData getConversationsDict];
     timelyOrderedConversationArray = [conversationDict allKeys];
-    
-    self.chatters = [[NSMutableArray alloc] initWithObjects:@"Michael", @"Jason", @"Rose", nil];
-    
-    testData = [[NSDictionary alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,7 +118,8 @@ NSArray *timelyOrderedConversationArray;
 }
 
 -(void)reloadData {
-    
+    timelyOrderedConversationArray = [conversationDict allKeys];
+    [self.chatterTable reloadData];
 }
 
 
