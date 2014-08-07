@@ -70,6 +70,7 @@ NSString *const CREATE_EVENT = @"/events";
 NSString *const UPDATE_EVENT = @"/events";
 NSString *const DELETE_EVENT = @"/events/%@";
 NSString *const JOIN_EVENT = @"/events/%@/attendees";
+NSString *const GET_POSTS_BY_EVENT_ID = @"/events/%@/posts";
 // Message
 NSString *const GET_MESSAGE_BY_EVENT_ID = @"/events/%@/messages";
 // Notification
