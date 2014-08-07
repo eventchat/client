@@ -8,14 +8,19 @@
 
 #import "AttendeeListViewController.h"
 #import "AttendeeCell.h"
+#import "Constants.h"
+#import "AFNetworking.h"
+#import "ApiUtil.h"
 
 @interface AttendeeListViewController ()
 
 @end
 
 NSMutableArray *mData;
+NSMutableArray *mAttendeeList;
 
 @implementation AttendeeListViewController
+@synthesize mEvent;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,11 +39,40 @@ NSMutableArray *mData;
     NSDictionary *attendee2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"name", nil, @"avatar_url", nil];
     mData = [[NSMutableArray alloc] initWithObjects:attendee1, attendee2, nil];
     
+    NSLog(@"the passed in event is :%@", mEvent);
+
+    mAttendeeList = [[NSMutableArray alloc] init];
+    
+    // api request
+    NSURLRequest *request = [NSURLRequest requestWithMethod:@"GET" url: [NSString stringWithFormat: JOIN_EVENT, mEvent.mId] parameters:nil];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *attendeeListDataArray = (NSArray *)responseObject;
+        for (NSDictionary *attendeeDataDict in attendeeListDataArray) {
+        
+            User *attendee = [[User alloc] initWithId:[attendeeDataDict objectForKey:@"id"] withEmail:[attendeeDataDict objectForKey:@"email"] withInfo:[attendeeDataDict objectForKey:@"info"] withName:[attendeeDataDict objectForKey:@"name"] withAvatarUrl:[attendeeDataDict objectForKey:@"avatar_url"]];
+        
+        
+            [mAttendeeList addObject:attendee];
+            NSLog(@"successfully get attendee: %@", attendee);
+        }
+        [self.tableView reloadData];
+        
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"HTTP request error: %@", error);
+    }];
+        
+        
+    [operation start];
+
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,7 +92,7 @@ NSMutableArray *mData;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [mData count];
+    return [mAttendeeList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,8 +113,8 @@ NSMutableArray *mData;
 }
 
 - (void) configureCell: (AttendeeCell *) cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *userData = [mData objectAtIndex:indexPath.row];
-    cell.mNameLabel.text = [userData objectForKey:@"name"];
+    User *attendee = [mAttendeeList objectAtIndex:indexPath.row];
+    cell.mNameLabel.text = attendee.mName;
 }
 
 /*

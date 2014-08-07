@@ -69,7 +69,7 @@ static NSString * const  EventCellIdentifier = @"EventCell";
         [appData clearAllEvents];
         
         for (NSDictionary *eDict in allEvents) {
-            Event *singleEvent = [[Event alloc] initWithId:eDict[@"id"] eventName:eDict[@"name"] eventLocation:eDict[@"address"] eventLongitude:eDict[@"longitude"] eventLatitude:eDict[@"latitude"] eventStartTime:eDict[@"start_time"] eventEndTime:eDict[@"end_time"] eventDescription:eDict[@"description"] eventImageLink:nil eventAttendees:[[NSArray alloc] init]];
+            Event *singleEvent = [[Event alloc] initWithId:eDict[@"id"] eventName:eDict[@"name"] eventLocation:eDict[@"address"] eventLongitude:eDict[@"longitude"] eventLatitude:eDict[@"latitude"] eventStartTime:eDict[@"start_time"] eventEndTime:eDict[@"end_time"] eventDescription:eDict[@"description"] eventImageLink:nil eventAttendees:[[NSArray alloc] init] eventOrganizer:eDict[@"organizer"]];
             [appData.mEvents addObject:singleEvent];
         }
 

@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "ApiUtil.h"
+#import "AttendeeListViewController.h"
 
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
@@ -57,11 +58,11 @@ static int const MAX_DISTANCE = 100;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     
 //     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
-    
-    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
-    
-    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
+//    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
+//    
+//    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
+//    
+//    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
     
 //    cdata = [[NSMutableArray alloc] init];
 //    [cdata addObject:data1];
@@ -81,7 +82,7 @@ static int const MAX_DISTANCE = 100;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *allPosts = (NSArray *)responseObject;
         mPosts = allPosts;
-        NSLog(@"all posts: %lu", [mPosts count]);
+        NSLog(@"all posts: %lu", (unsigned long)[mPosts count]);
         
         [self.postsTableView reloadData];
         
@@ -163,9 +164,9 @@ static int const MAX_DISTANCE = 100;
     
     cell.timeLabel.text = [postData valueForKey:@"created_at"];
     
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"liked_by"]) count]];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[((NSArray *)postData[@"liked_by"]) count]];
     
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"comments"]) count]];
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[((NSArray *)postData[@"comments"]) count]];
     
     cell.messageLabel.text = [postData valueForKey:@"body"];
     
@@ -180,9 +181,9 @@ static int const MAX_DISTANCE = 100;
     
     cell.timeLabel.text = [postData valueForKey:@"created_at"];
     
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"liked_by"]) count]];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[((NSArray *)postData[@"liked_by"]) count]];
     
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"comments"]) count]];
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[((NSArray *)postData[@"comments"]) count]];
     
     cell.messageLabel.text = postData[@"body"];
     
@@ -239,6 +240,13 @@ static int const MAX_DISTANCE = 100;
     
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showEventAttendeeList"]) {
+        AttendeeListViewController *destViewController = segue.destinationViewController;
+        destViewController.mEvent = self.mEvent;
+    }
 }
 
 @end
