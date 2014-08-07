@@ -45,13 +45,7 @@ bool keyboardIsShown;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-//    self.messages = [[NSMutableArray alloc] initWithObjects:
-//                     [ChatMessage messageWithString:@"How is that bubble component of yours coming along?" image:[UIImage imageNamed:@"placeholder"]],
-//                     [ChatMessage messageWithString:@"Great, I just finished avatar support." image:[UIImage imageNamed:@"placeholder"]],
-//                     [ChatMessage messageWithString:@"That is awesome! blahblahblahblahblahblahblahblah!!!!!!!!! I hope people will like that addition." image:[UIImage imageNamed:@"placeholder"]],
-//                     [ChatMessage messageWithString:@"Now you see me.." image:[UIImage imageNamed:@"placeholder"]],
-//                     [ChatMessage messageWithString:@"And now you don't. :)"],
-//                     nil];
+    self.messages = [[NSMutableArray alloc] init];
     
     
     self.messageTable.backgroundColor = [UIColor whiteColor];
@@ -65,6 +59,8 @@ bool keyboardIsShown;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMessageTable:) name:@"NewMessageNotification" object:nil];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
@@ -132,21 +128,28 @@ bool keyboardIsShown;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	ChatMessage *message = [self.messages objectAtIndex:indexPath.row];
-	
+	Message *message = [self.mConversation.mMessagesArray objectAtIndex:indexPath.row];
+	NSString *avatarUrl;
+    
+    if ([message.mAuthor.mId isEqual:mAppUser.mId]) {
+        avatarUrl = [[NSString alloc] initWithString:mAppUser.mAvatarUrl];
+    } else {
+        avatarUrl = [[NSString alloc] initWithString:message.mAuthor.mAvatarUrl];
+    }
+    
 	CGSize size;
 	
-	if(message.avatar)
+	if(avatarUrl)
     {
-		size = [message.message sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.messageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleImageSize - 8.0f - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+		size = [message.mBody sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.messageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleImageSize - 8.0f - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     }
 	else
     {
-		size = [message.message sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.messageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+		size = [message.mBody sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.messageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     }
 	
 	// This makes sure the cell is big enough to hold the avatar
-	if(size.height + 15.0f < ChatMessageCellBubbleImageSize + 4.0f && message.avatar)
+	if(size.height + 15.0f < ChatMessageCellBubbleImageSize + 4.0f && avatarUrl)
     {
 		return ChatMessageCellBubbleImageSize + 4.0f;
     }
@@ -166,8 +169,8 @@ bool keyboardIsShown;
 
 #pragma mark - ChatMessageCellDelegate methods
 - (void)tappedImageOfCell:(ChatMessageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    ChatMessage *message = [self.messages objectAtIndex:indexPath.row];
-    NSLog(@"%@", message.message);
+    Message *message = [self.mConversation.mMessagesArray objectAtIndex:indexPath.row];
+    NSLog(@"%@", message.mBody);
 }
 
 #pragma mark - 
@@ -272,6 +275,11 @@ bool keyboardIsShown;
 - (void)refreshDisplay:(UITableView *)tableView atLastRow:(NSInteger) lastRow{
     [tableView reloadData];
     [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[mConversation.mMessagesArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+#pragma mark - reload messages due to new message
+- (void)reloadMessageTable: (NSNotification *) notif {
+    [self refreshDisplay:self.messageTable atLastRow:[mConversation.mMessagesArray count]];
 }
 
 @end

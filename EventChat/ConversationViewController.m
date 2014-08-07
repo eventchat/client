@@ -46,7 +46,7 @@ NSArray *timelyOrderedConversationArray;
     mConversationDict = [mAppData getConversationsDict];
     timelyOrderedConversationArray = [mConversationDict allKeys];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadConversationData:) name:@"ConversationWillUpdateNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadConversationData:) name:@"NewMessageNotification" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
