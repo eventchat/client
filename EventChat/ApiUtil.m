@@ -291,4 +291,10 @@ NSString *const ECAPILogin    = @"/oauth/token";
     
     return [formatter dateFromString:dateString];
 }
+
++ (NSString *)ISO8601StringFromDate: (NSDate *)date {
+    NSDateFormatter *dateFomatter = [[NSDateFormatter alloc] init];
+    [dateFomatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'"];
+    return [dateFomatter stringFromDate:date];
+}
 @end

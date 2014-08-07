@@ -9,6 +9,8 @@
 #import "ChatMessageViewController.h"
 #import "ChatMessageCell.h"
 #import "ChatMessage.h"
+#import "ApiUtil.h"
+#import "AFNetworking.h"
 
 @interface ChatMessageViewController ()
 @property (nonatomic, strong) NSMutableArray *messages;
@@ -16,15 +18,13 @@
 
 @implementation ChatMessageViewController
 
-@synthesize appDelegate;
-@synthesize mData;
 @synthesize mConversation;
 @synthesize mAppUser;
 
-@synthesize messageTable = _messageTable;
-@synthesize sendMessage = _sendMessage;
-@synthesize sendImage = _sendImage;
-@synthesize textField = _textField;
+@synthesize mMessageTable = _mMessageTable;
+@synthesize mSendMessage = _mSendMessage;
+@synthesize mSendImage = _mSendImage;
+@synthesize mTextField = _mTextField;
 
 CGRect keyboardSuperFrame;
 UIView *keyboardSuperView;
@@ -45,32 +45,31 @@ bool keyboardIsShown;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.messages = [[NSMutableArray alloc] initWithObjects:
-                     [ChatMessage messageWithString:@"How is that bubble component of yours coming along?" image:[UIImage imageNamed:@"placeholder"]],
-                     [ChatMessage messageWithString:@"Great, I just finished avatar support." image:[UIImage imageNamed:@"placeholder"]],
-                     [ChatMessage messageWithString:@"That is awesome! blahblahblahblahblahblahblahblah!!!!!!!!! I hope people will like that addition." image:[UIImage imageNamed:@"placeholder"]],
-                     [ChatMessage messageWithString:@"Now you see me.." image:[UIImage imageNamed:@"placeholder"]],
-                     [ChatMessage messageWithString:@"And now you don't. :)"],
-                     nil];
+    self.messages = [[NSMutableArray alloc] init];
     
     
-    self.messageTable.backgroundColor = [UIColor whiteColor];
-	self.messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mMessageTable.backgroundColor = [UIColor whiteColor];
+	self.mMessageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
     // keyboard observer registration
     keyboardIsShown = NO;
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMessageTable:) name:@"NewMessageNotification" object:nil];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     
     // button observer registration
-    [self.sendMessage addTarget:self action:@selector(sendPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.mSendMessage addTarget:self action:@selector(sendPressed:) forControlEvents:UIControlEventTouchUpInside];
     
+    // register observer for new message
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDisplay:atLastRow::) name:@"MessageWillUpdateNotification" object:Nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,11 +96,11 @@ bool keyboardIsShown;
     if (cell == nil) {
         cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        cell.backgroundColor = self.messageTable.backgroundColor;
+        cell.backgroundColor = self.mMessageTable.backgroundColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        cell.dataSource = self.messageTable;
-        cell.delegate = self.messageTable;
+        cell.dataSource = self.mMessageTable;
+        cell.delegate = self.mMessageTable;
     }
     
     Message *message = [mConversation.mMessagesArray objectAtIndex:indexPath.row];
@@ -129,21 +128,28 @@ bool keyboardIsShown;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	ChatMessage *message = [self.messages objectAtIndex:indexPath.row];
-	
+	Message *message = [self.mConversation.mMessagesArray objectAtIndex:indexPath.row];
+	NSString *avatarUrl;
+    
+    if ([message.mAuthor.mId isEqual:mAppUser.mId]) {
+        avatarUrl = [[NSString alloc] initWithString:mAppUser.mAvatarUrl];
+    } else {
+        avatarUrl = [[NSString alloc] initWithString:message.mAuthor.mAvatarUrl];
+    }
+    
 	CGSize size;
 	
-	if(message.avatar)
+	if(avatarUrl)
     {
-		size = [message.message sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.messageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleImageSize - 8.0f - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+		size = [message.mBody sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.mMessageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleImageSize - 8.0f - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     }
 	else
     {
-		size = [message.message sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.messageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+		size = [message.mBody sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.mMessageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     }
 	
 	// This makes sure the cell is big enough to hold the avatar
-	if(size.height + 15.0f < ChatMessageCellBubbleImageSize + 4.0f && message.avatar)
+	if(size.height + 15.0f < ChatMessageCellBubbleImageSize + 4.0f && avatarUrl)
     {
 		return ChatMessageCellBubbleImageSize + 4.0f;
     }
@@ -163,8 +169,8 @@ bool keyboardIsShown;
 
 #pragma mark - ChatMessageCellDelegate methods
 - (void)tappedImageOfCell:(ChatMessageCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    ChatMessage *message = [self.messages objectAtIndex:indexPath.row];
-    NSLog(@"%@", message.message);
+    Message *message = [self.mConversation.mMessagesArray objectAtIndex:indexPath.row];
+    NSLog(@"%@", message.mBody);
 }
 
 #pragma mark - 
@@ -229,19 +235,51 @@ bool keyboardIsShown;
     [self dismissKeyboard]; //dismiss keyboard
     
     // text processing
-    ChatMessage *newMessage = [ChatMessage messageWithString:self.textField.text image:[UIImage imageNamed:@"placeholder"]];
-    self.textField.text = @"";  // clear text field
+//    ChatMessage *newMessage = [ChatMessage messageWithString:self.textField.text image:[UIImage imageNamed:@"placeholder"]];
+    NSDate * currentDate = [NSDate date];
+    Message *newMessage = [[Message alloc] initWithAuthor:mAppUser withReceiver:mConversation.mResponder withBody:self.mTextField.text withCreatedAt:[ApiUtil ISO8601StringFromDate:currentDate]];
+    [mConversation.mMessagesArray addObject:newMessage];
+    self.mTextField.text = @"";  // clear text field
+    NSLog(@"the new mesasge content: %@", newMessage);
+    NSLog(@"the post request parm are: %@", [newMessage toDictionary]);
+    
+    // send out message
 
-    [self.messages addObject:newMessage];
-    [self refreshDisplay:self.messageTable atLastRow:[self.messages count]];
+    NSURLRequest *request = [NSURLRequest postRequest: CHAT parameters:[newMessage toDictionary]];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        // get response data
+        NSString *responseNotification = (NSString *)responseObject;
+        NSLog(@"response is :%@", responseNotification);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        // fail to log in
+        NSLog(@"error is %@", error);
+
+    }];
+    [operation start];
+    
+    
+    // refresh message table
+    [self refreshDisplay:self.mMessageTable atLastRow:[mConversation.mMessagesArray count]];
+
+//    [self.messages addObject:newMessage];
+//    [self refreshDisplay:self.messageTable atLastRow:[self.messages count]];
 }
 
 
 #pragma mark - refresh UI methods
 - (void)refreshDisplay:(UITableView *)tableView atLastRow:(NSInteger) lastRow{
     [tableView reloadData];
-    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.messages count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[mConversation.mMessagesArray count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
+#pragma mark - reload messages due to new message
+- (void)reloadMessageTable: (NSNotification *) notif {
+    [self refreshDisplay:self.mMessageTable atLastRow:[mConversation.mMessagesArray count]];
+}
 
 @end

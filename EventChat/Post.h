@@ -21,14 +21,15 @@
 @property (nonatomic, readwrite) NSString *mCreatedAt;
 @property (nonatomic, readwrite) User *mAuthor;
 @property (nonatomic, readwrite) NSMutableArray *mComments;
+@property (nonatomic, readwrite) NSMutableArray *mLikes;
 
 // added by Lyman
 @property (nonatomic, readonly) NSString *mType;
 @property (nonatomic, readonly) Event *mEvent;
 
 
-+ (instancetype) postWithId: (NSString *)postId withTitle:(NSString *)title withAuthor:(User *)author withBody:(NSString *)body withPic: (NSString *) pic withCreatedAt: (NSString *)createdAt withComments:(NSMutableArray *) comments withType:(NSString *)type withEvent:(Event *)event;
++ (instancetype) postWithId: (NSString *)postId withTitle:(NSString *)title withAuthor:(User *)author withBody:(NSString *)body withPic: (NSString *) pic withCreatedAt: (NSString *)createdAt withComments:(NSMutableArray *) comments withLikes:(NSMutableArray *) likes withType:(NSString *)type withEvent:(Event *)event;
 
-- (instancetype) initWithId: (NSString *)postId withTitle:(NSString *)title withAuthor:(User *)author withBody:(NSString *)body withPic: (NSString *) pic withCreatedAt: (NSString *)createdAt withComments:(NSMutableArray *) comments withType:(NSString *)type withEvent:(Event *)event;
+- (instancetype) initWithId: (NSString *)postId withTitle:(NSString *)title withAuthor:(User *)author withBody:(NSString *)body withPic: (NSString *) pic withCreatedAt: (NSString *)createdAt withComments:(NSMutableArray *) comments withLikes:(NSMutableArray *) likes withType:(NSString *)type withEvent:(Event *)event;
 
 @end

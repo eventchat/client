@@ -13,21 +13,21 @@
 #import "User.h"
 
 @interface ConversationViewController ()
-@property NSMutableArray *chatters;
 @end
 
 NSDictionary *testData;
 NSArray *timelyOrderedConversationArray;
 
 @implementation ConversationViewController
-@synthesize appDelegate;
-@synthesize appData;
-@synthesize conversationDict;
-@synthesize chatterTable = _chatterTable;
+@synthesize mAppDelegate;
+@synthesize mAppData;
+@synthesize mConversationDict;
+@synthesize mConversationTable = _mConversationTable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+
     if (self) {
         // Custom initialization
     }
@@ -38,16 +38,15 @@ NSArray *timelyOrderedConversationArray;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    NSLog(@"conversation view controller is loaded");
     
     // Initialize
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appData = appDelegate.mData;
-    conversationDict = [appData getConversationsDict];
-    timelyOrderedConversationArray = [conversationDict allKeys];
+    mAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    mAppData = mAppDelegate.mData;
+    mConversationDict = [mAppData getConversationsDict];
+    timelyOrderedConversationArray = [mConversationDict allKeys];
     
-    self.chatters = [[NSMutableArray alloc] initWithObjects:@"Michael", @"Jason", @"Rose", nil];
-    
-    testData = [[NSDictionary alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadConversationData:) name:@"NewMessageNotification" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,9 +60,9 @@ NSArray *timelyOrderedConversationArray;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"conversationDict is %@", conversationDict);
-    NSLog(@"%lu", (unsigned long)[conversationDict count]);
-    return [conversationDict count];
+    NSLog(@"conversationDict is %@", mConversationDict);
+    NSLog(@"%lu", (unsigned long)[mConversationDict count]);
+    return [mConversationDict count];
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -93,7 +92,7 @@ NSArray *timelyOrderedConversationArray;
 
 - (void) configureCell: (ConversationCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [timelyOrderedConversationArray objectAtIndex:indexPath.row];
-    Conversation *conversation = [conversationDict objectForKey:key];
+    Conversation *conversation = [mConversationDict objectForKey:key];
     User *responder = conversation.mResponder;
     NSLog(@"responder is %@", responder);
     cell.nameLabel.text = responder.mName;
@@ -104,14 +103,16 @@ NSArray *timelyOrderedConversationArray;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showChatMessage"]) {
-        NSIndexPath *indexPath = [self.chatterTable indexPathForSelectedRow];
+        NSIndexPath *indexPath = [self.mConversationTable indexPathForSelectedRow];
         NSLog(@"%ld", (long)indexPath.row);
         ChatMessageViewController *destViewController = segue.destinationViewController;
 
         // update the title of destination view controller to be chatter's name
         NSString *key = [timelyOrderedConversationArray objectAtIndex:indexPath.row];
-        destViewController.mConversation = [conversationDict objectForKey:key];
-        destViewController.mAppUser = appData.mUser;
+        destViewController.mConversation = [mConversationDict objectForKey:key];
+        destViewController.mAppUser = mAppData.mUser;
+        NSLog(@" the current user is %@", mAppData.mUser);
+        NSLog(@"the current responder is %@", destViewController.mConversation.mResponder);
         destViewController.navigationItem.title = destViewController.mConversation.mResponder.mName;
         
         // hide the bottom bar
@@ -120,9 +121,11 @@ NSArray *timelyOrderedConversationArray;
     }
 }
 
--(void)reloadData {
-    
-}
 
+#pragma mark
+-(void)reloadConversationData:(NSNotification *) notif {
+    timelyOrderedConversationArray = [mConversationDict allKeys];
+    [self.mConversationTable reloadData];
+}
 
 @end

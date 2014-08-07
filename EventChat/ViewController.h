@@ -11,6 +11,6 @@
 #import "ECData.h"
 
 @interface ViewController : UIViewController
-@property AppDelegate *appDelegate;
-@property ECData *appData;
+@property AppDelegate *mAppDelegate;
+@property ECData *mAppData;
 @end

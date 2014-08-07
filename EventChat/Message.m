@@ -32,7 +32,8 @@
 }
 
 - (NSDictionary *) toDictionary {
-    return nil;
+    NSDictionary *messageDict = [[NSDictionary alloc] initWithObjectsAndKeys: mBody, @"message", mReceiver.mId, @"to", nil];
+    return messageDict;
 }
 
 - (id) initWithAuthor: (User *)author withReceiver: (User *)receiver withBody: (NSString *)body withCreatedAt: (NSString *)createdAt {

@@ -16,6 +16,7 @@
 
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
+
 static int const MAX_DISTANCE = 100;
 
 @interface EventViewController ()
@@ -71,6 +72,7 @@ static int const MAX_DISTANCE = 100;
     NSString *searchPostsUrl = [NSString stringWithFormat: GET_POST_BY_SEARCH, longitude, latitude, MAX_DISTANCE];
     NSLog(@"search posts url: %@", searchPostsUrl);
     NSURLRequest *allPostsRequest = [NSURLRequest requestWithMethod:@"GET" url:searchPostsUrl parameters:nil];
+
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:allPostsRequest];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -112,8 +114,6 @@ static int const MAX_DISTANCE = 100;
 {
     // Return the number of rows in the section.
     return [mPosts count];
-    
-    
 }
 
 
@@ -155,6 +155,7 @@ static int const MAX_DISTANCE = 100;
 - (void)configureBasicCell: (PostBasicCell *)cell forIndexPath: (NSIndexPath *)indexPath {
     // Configure the cell...
     NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
+
     
     cell.authorLabel.text =postData[@"author"][@"name"];
     
@@ -173,6 +174,7 @@ static int const MAX_DISTANCE = 100;
 - (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
     NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
     cell.authorLabel.text =postData[@"author"][@"name"];
+
     
     cell.timeLabel.text = [postData valueForKey:@"created_at"];
     
@@ -192,6 +194,7 @@ static int const MAX_DISTANCE = 100;
 - (BOOL)hasImageAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
     return ![postData[@"type"] isEqualToString:@"text"];
+
 }
 
 - (PostBasicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {
