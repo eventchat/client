@@ -20,6 +20,7 @@
 @synthesize mDesc = _mDesc;
 @synthesize mEventImageLink = _mEventImageLink;
 @synthesize mAttendees = _mAttendees;
+@synthesize mOrganizer = _mOrganizer;
 
 - (NSDictionary *) toDictionary {
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
@@ -33,11 +34,11 @@
     return [result copy];
 }
 
-+ (instancetype) eventWithId: (NSString *)eventId eventName:(NSString *)name eventLocation:(NSString *)location eventLongitude:(NSNumber *)longitude eventLatitude:(NSNumber *)latitude eventStartTime:(NSString *)startTime eventEndTime:(NSString *)endTime eventDescription:(NSString *)desc eventImageLink:(NSString *)eventImageLink eventAttendees:(NSArray *)mAttendees {
-    return [[Event alloc] initWithId:eventId eventName:name eventLocation:location eventLongitude:longitude eventLatitude:latitude eventStartTime:startTime eventEndTime:endTime eventDescription:desc eventImageLink:eventImageLink eventAttendees:mAttendees];
++ (instancetype) eventWithId: (NSString *)eventId eventName:(NSString *)name eventLocation:(NSString *)location eventLongitude:(NSNumber *)longitude eventLatitude:(NSNumber *)latitude eventStartTime:(NSString *)startTime eventEndTime:(NSString *)endTime eventDescription:(NSString *)desc eventImageLink:(NSString *)eventImageLink eventAttendees:(NSArray *)mAttendees eventOrganizer: (User *)organizer {
+    return [[Event alloc] initWithId:eventId eventName:name eventLocation:location eventLongitude:longitude eventLatitude:latitude eventStartTime:startTime eventEndTime:endTime eventDescription:desc eventImageLink:eventImageLink eventAttendees:mAttendees eventOrganizer:organizer];
 }
 
-- (instancetype) initWithId:(NSString *)eventId eventName:(NSString *)name eventLocation:(NSString *)location eventLongitude:(NSNumber *)longitude eventLatitude:(NSNumber *)latitude eventStartTime:(NSString *)startTime eventEndTime:(NSString *)endTime eventDescription:(NSString *)desc eventImageLink:(NSString *)eventImageLink eventAttendees:(NSArray *)mAttendees{
+- (instancetype) initWithId:(NSString *)eventId eventName:(NSString *)name eventLocation:(NSString *)location eventLongitude:(NSNumber *)longitude eventLatitude:(NSNumber *)latitude eventStartTime:(NSString *)startTime eventEndTime:(NSString *)endTime eventDescription:(NSString *)desc eventImageLink:(NSString *)eventImageLink eventAttendees:(NSArray *)mAttendees eventOrganizer: (User *)organizer {
     self = [super init];
     if (self) {
         _mId = eventId;
@@ -50,8 +51,13 @@
         _mDesc = desc;
         _mEventImageLink = eventImageLink;
         _mAttendees = [mAttendees copy];
+        _mOrganizer = [organizer copy];
     }
     return self;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Event: {mId: %@\n mName: %@\n mLocation: %@\n _mLongitude: %@\n _mLatitude: %@\n _mStartTime: %@\n _mEndTime: %@\n _mDesc: %@\n _mOrganizer: %@}>", _mId, _mName, _mLocation, _mLongitude, _mLatitude, _mStartTime, _mEndTime, _mDesc, _mOrganizer];
 }
 
 @end

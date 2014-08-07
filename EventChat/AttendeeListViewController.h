@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 
 @interface AttendeeListViewController : UITableViewController
-
+@property Event* mEvent;
 @end

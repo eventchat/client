@@ -1935,7 +1935,7 @@
                                         <connections>
                                             <outlet property="eventTimeLabel" destination="t5b-j1-0fK" id="FZ0-Mi-zd4"/>
                                             <outlet property="eventTitleLabel" destination="bt0-Eb-z8t" id="puh-F0-Byb"/>
-                                            <segue destination="kGA-ZS-NDS" kind="push" id="BsA-YP-nUA"/>
+                                            <segue destination="kGA-ZS-NDS" kind="push" identifier="showSingleEvent" id="BsA-YP-nUA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2048,7 +2048,7 @@
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <segue destination="jUL-32-JTR" kind="push" id="jJh-4K-bdh"/>
+                                                <segue destination="jUL-32-JTR" kind="push" identifier="showEventAttendeeList" id="jJh-4K-bdh"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2707,41 +2707,10 @@
         <image name="ico_chat_gray" width="32" height="32"/>
         <image name="ico_chat_orange" width="32" height="32"/>
         <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
         <image name="ico_event_gray" width="32" height="32"/>
         <image name="ico_join_gray" width="32" height="32"/>
         <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
         <image name="ico_location" width="16" height="16"/>
-        <image name="ico_me_gray" width="32" height="32"/>
         <image name="ico_me_gray" width="32" height="32"/>
         <image name="ico_time" width="16" height="16"/>
         <image name="icon-camera" width="29" height="29"/>
@@ -2750,19 +2719,7 @@
         <image name="image_bg" width="640" height="1136"/>
         <image name="image_seperator" width="640" height="2"/>
         <image name="input-outline" width="250" height="44"/>
-        <image name="input-outline" width="250" height="44"/>
         <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
         <image name="testImage" width="1024" height="768"/>
     </resources>
     <color key="tintColor" red="0.99215686274509807" green="0.63137254901960782" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>

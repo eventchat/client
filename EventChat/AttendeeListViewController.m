@@ -16,6 +16,7 @@
 NSMutableArray *mData;
 
 @implementation AttendeeListViewController
+@synthesize mEvent;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,6 +35,7 @@ NSMutableArray *mData;
     NSDictionary *attendee2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"name", nil, @"avatar_url", nil];
     mData = [[NSMutableArray alloc] initWithObjects:attendee1, attendee2, nil];
     
+    NSLog(@"the passed in event is :%@", mEvent);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
