@@ -35,10 +35,10 @@ NSMutableArray *mAttendeeList;
 {
     [super viewDidLoad];
     
-    NSDictionary *attendee1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"name", nil, @"avatar_url", nil];
-    NSDictionary *attendee2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"name", nil, @"avatar_url", nil];
-    mData = [[NSMutableArray alloc] initWithObjects:attendee1, attendee2, nil];
-    
+//    NSDictionary *attendee1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"name", nil, @"avatar_url", nil];
+//    NSDictionary *attendee2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"name", nil, @"avatar_url", nil];
+//    mData = [[NSMutableArray alloc] initWithObjects:attendee1, attendee2, nil];
+//    
     NSLog(@"the passed in event is :%@", mEvent);
 
     mAttendeeList = [[NSMutableArray alloc] init];

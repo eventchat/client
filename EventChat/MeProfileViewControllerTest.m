@@ -165,8 +165,8 @@ static NSString * const PostImageCellIdentifier = @"PostImageCell";
         cell.backgroundColor = self.mUserPostTableView.backgroundColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        cell.dataSource = self.mUserPostTableView;
-        cell.delegate = self.mUserPostTableView;
+//        cell.dataSource = self.mUserPostTableView;
+//        cell.delegate = self.mUserPostTableView;
     }
     [self configureBasicCell:cell forIndexPath:indexPath];
     return cell;
