@@ -12,6 +12,8 @@
 		6C4E635E196CA8970009505F /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E635D196CA8970009505F /* ChatMessageCell.m */; };
 		6C4E6361196CACC90009505F /* ConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6360196CACC90009505F /* ConversationViewController.m */; };
 		6C4E6364196D1A590009505F /* ChatMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6363196D1A590009505F /* ChatMessageViewController.m */; };
+		6C51689C19938AB1002E7A29 /* AttendeeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C51689B19938AB1002E7A29 /* AttendeeListViewController.m */; };
+		6C51689F19938C83002E7A29 /* AttendeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C51689E19938C83002E7A29 /* AttendeeCell.m */; };
 		6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53D14B1980A9EB0061DC2A /* EventCell.m */; };
 		6C53D14F1980AB770061DC2A /* MyEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C53D14E1980AB770061DC2A /* MyEventsViewController.m */; };
 		6C551B1619832274003805B6 /* TempCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C551B1519832274003805B6 /* TempCell.m */; };
@@ -19,6 +21,7 @@
 		6CB2743B19878005009E6375 /* PostBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB2743A19878005009E6375 /* PostBasicCell.m */; };
 		6CB2743E19879265009E6375 /* PostImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB2743D19879265009E6375 /* PostImageCell.m */; };
 		6CBCB74B1942F8860031895F /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCB74A1942F8860031895F /* ItemCell.m */; };
+		6CC01A32199358470060EE10 /* MeProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC01A31199358470060EE10 /* MeProfileViewController.m */; };
 		6CC216091943ACE400BC2FE3 /* profile-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC216081943ACE400BC2FE3 /* profile-placeholder.png */; };
 		6CC288C3198EF87F007F9817 /* ECData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC288C2198EF87F007F9817 /* ECData.m */; };
 		6CC288C6198F3A51007F9817 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC288C5198F3A51007F9817 /* Conversation.m */; };
@@ -53,8 +56,7 @@
 		E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */; };
 		E8377FAE194BBF4E00E33C6D /* CreateCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */; };
 		E846E91219864DF300154822 /* JoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E846E91119864DF300154822 /* JoinViewController.m */; };
-		E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E88DF21A193FD39E004FECFC /* FeedsTableViewController.m */; };
-		E89E5F98197F3094002CA342 /* MeProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89E5F97197F3094002CA342 /* MeProfileViewController.m */; };
+		E89E5F98197F3094002CA342 /* MeProfileViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */; };
 		E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E5F99197F309C002CA342 /* Profile.storyboard */; };
 		E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CCAB74197F59FC005B0DA7 /* Join.storyboard */; };
 		F8347A7DD6FE44ACBC61644C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15338296C6334C938CB2FA3F /* libPods.a */; };
@@ -83,6 +85,10 @@
 		6C4E6360196CACC90009505F /* ConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationViewController.m; sourceTree = "<group>"; };
 		6C4E6362196D1A590009505F /* ChatMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageViewController.h; sourceTree = "<group>"; };
 		6C4E6363196D1A590009505F /* ChatMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageViewController.m; sourceTree = "<group>"; };
+		6C51689A19938AB1002E7A29 /* AttendeeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendeeListViewController.h; sourceTree = "<group>"; };
+		6C51689B19938AB1002E7A29 /* AttendeeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeeListViewController.m; sourceTree = "<group>"; };
+		6C51689D19938C83002E7A29 /* AttendeeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendeeCell.h; sourceTree = "<group>"; };
+		6C51689E19938C83002E7A29 /* AttendeeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeeCell.m; sourceTree = "<group>"; };
 		6C53D14A1980A9EB0061DC2A /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
 		6C53D14B1980A9EB0061DC2A /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
 		6C53D14D1980AB770061DC2A /* MyEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEventsViewController.h; sourceTree = "<group>"; };
@@ -97,6 +103,8 @@
 		6CB2743D19879265009E6375 /* PostImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostImageCell.m; sourceTree = "<group>"; };
 		6CBCB7491942F8860031895F /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		6CBCB74A1942F8860031895F /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
+		6CC01A30199358470060EE10 /* MeProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeProfileViewController.h; sourceTree = "<group>"; };
+		6CC01A31199358470060EE10 /* MeProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeProfileViewController.m; sourceTree = "<group>"; };
 		6CC216081943ACE400BC2FE3 /* profile-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile-placeholder.png"; sourceTree = "<group>"; };
 		6CC288C1198EF87F007F9817 /* ECData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ECData.h; sourceTree = "<group>"; };
 		6CC288C2198EF87F007F9817 /* ECData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ECData.m; sourceTree = "<group>"; };
@@ -154,10 +162,8 @@
 		E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCommentViewController.m; sourceTree = "<group>"; };
 		E846E91019864DF300154822 /* JoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinViewController.h; sourceTree = "<group>"; };
 		E846E91119864DF300154822 /* JoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinViewController.m; sourceTree = "<group>"; };
-		E88DF219193FD39E004FECFC /* FeedsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsTableViewController.h; sourceTree = "<group>"; };
-		E88DF21A193FD39E004FECFC /* FeedsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsTableViewController.m; sourceTree = "<group>"; };
-		E89E5F96197F3094002CA342 /* MeProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeProfileViewController.h; sourceTree = "<group>"; };
-		E89E5F97197F3094002CA342 /* MeProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeProfileViewController.m; sourceTree = "<group>"; };
+		E89E5F96197F3094002CA342 /* MeProfileViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeProfileViewControllerTest.h; sourceTree = "<group>"; };
+		E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeProfileViewControllerTest.m; sourceTree = "<group>"; };
 		E89E5F99197F309C002CA342 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		E8CCAB73197F59FC005B0DA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Join.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,6 +212,8 @@
 				6CB2743A19878005009E6375 /* PostBasicCell.m */,
 				6CB2743C19879265009E6375 /* PostImageCell.h */,
 				6CB2743D19879265009E6375 /* PostImageCell.m */,
+				6C51689D19938C83002E7A29 /* AttendeeCell.h */,
+				6C51689E19938C83002E7A29 /* AttendeeCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -338,16 +346,14 @@
 				6C551B181985A75D003805B6 /* TestTableViewController.m */,
 				E846E91019864DF300154822 /* JoinViewController.h */,
 				E846E91119864DF300154822 /* JoinViewController.m */,
-				E89E5F96197F3094002CA342 /* MeProfileViewController.h */,
-				E89E5F97197F3094002CA342 /* MeProfileViewController.m */,
+				E89E5F96197F3094002CA342 /* MeProfileViewControllerTest.h */,
+				E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */,
 				6C53D14D1980AB770061DC2A /* MyEventsViewController.h */,
 				6C53D14E1980AB770061DC2A /* MyEventsViewController.m */,
 				6C4E635F196CACC90009505F /* ConversationViewController.h */,
 				6C4E6360196CACC90009505F /* ConversationViewController.m */,
 				E8377FA9194BBF2B00E33C6D /* CommentsTableViewController.h */,
 				E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */,
-				E88DF219193FD39E004FECFC /* FeedsTableViewController.h */,
-				E88DF21A193FD39E004FECFC /* FeedsTableViewController.m */,
 				AB724E9319340A8000F29EC8 /* CreateViewController.h */,
 				AB724E9419340A8000F29EC8 /* CreateViewController.m */,
 				E8377FAC194BBF4E00E33C6D /* CreateCommentViewController.h */,
@@ -358,6 +364,10 @@
 				6C19C13F197CCAD0003CB295 /* ViewController.m */,
 				6CF75338198846030011A733 /* EventViewController.h */,
 				6CF75339198846030011A733 /* EventViewController.m */,
+				6CC01A30199358470060EE10 /* MeProfileViewController.h */,
+				6CC01A31199358470060EE10 /* MeProfileViewController.m */,
+				6C51689A19938AB1002E7A29 /* AttendeeListViewController.h */,
+				6C51689B19938AB1002E7A29 /* AttendeeListViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -513,20 +523,22 @@
 				ABDC793F1934131100607CE3 /* JsonParser.m in Sources */,
 				6C551B1619832274003805B6 /* TempCell.m in Sources */,
 				6C4E6361196CACC90009505F /* ConversationViewController.m in Sources */,
+				6C51689F19938C83002E7A29 /* AttendeeCell.m in Sources */,
+				6C51689C19938AB1002E7A29 /* AttendeeListViewController.m in Sources */,
 				AB724E8519340A8000F29EC8 /* main.m in Sources */,
-				E89E5F98197F3094002CA342 /* MeProfileViewController.m in Sources */,
+				E89E5F98197F3094002CA342 /* MeProfileViewControllerTest.m in Sources */,
 				E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */,
 				6C4E635A196C81260009505F /* ChatterCell.m in Sources */,
 				ABDC79521934382F00607CE3 /* Message.m in Sources */,
 				6CF8B5BF197CA2F3002D5950 /* ConversationCell.m in Sources */,
 				6CB2743E19879265009E6375 /* PostImageCell.m in Sources */,
-				E88DF21B193FD39E004FECFC /* FeedsTableViewController.m in Sources */,
 				6CF7533A198846030011A733 /* EventViewController.m in Sources */,
 				6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */,
 				6CC288C8198F3D95007F9817 /* Comment.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				6CB2743B19878005009E6375 /* PostBasicCell.m in Sources */,
 				6CC288C6198F3A51007F9817 /* Conversation.m in Sources */,
+				6CC01A32199358470060EE10 /* MeProfileViewController.m in Sources */,
 				6CC288C3198EF87F007F9817 /* ECData.m in Sources */,
 				E846E91219864DF300154822 /* JoinViewController.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
@@ -683,7 +695,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EventChat/EventChat-Prefix.pch";
 				INFOPLIST_FILE = "EventChat/EventChat-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "FBB68B33-4C73-44DD-B9B1-B926C12C665E";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -701,7 +713,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EventChat/EventChat-Prefix.pch";
 				INFOPLIST_FILE = "EventChat/EventChat-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "FBB68B33-4C73-44DD-B9B1-B926C12C665E";
 				TARGETED_DEVICE_FAMILY = 1;

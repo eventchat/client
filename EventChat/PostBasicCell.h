@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PostCellDataSource, PostCellDelegate;
+
 @interface PostBasicCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
@@ -19,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeButtonLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *commentButtonImageView;
 @property (weak, nonatomic) IBOutlet UILabel *commentButtonLabel;
-
+@property (nonatomic, weak) id <PostCellDataSource> dataSource;
+@property (nonatomic, weak) id <PostCellDelegate> delegate;
 @end

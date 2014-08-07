@@ -8,7 +8,7 @@
 
 #import "CommentsTableViewController.h"
 #import "CreateCommentViewController.h"
-#import "FeedsTableViewController.h"
+//#import "FeedsTableViewController.h"
 
 @interface CommentsTableViewController ()
 

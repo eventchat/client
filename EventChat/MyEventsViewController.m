@@ -43,10 +43,10 @@ static NSString * const  EventCellIdentifier = @"EventCell";
     appData = appDelegate.mData;
     
 	// Do any additional setup after loading the view.
-    NSDictionary *event1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"The Foodies Restaurant Exploring Trip", @"EventName", @"Sept. 31, 2014", @"EventTime", @"Attended", @"EventRole", nil];
-    NSDictionary *event2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"The Random Photography Meetup", @"EventName", @"Oct. 12, 2014", @"EventTime", @"Attended", @"EventRole", nil];
-    NSDictionary *event3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Academic Conference", @"EventName", @"Oct. 18, 2014", @"EventTime", @"Attended", @"EventRole", nil];
-    
+//    NSDictionary *event1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"The Foodies Restaurant Exploring Trip", @"EventName", @"Sept. 31, 2014", @"EventTime", @"Attended", @"EventRole", nil];
+//    NSDictionary *event2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"The Random Photography Meetup", @"EventName", @"Oct. 12, 2014", @"EventTime", @"Attended", @"EventRole", nil];
+//    NSDictionary *event3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Academic Conference", @"EventName", @"Oct. 18, 2014", @"EventTime", @"Attended", @"EventRole", nil];
+//    
     // update all the events
     [self updateAllEvents];
     
