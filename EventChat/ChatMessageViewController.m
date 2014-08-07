@@ -21,10 +21,10 @@
 @synthesize mConversation;
 @synthesize mAppUser;
 
-@synthesize messageTable = _messageTable;
-@synthesize sendMessage = _sendMessage;
-@synthesize sendImage = _sendImage;
-@synthesize textField = _textField;
+@synthesize mMessageTable = _mMessageTable;
+@synthesize mSendMessage = _mSendMessage;
+@synthesize mSendImage = _mSendImage;
+@synthesize mTextField = _mTextField;
 
 CGRect keyboardSuperFrame;
 UIView *keyboardSuperView;
@@ -48,8 +48,8 @@ bool keyboardIsShown;
     self.messages = [[NSMutableArray alloc] init];
     
     
-    self.messageTable.backgroundColor = [UIColor whiteColor];
-	self.messageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mMessageTable.backgroundColor = [UIColor whiteColor];
+	self.mMessageTable.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
     // keyboard observer registration
@@ -66,7 +66,7 @@ bool keyboardIsShown;
     [self.view addGestureRecognizer:tap];
     
     // button observer registration
-    [self.sendMessage addTarget:self action:@selector(sendPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.mSendMessage addTarget:self action:@selector(sendPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     // register observer for new message
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDisplay:atLastRow::) name:@"MessageWillUpdateNotification" object:Nil];
@@ -96,11 +96,11 @@ bool keyboardIsShown;
     if (cell == nil) {
         cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        cell.backgroundColor = self.messageTable.backgroundColor;
+        cell.backgroundColor = self.mMessageTable.backgroundColor;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        cell.dataSource = self.messageTable;
-        cell.delegate = self.messageTable;
+        cell.dataSource = self.mMessageTable;
+        cell.delegate = self.mMessageTable;
     }
     
     Message *message = [mConversation.mMessagesArray objectAtIndex:indexPath.row];
@@ -141,11 +141,11 @@ bool keyboardIsShown;
 	
 	if(avatarUrl)
     {
-		size = [message.mBody sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.messageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleImageSize - 8.0f - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+		size = [message.mBody sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.mMessageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleImageSize - 8.0f - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     }
 	else
     {
-		size = [message.mBody sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.messageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+		size = [message.mBody sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(self.mMessageTable.frame.size.width - [self minInsetForCell:nil atIndexPath:indexPath] - ChatMessageCellBubbleWidthOffset, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     }
 	
 	// This makes sure the cell is big enough to hold the avatar
@@ -237,9 +237,9 @@ bool keyboardIsShown;
     // text processing
 //    ChatMessage *newMessage = [ChatMessage messageWithString:self.textField.text image:[UIImage imageNamed:@"placeholder"]];
     NSDate * currentDate = [NSDate date];
-    Message *newMessage = [[Message alloc] initWithAuthor:mAppUser withReceiver:mConversation.mResponder withBody:self.textField.text withCreatedAt:[ApiUtil ISO8601StringFromDate:currentDate]];
+    Message *newMessage = [[Message alloc] initWithAuthor:mAppUser withReceiver:mConversation.mResponder withBody:self.mTextField.text withCreatedAt:[ApiUtil ISO8601StringFromDate:currentDate]];
     [mConversation.mMessagesArray addObject:newMessage];
-    self.textField.text = @"";  // clear text field
+    self.mTextField.text = @"";  // clear text field
     NSLog(@"the new mesasge content: %@", newMessage);
     NSLog(@"the post request parm are: %@", [newMessage toDictionary]);
     
@@ -264,7 +264,7 @@ bool keyboardIsShown;
     
     
     // refresh message table
-    [self refreshDisplay:self.messageTable atLastRow:[mConversation.mMessagesArray count]];
+    [self refreshDisplay:self.mMessageTable atLastRow:[mConversation.mMessagesArray count]];
 
 //    [self.messages addObject:newMessage];
 //    [self refreshDisplay:self.messageTable atLastRow:[self.messages count]];
@@ -279,7 +279,7 @@ bool keyboardIsShown;
 
 #pragma mark - reload messages due to new message
 - (void)reloadMessageTable: (NSNotification *) notif {
-    [self refreshDisplay:self.messageTable atLastRow:[mConversation.mMessagesArray count]];
+    [self refreshDisplay:self.mMessageTable atLastRow:[mConversation.mMessagesArray count]];
 }
 
 @end

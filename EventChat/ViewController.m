@@ -24,8 +24,8 @@
 @end
 
 @implementation ViewController
-@synthesize appDelegate;
-@synthesize appData;
+@synthesize mAppDelegate;
+@synthesize mAppData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,8 +41,8 @@
     
 
     // initialization
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appData = appDelegate.mData;
+    mAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    mAppData = mAppDelegate.mData;
 
     // load the cookies and check login
     NSString * userId = [ApiUtil loadCookies];
@@ -74,7 +74,7 @@
             
             // set the user in appData
             [self setUserDataById:userId];
-            appData.mId = userId;
+            mAppData.mId = userId;
             
             //TODO: set the events
             
@@ -87,8 +87,8 @@
             UITabBarController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"myTabs"];
             nextViewController.selectedViewController = [nextViewController.viewControllers objectAtIndex:1];
             
-            NSLog(@"in checkloginstatus user: %@", appData.mUser);
-            NSLog(@"%@", appData.mConversationsDict);
+            NSLog(@"in checkloginstatus user: %@", mAppData.mUser);
+            NSLog(@"%@", mAppData.mConversationsDict);
             [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
             
         }else{
@@ -110,7 +110,7 @@
         
         User *loggedInUser = [[User alloc] initWithId:[userDataDict objectForKey:@"id"] withEmail:[userDataDict objectForKey:@"email"] withInfo:[userDataDict objectForKey:@"info"] withName:[userDataDict objectForKey:@"name"] withAvatarUrl:[userDataDict objectForKey:@"avatar_url"]];
         
-        [appData setUser:loggedInUser];
+        [mAppData setUser:loggedInUser];
 
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self doErrorMessage];
@@ -203,8 +203,8 @@
         NSLog(@"I am logged in!");
         
         // set the user in appData
-        [appData setUser:userData];
-        appData.mId = userDataDict[@"id"];
+        [mAppData setUser:userData];
+        mAppData.mId = userDataDict[@"id"];
         
         //TODO: set the events
         
@@ -252,7 +252,7 @@
         }
         
         // add into conversation
-        [appData addConversationWithReceivedMessageArray:messageArray];
+        [mAppData addConversationWithReceivedMessageArray:messageArray];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NewMessageNotification" object:Nil];
         
         [self pullingMessage];

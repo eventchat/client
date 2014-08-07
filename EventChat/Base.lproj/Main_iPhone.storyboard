@@ -887,10 +887,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="hf3-H2-U0y"/>
                     <connections>
-                        <outlet property="messageTable" destination="zne-NN-CoH" id="YQo-ho-dqt"/>
-                        <outlet property="sendImage" destination="XpB-6B-eUl" id="RG2-Qp-4iK"/>
-                        <outlet property="sendMessage" destination="xL3-Cd-WNR" id="H21-AH-kTm"/>
-                        <outlet property="textField" destination="tfh-7s-rKj" id="AeA-2X-Uh8"/>
+                        <outlet property="mMessageTable" destination="zne-NN-CoH" id="94c-eO-Xnl"/>
+                        <outlet property="mSendImage" destination="XpB-6B-eUl" id="6mZ-2p-U6x"/>
+                        <outlet property="mSendMessage" destination="xL3-Cd-WNR" id="cbH-rh-w3Y"/>
+                        <outlet property="mTextField" destination="tfh-7s-rKj" id="sb9-Ax-IuY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8Y-49-SvT" userLabel="First Responder" sceneMemberID="firstResponder"/>

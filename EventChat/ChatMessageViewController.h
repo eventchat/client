@@ -13,10 +13,10 @@
 
 @interface ChatMessageViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong)IBOutlet UITableView *messageTable;
-@property (nonatomic, strong)IBOutlet UIButton *sendMessage;
-@property (nonatomic, strong)IBOutlet UIButton *sendImage;
-@property (nonatomic, strong)IBOutlet UITextField *textField;
+@property (nonatomic, strong)IBOutlet UITableView *mMessageTable;
+@property (nonatomic, strong)IBOutlet UIButton *mSendMessage;
+@property (nonatomic, strong)IBOutlet UIButton *mSendImage;
+@property (nonatomic, strong)IBOutlet UITextField *mTextField;
 
 @property Conversation *mConversation;
 @property User *mAppUser;

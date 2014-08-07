@@ -13,7 +13,7 @@
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
 
-NSMutableArray *cdata;
+NSMutableArray *mData;
 
 
 @interface EventViewController ()
@@ -46,10 +46,10 @@ NSMutableArray *cdata;
     
     NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
     
-    cdata = [[NSMutableArray alloc] init];
-    [cdata addObject:data1];
-    [cdata addObject:data2];
-    [cdata addObject:data3];
+    mData = [[NSMutableArray alloc] init];
+    [mData addObject:data1];
+    [mData addObject:data2];
+    [mData addObject:data3];
     
 }
 
@@ -75,7 +75,7 @@ NSMutableArray *cdata;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [cdata count];
+    return [mData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,7 +114,7 @@ NSMutableArray *cdata;
 
 - (void)configureBasicCell: (PostBasicCell *)cell forIndexPath: (NSIndexPath *)indexPath {
     // Configure the cell...
-    NSDictionary *postData = [cdata objectAtIndex:indexPath.row];
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
     
     NSLog(@"%@", [postData valueForKey:@"author"]);
     
@@ -133,7 +133,7 @@ NSMutableArray *cdata;
 }
 
 - (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
-    NSDictionary *postData = [cdata objectAtIndex:indexPath.row];
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
     cell.authorLabel.text =[postData valueForKey:@"author"];
     
     cell.timeLabel.text = [postData valueForKey:@"time"];
@@ -152,7 +152,7 @@ NSMutableArray *cdata;
 }
 
 - (BOOL)hasImageAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *postData = [cdata objectAtIndex:indexPath.row];
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
     NSString *postImageUrl = [postData valueForKey:@"image"];
     return postImageUrl != nil;
 }
