@@ -1,22 +1,21 @@
 //
-//  MeProfileViewController.m
+//  AttendeeListViewController.m
 //  EventChat
 //
-//  Created by Jianchen Tao on 8/6/14.
+//  Created by Jianchen Tao on 8/7/14.
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
 
-#import "MeProfileViewController.h"
-#import "ApiUtil.h"
+#import "AttendeeListViewController.h"
+#import "AttendeeCell.h"
 
-@interface MeProfileViewController ()
+@interface AttendeeListViewController ()
 
 @end
 
-@implementation MeProfileViewController
-@synthesize mAppData;
-@synthesize mAppDelegate;
+NSMutableArray *mData;
 
+@implementation AttendeeListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,17 +29,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    NSDictionary *attendee1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"name", nil, @"avatar_url", nil];
+    NSDictionary *attendee2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"name", nil, @"avatar_url", nil];
+    mData = [[NSMutableArray alloc] initWithObjects:attendee1, attendee2, nil];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    UIColor *color = [ApiUtil colorWithHexString:@"FDA10F"];
-    self.view.backgroundColor = color;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    // status bar style
-    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,31 +51,36 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [mData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"AttendeeCell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    AttendeeCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
+    [self configureCell:cell forRowAtIndexPath:indexPath];
     
     return cell;
 }
 
-#pragma mark - setting status bar style
--(UIStatusBarStyle) preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 63.0f;
+}
+
+- (void) configureCell: (AttendeeCell *) cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *userData = [mData objectAtIndex:indexPath.row];
+    cell.mNameLabel.text = [userData objectForKey:@"name"];
 }
 
 /*
@@ -130,7 +133,5 @@
 }
 
  */
-     
-
 
 @end

@@ -53,5 +53,9 @@
     }
     return self;
 }
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Event: {mId: %@\n mName: %@\n mLocation: %@\n mLongitude: %@\n mLatitude: %@}>", mId, mName, mLocation, mLongitude, _mLatitude];
+}
+
 
 @end

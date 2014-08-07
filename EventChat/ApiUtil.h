@@ -69,4 +69,5 @@
 + (NSString *)convertTimeStampWithUTCString: (NSString *)utcString;
 + (NSDate *)dateFromISO8601String:(NSString *)dateString;
 + (NSString *)ISO8601StringFromDate: (NSDate *)date;
++ (UIColor*)colorWithHexString:(NSString*)hex;
 @end

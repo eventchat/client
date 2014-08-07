@@ -1,39 +1,33 @@
 //
-//  EventViewController.m
+//  ProfileViewController.m
 //  EventChat
 //
-//  Created by Jianchen Tao on 7/29/14.
+//  Created by Lyman Cao on 7/11/14.
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
-#import "AFNetworking.h"
-#import "EventViewController.h"
+
+#import "MeProfileViewControllerTest.h"
 #import "PostBasicCell.h"
 #import "PostImageCell.h"
-#import "ECData.h"
-#import "AppDelegate.h"
-#import "Constants.h"
 #import "ApiUtil.h"
-
-static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
-static NSString * const PostImageCellIdentifier = @"PostImageCell";
-
-static int const MAX_DISTANCE = 100;
-
-@interface EventViewController ()
+@interface MeProfileViewControllerTest ()
 
 @end
 
-@implementation EventViewController{
-    AppDelegate *appDelegate;
-    ECData *appData;
-}
+NSMutableArray *mData;
+static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
+static NSString * const PostImageCellIdentifier = @"PostImageCell";
 
-@synthesize mEvent;
-@synthesize mPosts;
 
-- (id)initWithStyle:(UITableViewStyle)style
+@implementation MeProfileViewControllerTest
+@synthesize mUserPostTableView;
+@synthesize mAppDelegate;
+@synthesize mAppData;
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -43,59 +37,26 @@ static int const MAX_DISTANCE = 100;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appData = appDelegate.mData;
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // now currently using 
-    NSLog(@"\n\nheyhey!!!!!!!!\n\n%@",mEvent);
-    
-    [self updateAllPosts:mEvent.mId];
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    
-//     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Do any additional setup after loading the view.
     NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
     
     NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
     
     NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
     
-//    cdata = [[NSMutableArray alloc] init];
-//    [cdata addObject:data1];
-//    [cdata addObject:data2];
-//    [cdata addObject:data3];
     
-}
-
-- (void)updateAllPosts:(NSString *)eventId{
-    NSString *getAllPostsUrl = [NSString stringWithFormat: GET_POSTS_BY_EVENT_ID, eventId];
-    NSLog(@"get all posts url: %@", getAllPostsUrl);
-    NSURLRequest *allPostsRequest = [NSURLRequest requestWithMethod:@"GET" url:getAllPostsUrl parameters:nil];
-
+    mData = [[NSMutableArray alloc] init];
+    [mData addObject:data1];
+    [mData addObject:data2];
+    [mData addObject:data3];
     
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:allPostsRequest];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *allPosts = (NSArray *)responseObject;
-        mPosts = allPosts;
-        NSLog(@"all posts: %lu", [mPosts count]);
-        
-        [self.postsTableView reloadData];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failed to get all posts info. id: %@. Error %@",appData.mId ,error);
-    }];
-    [operation start];
-}
-
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self deselectAllRows];
+    
+    UIColor *color = [ApiUtil colorWithHexString:@"FDA10F"];
+    self.view.backgroundColor = color;
+//    self.mUserPostTableView.backgroundView = nil;
+    
+    // Disable navigation bar shadow
+//    [self.navigationController.navigationBar setShadowImage:[UIImage imageNamed:@"header_line"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,27 +65,25 @@ static int const MAX_DISTANCE = 100;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
+# pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [mPosts count];
+    NSLog(@"the total count is :%lu", (unsigned long)[mData count]);
+    return [mData count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if ([self hasImageAtIndexPath:indexPath]) {
         return [self imageCellAtIndexPath:indexPath];
     } else {
+        NSLog(@"the index path for cell is :%ld", (long)indexPath.row);
         return [self basicCellAtIndexPath:indexPath];
     }
 }
@@ -147,44 +106,43 @@ static int const MAX_DISTANCE = 100;
 }
 
 #pragma mark - private methods
-
 - (void)deselectAllRows {
-    for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    for (NSIndexPath *indexPath in [self.mUserPostTableView indexPathsForSelectedRows]) {
+        [self.mUserPostTableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
 
 - (void)configureBasicCell: (PostBasicCell *)cell forIndexPath: (NSIndexPath *)indexPath {
     // Configure the cell...
-    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
-
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
     
-    cell.authorLabel.text =postData[@"author"][@"name"];
+    NSLog(@"%@", [postData valueForKey:@"author"]);
     
-    cell.timeLabel.text = [postData valueForKey:@"created_at"];
+    cell.authorLabel.text =[postData valueForKey:@"author"];
     
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"liked_by"]) count]];
+    cell.timeLabel.text = [postData valueForKey:@"time"];
     
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"comments"]) count]];
+    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
     
-    cell.messageLabel.text = [postData valueForKey:@"body"];
+    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
+    
+    cell.messageLabel.text = [postData valueForKey:@"message"];
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
 }
 
 - (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
-    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
-    cell.authorLabel.text =postData[@"author"][@"name"];
-
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
+    cell.authorLabel.text =[postData valueForKey:@"author"];
     
-    cell.timeLabel.text = [postData valueForKey:@"created_at"];
+    cell.timeLabel.text = [postData valueForKey:@"time"];
     
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"liked_by"]) count]];
+    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
     
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"comments"]) count]];
+    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
     
-    cell.messageLabel.text = postData[@"body"];
+    cell.messageLabel.text = [postData valueForKey:@"message"];
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
@@ -194,19 +152,37 @@ static int const MAX_DISTANCE = 100;
 }
 
 - (BOOL)hasImageAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
-    return ![postData[@"type"] isEqualToString:@"text"];
-
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
+    NSString *postImageUrl = [postData valueForKey:@"image"];
+    return postImageUrl != nil;
 }
 
 - (PostBasicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {
-    PostBasicCell *cell = [self.postsTableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier forIndexPath:indexPath];
+    PostBasicCell *cell = [self.mUserPostTableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[PostBasicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PostBasicCellIdentifier];
+        
+        cell.backgroundColor = self.mUserPostTableView.backgroundColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.dataSource = self.mUserPostTableView;
+        cell.delegate = self.mUserPostTableView;
+    }
     [self configureBasicCell:cell forIndexPath:indexPath];
     return cell;
 }
 
 - (PostImageCell *)imageCellAtIndexPath:(NSIndexPath *)indexPath {
-    PostImageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PostImageCellIdentifier forIndexPath:indexPath];
+    PostImageCell *cell = [self.mUserPostTableView dequeueReusableCellWithIdentifier:PostImageCellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[PostImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PostImageCellIdentifier];
+        
+        cell.backgroundColor = self.mUserPostTableView.backgroundColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.dataSource = self.mUserPostTableView;
+        cell.delegate = self.mUserPostTableView;
+    }
     [self configureImageCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -215,7 +191,7 @@ static int const MAX_DISTANCE = 100;
     static PostBasicCell *sizingCell = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier];
+        sizingCell = [self.mUserPostTableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier];
     });
     
     [self configureBasicCell:sizingCell forIndexPath:indexPath];
@@ -226,7 +202,7 @@ static int const MAX_DISTANCE = 100;
     static PostImageCell *sizingCell = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:PostImageCellIdentifier];
+        sizingCell = [self.mUserPostTableView dequeueReusableCellWithIdentifier:PostImageCellIdentifier];
     });
     
     [self configureImageCell:sizingCell atIndexPath:indexPath];
@@ -240,5 +216,17 @@ static int const MAX_DISTANCE = 100;
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height;
 }
+
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+
 
 @end

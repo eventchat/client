@@ -1,13 +1,15 @@
 //
-//  ProfileViewController.h
+//  MeProfileViewController.h
 //  EventChat
 //
-//  Created by Lyman Cao on 7/11/14.
+//  Created by Jianchen Tao on 8/6/14.
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface MeProfileViewController : UIViewController
-
+@interface MeProfileViewController : UITableViewController
+@property AppDelegate *mAppDelegate;
+@property ECData *mAppData;
 @end
