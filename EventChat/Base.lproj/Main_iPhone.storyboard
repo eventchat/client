@@ -2471,6 +2471,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Events" id="x0b-1b-Bnc"/>
+                    <connections>
+                        <outlet property="postsTableView" destination="Pnc-U1-mxB" id="dgr-Wk-ksf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTk-WJ-C84" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

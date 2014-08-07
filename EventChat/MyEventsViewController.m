@@ -114,7 +114,6 @@ static NSString * const  EventCellIdentifier = @"EventCell";
         EventViewController *destViewController = segue.destinationViewController;
         
         // update the title of destination view controller to be chatter's name
-        NSLog(@"appData.mEvents: %@", appData.mEvents);
         destViewController.mEvent = [appData.mEvents objectAtIndex:indexPath.row];
         
         // hide the bottom bar

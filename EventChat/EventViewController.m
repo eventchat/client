@@ -47,13 +47,13 @@ static int const MAX_DISTANCE = 100;
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appData = appDelegate.mData;
 
+    // now update all the posts
+    [self updateAllPosts:mEvent.mId];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // now currently using 
-    NSLog(@"\n\nheyhey!!!!!!!!\n\n%@",mEvent);
-    
-    [self updateAllPosts:mEvent.mId];
+
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     
@@ -82,7 +82,7 @@ static int const MAX_DISTANCE = 100;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *allPosts = (NSArray *)responseObject;
         mPosts = allPosts;
-        NSLog(@"all posts: %lu", (unsigned long)[mPosts count]);
+        NSLog(@"all posts: %@", mPosts);
         
         [self.postsTableView reloadData];
         
