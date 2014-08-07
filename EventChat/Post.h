@@ -21,6 +21,7 @@
 @property (nonatomic, readwrite) NSString *mCreatedAt;
 @property (nonatomic, readwrite) User *mAuthor;
 @property (nonatomic, readwrite) NSMutableArray *mComments;
+@property (nonatomic, readwrite) NSMutableArray *mLikes;
 
 // added by Lyman
 @property (nonatomic, readonly) NSString *mType;
