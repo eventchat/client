@@ -47,11 +47,13 @@ static int const MAX_DISTANCE = 100;
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appData = appDelegate.mData;
 
+    // now update all the posts
+    [self updateAllPosts:mEvent.mId];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // now currently using 
-    [self updateAllPosts:mEvent.mLongitude.doubleValue latitude:mEvent.mLatitude.doubleValue];
+
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     
@@ -69,10 +71,10 @@ static int const MAX_DISTANCE = 100;
     
 }
 
-- (void)updateAllPosts:(double)longitude latitude:(double)latitude{
-    NSString *searchPostsUrl = [NSString stringWithFormat: GET_POST_BY_SEARCH, longitude, latitude, MAX_DISTANCE];
-    NSLog(@"search posts url: %@", searchPostsUrl);
-    NSURLRequest *allPostsRequest = [NSURLRequest requestWithMethod:@"GET" url:searchPostsUrl parameters:nil];
+- (void)updateAllPosts:(NSString *)eventId{
+    NSString *getAllPostsUrl = [NSString stringWithFormat: GET_POSTS_BY_EVENT_ID, eventId];
+    NSLog(@"get all posts url: %@", getAllPostsUrl);
+    NSURLRequest *allPostsRequest = [NSURLRequest requestWithMethod:@"GET" url:getAllPostsUrl parameters:nil];
 
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:allPostsRequest];
@@ -80,7 +82,7 @@ static int const MAX_DISTANCE = 100;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *allPosts = (NSArray *)responseObject;
         mPosts = allPosts;
-        NSLog(@"all posts: %lu", (unsigned long)[mPosts count]);
+        NSLog(@"all posts: %@", mPosts);
         
         [self.postsTableView reloadData];
         
