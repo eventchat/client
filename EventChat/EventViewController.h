@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 
 @interface EventViewController : UITableViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *postsTableView;
+
+@property NSArray *mPosts;
+@property Event *mEvent;
 @end

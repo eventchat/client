@@ -5,22 +5,30 @@
 //  Created by Jianchen Tao on 7/29/14.
 //  Copyright (c) 2014 EventChat. All rights reserved.
 //
-#import <AFNetworking/UIKit+AFNetworking.h>
+#import "AFNetworking.h"
 #import "EventViewController.h"
 #import "PostBasicCell.h"
 #import "PostImageCell.h"
+#import "ECData.h"
+#import "AppDelegate.h"
+#import "Constants.h"
+#import "ApiUtil.h"
 
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
-
-NSMutableArray *cdata;
-
+static int const MAX_DISTANCE = 100;
 
 @interface EventViewController ()
 
 @end
 
-@implementation EventViewController
+@implementation EventViewController{
+    AppDelegate *appDelegate;
+    ECData *appData;
+}
+
+@synthesize mEvent;
+@synthesize mPosts;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -34,24 +42,52 @@ NSMutableArray *cdata;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appData = appDelegate.mData;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    // now currently using 
+    [self updateAllPosts:mEvent.mLongitude.doubleValue latitude:mEvent.mLatitude.doubleValue];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+//     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
     
     NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
     
     NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
     
-    cdata = [[NSMutableArray alloc] init];
-    [cdata addObject:data1];
-    [cdata addObject:data2];
-    [cdata addObject:data3];
+//    cdata = [[NSMutableArray alloc] init];
+//    [cdata addObject:data1];
+//    [cdata addObject:data2];
+//    [cdata addObject:data3];
     
 }
+
+- (void)updateAllPosts:(double)longitude latitude:(double)latitude{
+    NSString *searchPostsUrl = [NSString stringWithFormat: GET_POST_BY_SEARCH, longitude, latitude, MAX_DISTANCE];
+    NSLog(@"search posts url: %@", searchPostsUrl);
+    NSURLRequest *allPostsRequest = [NSURLRequest requestWithMethod:@"GET" url:searchPostsUrl parameters:nil];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:allPostsRequest];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *allPosts = (NSArray *)responseObject;
+        mPosts = allPosts;
+        NSLog(@"all posts: %lu", [mPosts count]);
+        
+        [self.postsTableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to get all posts info. id: %@. Error %@",appData.mId ,error);
+    }];
+    [operation start];
+}
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -75,11 +111,15 @@ NSMutableArray *cdata;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [cdata count];
+    return [mPosts count];
+    
+    
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if ([self hasImageAtIndexPath:indexPath]) {
         return [self imageCellAtIndexPath:indexPath];
     } else {
@@ -97,7 +137,7 @@ NSMutableArray *cdata;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self hasImageAtIndexPath:indexPath]) {
+    if (![self hasImageAtIndexPath:indexPath]) {
         return 160.0f;
     } else {
         return 400.0f;
@@ -114,35 +154,33 @@ NSMutableArray *cdata;
 
 - (void)configureBasicCell: (PostBasicCell *)cell forIndexPath: (NSIndexPath *)indexPath {
     // Configure the cell...
-    NSDictionary *postData = [cdata objectAtIndex:indexPath.row];
+    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
     
-    NSLog(@"%@", [postData valueForKey:@"author"]);
+    cell.authorLabel.text =postData[@"author"][@"name"];
     
-    cell.authorLabel.text =[postData valueForKey:@"author"];
+    cell.timeLabel.text = [postData valueForKey:@"created_at"];
     
-    cell.timeLabel.text = [postData valueForKey:@"time"];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"liked_by"]) count]];
     
-    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"comments"]) count]];
     
-    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
-    
-    cell.messageLabel.text = [postData valueForKey:@"message"];
+    cell.messageLabel.text = [postData valueForKey:@"body"];
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
 }
 
 - (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
-    NSDictionary *postData = [cdata objectAtIndex:indexPath.row];
-    cell.authorLabel.text =[postData valueForKey:@"author"];
+    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
+    cell.authorLabel.text =postData[@"author"][@"name"];
     
-    cell.timeLabel.text = [postData valueForKey:@"time"];
+    cell.timeLabel.text = [postData valueForKey:@"created_at"];
     
-    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"liked_by"]) count]];
     
-    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",[((NSArray *)postData[@"comments"]) count]];
     
-    cell.messageLabel.text = [postData valueForKey:@"message"];
+    cell.messageLabel.text = postData[@"body"];
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
@@ -152,13 +190,12 @@ NSMutableArray *cdata;
 }
 
 - (BOOL)hasImageAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *postData = [cdata objectAtIndex:indexPath.row];
-    NSString *postImageUrl = [postData valueForKey:@"image"];
-    return postImageUrl != nil;
+    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
+    return ![postData[@"type"] isEqualToString:@"text"];
 }
 
 - (PostBasicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {
-    PostBasicCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier forIndexPath:indexPath];
+    PostBasicCell *cell = [self.postsTableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier forIndexPath:indexPath];
     [self configureBasicCell:cell forIndexPath:indexPath];
     return cell;
 }

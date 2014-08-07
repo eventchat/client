@@ -1012,7 +1012,7 @@
                                         <connections>
                                             <outlet property="eventTimeLabel" destination="t5b-j1-0fK" id="FZ0-Mi-zd4"/>
                                             <outlet property="eventTitleLabel" destination="bt0-Eb-z8t" id="puh-F0-Byb"/>
-                                            <segue destination="kGA-ZS-NDS" kind="push" id="BsA-YP-nUA"/>
+                                            <segue destination="kGA-ZS-NDS" kind="push" identifier="showSingleEvent" id="BsA-YP-nUA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1581,6 +1581,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Events" id="x0b-1b-Bnc"/>
+                    <connections>
+                        <outlet property="postsTableView" destination="Pnc-U1-mxB" id="k47-ua-bVE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTk-WJ-C84" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

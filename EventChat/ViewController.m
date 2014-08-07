@@ -111,6 +111,7 @@
         User *loggedInUser = [[User alloc] initWithId:[userDataDict objectForKey:@"id"] withEmail:[userDataDict objectForKey:@"email"] withInfo:[userDataDict objectForKey:@"info"] withName:[userDataDict objectForKey:@"name"] withAvatarUrl:[userDataDict objectForKey:@"avatar_url"]];
         
         [appData setUser:loggedInUser];
+        NSLog(@"successfully load user from user id. User: %@", appData.mUser);
 
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self doErrorMessage];

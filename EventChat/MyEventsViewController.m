@@ -13,6 +13,7 @@
 #import "ECData.h"
 #import "AppDelegate.h"
 #import "ApiUtil.h"
+#import "EventViewController.h"
 
 static NSString * const  EventCellIdentifier = @"EventCell";
 
@@ -49,10 +50,10 @@ static NSString * const  EventCellIdentifier = @"EventCell";
     // update all the events
     [self updateAllEvents];
     
-    self.data = [[NSMutableArray alloc] init];
-    [self.data addObject:event1];
-    [self.data addObject:event2];
-    [self.data addObject:event3];
+//    self.data = [[NSMutableArray alloc] init];
+//    [self.data addObject:event1];
+//    [self.data addObject:event2];
+//    [self.data addObject:event3];
     
 }
 
@@ -67,11 +68,13 @@ static NSString * const  EventCellIdentifier = @"EventCell";
         // empty all the events first
         [appData clearAllEvents];
         
-        for (NSDictionary *singleEvent in allEvents) {
+        for (NSDictionary *eDict in allEvents) {
+            Event *singleEvent = [[Event alloc] initWithId:eDict[@"id"] eventName:eDict[@"name"] eventLocation:eDict[@"address"] eventLongitude:eDict[@"longitude"] eventLatitude:eDict[@"latitude"] eventStartTime:eDict[@"start_time"] eventEndTime:eDict[@"end_time"] eventDescription:eDict[@"description"] eventImageLink:nil eventAttendees:[[NSArray alloc] init]];
             [appData.mEvents addObject:singleEvent];
         }
+
         [self.eventsTableView reloadData];
-        
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"failed to get all events info. id: %@. Error %@",appData.mId ,error);
     }];
@@ -93,15 +96,31 @@ static NSString * const  EventCellIdentifier = @"EventCell";
 }
 
 - (void) configureCell: (EventCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *cellData = [appData.mEvents objectAtIndex:indexPath.row];
-    cell.eventTitleLabel.text = cellData[@"name"];
+    Event *cellData = [appData.mEvents objectAtIndex:indexPath.row];
+    cell.eventTitleLabel.text = cellData.mName;
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM'-'dd'-'yyyy"];
     [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
     
-    NSDate *eventDate = [ApiUtil dateFromISO8601String:cellData[@"start_time"]];
+    NSDate *eventDate = [ApiUtil dateFromISO8601String:cellData.mStartTime];
     cell.eventTimeLabel.text = [dateFormat stringFromDate:eventDate];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showSingleEvent"]) {
+        NSIndexPath *indexPath = [self.eventsTableView indexPathForSelectedRow];
+        NSLog(@"%ld", (long)indexPath.row);
+        EventViewController *destViewController = segue.destinationViewController;
+        
+        // update the title of destination view controller to be chatter's name
+        destViewController.mEvent = [appData.mEvents objectAtIndex:indexPath.row];
+        
+        // hide the bottom bar
+//        destViewController.hidesBottomBarWhenPushed = YES;
+        NSLog(@"single event segue completed!");
+    }
+}
+
 
 @end

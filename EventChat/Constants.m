@@ -61,7 +61,7 @@ NSString *const GET_POST = @"/posts/%@";
 NSString *const CREATE_POST = @"/posts";
 NSString *const DELETE_POST_BY_POST_ID = @"/posts/%@";
 NSString *const GET_POST_BY_USER_ID = @"/users/%@/posts";
-NSString *const GET_POST_BY_SEARCH = @"/posts/search?latitude=%f&longitude=%f&max_distance=%d";
+NSString *const GET_POST_BY_SEARCH = @"/posts/search?longitude=%f&latitude=%f&max_distance=%d";
 // Comment
 NSString *const CREATE_COMMENT_TO_POST = @"/posts/%@/comments";
 // Event
