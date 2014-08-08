@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6C19C140197CCAD0003CB295 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C19C13F197CCAD0003CB295 /* ViewController.m */; };
+		6C24ED8E19949E6D00D446A6 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C24ED8D19949E6D00D446A6 /* UserProfileViewController.m */; };
 		6C4E635A196C81260009505F /* ChatterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6359196C81260009505F /* ChatterCell.m */; };
 		6C4E635E196CA8970009505F /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E635D196CA8970009505F /* ChatMessageCell.m */; };
 		6C4E6361196CACC90009505F /* ConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4E6360196CACC90009505F /* ConversationViewController.m */; };
@@ -77,6 +78,8 @@
 		5EF7D758EFAF48D9AC03B90B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6C19C13E197CCAD0003CB295 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6C19C13F197CCAD0003CB295 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6C24ED8C19949E6D00D446A6 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		6C24ED8D19949E6D00D446A6 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		6C4E6358196C81260009505F /* ChatterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatterCell.h; sourceTree = "<group>"; };
 		6C4E6359196C81260009505F /* ChatterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatterCell.m; sourceTree = "<group>"; };
 		6C4E635C196CA8970009505F /* ChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageCell.h; sourceTree = "<group>"; };
@@ -368,6 +371,8 @@
 				6C551B181985A75D003805B6 /* TestTableViewController.m */,
 				6C19C13E197CCAD0003CB295 /* ViewController.h */,
 				6C19C13F197CCAD0003CB295 /* ViewController.m */,
+				6C24ED8C19949E6D00D446A6 /* UserProfileViewController.h */,
+				6C24ED8D19949E6D00D446A6 /* UserProfileViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -533,6 +538,7 @@
 				6CB2743E19879265009E6375 /* PostImageCell.m in Sources */,
 				6CF7533A198846030011A733 /* EventViewController.m in Sources */,
 				6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */,
+				6C24ED8E19949E6D00D446A6 /* UserProfileViewController.m in Sources */,
 				E87545B519947A3E00E1F01C /* CreatePostViewController.m in Sources */,
 				6CC288C8198F3D95007F9817 /* Comment.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,

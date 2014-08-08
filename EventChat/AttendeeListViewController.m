@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "AFNetworking.h"
 #import "ApiUtil.h"
+#import "UserProfileViewController.h"
 
 @interface AttendeeListViewController ()
 
@@ -51,8 +52,9 @@ NSMutableArray *mAttendeeList;
         NSArray *attendeeListDataArray = (NSArray *)responseObject;
         for (NSDictionary *attendeeDataDict in attendeeListDataArray) {
         
-            User *attendee = [[User alloc] initWithId:[attendeeDataDict objectForKey:@"id"] withEmail:[attendeeDataDict objectForKey:@"email"] withInfo:[attendeeDataDict objectForKey:@"info"] withName:[attendeeDataDict objectForKey:@"name"] withAvatarUrl:[attendeeDataDict objectForKey:@"avatar_url"]];
-        
+//            User *attendee = [[User alloc] initWithId:[attendeeDataDict objectForKey:@"id"] withEmail:[attendeeDataDict objectForKey:@"email"] withInfo:[attendeeDataDict objectForKey:@"info"] withName:[attendeeDataDict objectForKey:@"name"] withAvatarUrl:[attendeeDataDict objectForKey:@"avatar_url"]];
+            
+            User *attendee = [User createUserWithDictionary:attendeeDataDict];
         
             [mAttendeeList addObject:attendee];
             NSLog(@"successfully get attendee: %@", attendee);
@@ -156,7 +158,7 @@ NSMutableArray *mAttendeeList;
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -164,8 +166,13 @@ NSMutableArray *mAttendeeList;
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"showUserProfilePage"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        UserProfileViewController *destViewController = segue.destinationViewController;
+        destViewController.mUser = [mAttendeeList objectAtIndex:indexPath.row];
+    }
 }
 
- */
 
 @end
