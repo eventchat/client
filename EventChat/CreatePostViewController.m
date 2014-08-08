@@ -7,12 +7,26 @@
 //
 
 #import "CreatePostViewController.h"
+#import "Post.h"
+#import "AppDelegate.h"
+#import "ECData.h"
+#import "ApiUtil.h"
+#import "AFNetworking.h"
 
 @interface CreatePostViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
-@implementation CreatePostViewController
+static NSString * const DEFAULT_TITLE = @"New Post";
+
+@implementation CreatePostViewController{
+    AppDelegate *appDelegate;
+    ECData *appData;
+}
+@synthesize toCreatePost;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +41,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appData = appDelegate.mData;
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,5 +61,34 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if (sender != self.doneButton) {
+        return;
+    }
+    
+    if (self.textView.text.length > 0) {
+        self.toCreatePost = [[Post alloc] initWithId:appData.mId withTitle:DEFAULT_TITLE withAuthor:appData.mUser withBody:self.textView.text withPic:nil withCreatedAt:[ApiUtil generateTimestamp] withComments:[NSMutableArray array] withLikes:[NSMutableArray array] withType:@"text" withEvent:_currentEvent];
+    }
+}
+
+- (void) sendPostToServer{
+    NSString *createPost = [NSString stringWithString: CREATE_POST];
+    NSDictionary *params = @{@"title":toCreatePost.mTitle,
+                            @"type":toCreatePost.mType,
+                            @"body":toCreatePost.mBody,
+                            @"event_id":toCreatePost.mEvent.mId};
+    NSURLRequest *createPostRequest = [NSURLRequest requestWithMethod:@"POST" url:createPost parameters:params];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:createPostRequest];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+         NSLog(@"create post response %@", (NSDictionary *)responseObject);
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         // fail to log in
+         NSLog(@"create post err: %@", error);
+     }];
+    [operation start];
+}
 
 @end

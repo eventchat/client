@@ -56,6 +56,7 @@
 		E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */; };
 		E8377FAE194BBF4E00E33C6D /* CreateCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */; };
 		E846E91219864DF300154822 /* JoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E846E91119864DF300154822 /* JoinViewController.m */; };
+		E87545B519947A3E00E1F01C /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87545B419947A3E00E1F01C /* CreatePostViewController.m */; };
 		E89E5F98197F3094002CA342 /* MeProfileViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */; };
 		E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E5F99197F309C002CA342 /* Profile.storyboard */; };
 		E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CCAB74197F59FC005B0DA7 /* Join.storyboard */; };
@@ -162,6 +163,8 @@
 		E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCommentViewController.m; sourceTree = "<group>"; };
 		E846E91019864DF300154822 /* JoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinViewController.h; sourceTree = "<group>"; };
 		E846E91119864DF300154822 /* JoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinViewController.m; sourceTree = "<group>"; };
+		E87545B319947A3E00E1F01C /* CreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePostViewController.h; sourceTree = "<group>"; };
+		E87545B419947A3E00E1F01C /* CreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePostViewController.m; sourceTree = "<group>"; };
 		E89E5F96197F3094002CA342 /* MeProfileViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeProfileViewControllerTest.h; sourceTree = "<group>"; };
 		E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeProfileViewControllerTest.m; sourceTree = "<group>"; };
 		E89E5F99197F309C002CA342 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 				6C4E6360196CACC90009505F /* ConversationViewController.m */,
 				E8377FAC194BBF4E00E33C6D /* CreateCommentViewController.h */,
 				E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */,
+				E87545B319947A3E00E1F01C /* CreatePostViewController.h */,
+				E87545B419947A3E00E1F01C /* CreatePostViewController.m */,
 				AB724E9319340A8000F29EC8 /* CreateViewController.h */,
 				AB724E9419340A8000F29EC8 /* CreateViewController.m */,
 				6CF75338198846030011A733 /* EventViewController.h */,
@@ -534,6 +539,7 @@
 				6CB2743E19879265009E6375 /* PostImageCell.m in Sources */,
 				6CF7533A198846030011A733 /* EventViewController.m in Sources */,
 				6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */,
+				E87545B519947A3E00E1F01C /* CreatePostViewController.m in Sources */,
 				6CC288C8198F3D95007F9817 /* Comment.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				6CB2743B19878005009E6375 /* PostBasicCell.m in Sources */,

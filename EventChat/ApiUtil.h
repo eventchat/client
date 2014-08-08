@@ -72,4 +72,5 @@
 + (UIColor*)colorWithHexString:(NSString*)hex;
 + (NSString *)detectUrlInString:(NSString *)source;
 + (NSDateFormatter *)getDateFormatter;
++ (NSString *) generateTimestamp;
 @end

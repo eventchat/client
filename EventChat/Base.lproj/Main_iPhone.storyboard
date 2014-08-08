@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9Iw-Rj-gl8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9Iw-Rj-gl8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -1958,7 +1958,7 @@
             </objects>
             <point key="canvasLocation" x="1187" y="598"/>
         </scene>
-        <!--Event View Controller - My Events-->
+        <!--Event View Controller - Event-->
         <scene sceneID="Y2K-6W-SOq">
             <objects>
                 <tableViewController id="kGA-ZS-NDS" customClass="EventViewController" sceneMemberID="viewController">
@@ -2470,7 +2470,13 @@
                             <outlet property="delegate" destination="kGA-ZS-NDS" id="SFD-fS-NHw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Events" id="x0b-1b-Bnc"/>
+                    <navigationItem key="navigationItem" title="Event" id="x0b-1b-Bnc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="yTk-Ny-G7D">
+                            <connections>
+                                <segue destination="cQw-fh-ri0" kind="modal" id="mSU-eF-Wnr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="postsTableView" destination="Pnc-U1-mxB" id="dgr-Wk-ksf"/>
                     </connections>
@@ -2500,10 +2506,10 @@
             </objects>
             <point key="canvasLocation" x="750" y="-871"/>
         </scene>
-        <!--Create View Controller - Compose-->
+        <!--Create Post View Controller - Compose-->
         <scene sceneID="EPA-dA-W41">
             <objects>
-                <viewController title="Compose" id="Dwe-hw-Q1t" customClass="CreateViewController" sceneMemberID="viewController">
+                <viewController title="Compose" id="Dwe-hw-Q1t" customClass="CreatePostViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQu-VL-ItG"/>
                         <viewControllerLayoutGuide type="bottom" id="L49-OZ-jfB"/>
@@ -2512,44 +2518,41 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xAi-bT-TeZ">
-                                <rect key="frame" x="20" y="103" width="280" height="130"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAi-bT-TeZ">
+                                <rect key="frame" x="20" y="20" width="280" height="464"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" link="YES" image="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgY-Sw-2p8">
-                                <rect key="frame" x="66" y="72" width="84" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="fRy-vI-yyk">
-                                <rect key="frame" x="20" y="71" width="38" height="38"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Compose" id="Cpy-Ad-0MF">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DnB-wc-WYD">
                             <connections>
-                                <segue destination="YmV-Lr-yed" kind="unwind" unwindAction="unwindToFeed:" id="pLm-Jl-j4r"/>
+                                <segue destination="YmV-Lr-yed" kind="unwind" unwindAction="unwindToEventPosts:" id="nXM-Yn-J14"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="b8n-l0-e5d">
                             <connections>
-                                <segue destination="YmV-Lr-yed" kind="unwind" unwindAction="unwindToFeed:" id="om0-nz-7Du"/>
+                                <segue destination="YmV-Lr-yed" kind="unwind" unwindAction="unwindToEventPosts:" id="T3G-pk-J2j"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="doneButton" destination="b8n-l0-e5d" id="7ka-6k-poD"/>
-                        <outlet property="textView" destination="xAi-bT-TeZ" id="qXM-wq-je4"/>
+                        <outlet property="cancelButton" destination="DnB-wc-WYD" id="FAJ-8v-fCc"/>
+                        <outlet property="doneButton" destination="b8n-l0-e5d" id="iG9-Ue-Qim"/>
+                        <outlet property="textView" destination="xAi-bT-TeZ" id="C9S-fS-iRX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bwh-68-B1P" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YmV-Lr-yed" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2228" y="-871"/>
+            <point key="canvasLocation" x="2582" y="-117"/>
         </scene>
         <!--Navigation Controller - Compose-->
         <scene sceneID="dW6-pA-yGG">
@@ -2572,7 +2575,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Id-In-xdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1743" y="-871"/>
+            <point key="canvasLocation" x="2129" y="-109"/>
         </scene>
         <!--Navigation Controller - MeTest-->
         <scene sceneID="kFs-7b-duO">
@@ -2731,4 +2734,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="LpC-jy-vUA"/>
+    </inferredMetricsTieBreakers>
 </document>

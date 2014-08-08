@@ -11,4 +11,5 @@
 @interface CreatePostViewController : UIViewController
 
 @property Post *toCreatePost;
+@property Event *currentEvent;
 @end
