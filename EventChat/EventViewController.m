@@ -41,7 +41,6 @@ static int const MAX_DISTANCE = 100;
     CreatePostViewController *source = [segue sourceViewController];
     Post *item = source.toCreatePost;
     if (item != nil) {
-        NSLog(@"%@ created!", item.mBody);
         [self.mPosts addObject:item];
         [self.tableView reloadData];
     }else{
@@ -70,21 +69,6 @@ static int const MAX_DISTANCE = 100;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    
-//     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-//    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
-//    
-//    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
-//    
-//    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
-    
-//    cdata = [[NSMutableArray alloc] init];
-//    [cdata addObject:data1];
-//    [cdata addObject:data2];
-//    [cdata addObject:data3];
     
 }
 
@@ -100,9 +84,8 @@ static int const MAX_DISTANCE = 100;
         // init mPosts
         mPosts = [[NSMutableArray alloc] init];
         
-//        NSLog(@"\n\n!!!!!!!!! all posts dicts: %@", allPostsDict);
         for(NSDictionary *singlePostDict in allPostsDict){
-            NSLog(@"\n\n!!!!!!!!! single post dicts: %@", singlePostDict);
+
             
             // create post author
             NSDictionary *authorDict = singlePostDict[@"author"];
@@ -135,7 +118,6 @@ static int const MAX_DISTANCE = 100;
             [mPosts addObject: [[Post alloc] initWithId:singlePostDict[@"id"] withTitle:singlePostDict[@"title"] withAuthor:author withBody:singlePostDict[@"body"] withPic: [ApiUtil detectUrlInString:singlePostDict[@"body"]] withCreatedAt:singlePostDict[@"created_at"] withComments:comments withLikes:likedBys withType:singlePostDict[@"type"] withEvent:mEvent]];
 
         }
-        NSLog(@"all posts: %@", mPosts);
         
         [self.postsTableView reloadData];
         
@@ -301,6 +283,10 @@ static int const MAX_DISTANCE = 100;
     if ([segue.identifier isEqualToString:@"showEventAttendeeList"]) {
         AttendeeListViewController *destViewController = segue.destinationViewController;
         destViewController.mEvent = self.mEvent;
+    }else if([segue.identifier isEqualToString:@"composePost"]){
+        
+        CreatePostViewController *createPostViewController = (CreatePostViewController *)[[segue destinationViewController] topViewController];
+        createPostViewController.currentEvent = self.mEvent;
     }
 }
 

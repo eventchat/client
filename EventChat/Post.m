@@ -19,6 +19,7 @@
 @synthesize mComments = _mComments;
 @synthesize mType = _mType;
 @synthesize mLikes = _mLikes;
+@synthesize mEvent = _mEvent;
 
 - (NSDictionary *) toDictionary {
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
@@ -68,7 +69,6 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<Post: {mId: %@\n mTitle: %@\n mAuthor: %@\n mBody: %@\n mPic: %@\n mCreatedAt: %@\n mComments: %lu\n mLikes: %lu\n mType: %@\n mEvent: %@\n}>", _mId, _mTitle, _mAuthor, _mBody, _mPic, _mCreatedAt, (unsigned long)[_mComments count], (unsigned long)[_mLikes count], _mType, _mEvent];
+    return [[self toDictionary] description];
 }
-
 @end

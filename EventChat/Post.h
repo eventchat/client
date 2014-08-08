@@ -24,8 +24,8 @@
 @property (nonatomic, readwrite) NSMutableArray *mLikes;
 
 // added by Lyman
-@property (nonatomic, readonly) NSString *mType;
-@property (nonatomic, readonly) Event *mEvent;
+@property (nonatomic, readwrite) NSString *mType;
+@property (nonatomic, readwrite) Event *mEvent;
 
 + (instancetype) createPostWithData: (NSDictionary *) postData;
 
