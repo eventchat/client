@@ -2519,7 +2519,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" fixedFrame="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAi-bT-TeZ">
-                                <rect key="frame" x="30" y="17" width="280" height="464"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="457"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" link="YES" image="YES"/>
@@ -2528,6 +2528,16 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Wo-GA-WoO">
+                                <rect key="frame" x="33" y="465" width="43" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addImageClicked:" destination="Dwe-hw-Q1t" eventType="touchUpInside" id="TIS-2T-1Rh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -2544,6 +2554,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addImageButton" destination="0Wo-GA-WoO" id="uzf-DP-6qo"/>
                         <outlet property="cancelButton" destination="DnB-wc-WYD" id="FAJ-8v-fCc"/>
                         <outlet property="doneButton" destination="b8n-l0-e5d" id="iG9-Ue-Qim"/>
                         <outlet property="textView" destination="xAi-bT-TeZ" id="C9S-fS-iRX"/>
@@ -2557,7 +2568,6 @@
         <!--Navigation Controller - Compose-->
         <scene sceneID="dW6-pA-yGG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Id-In-xdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController title="Compose" automaticallyAdjustsScrollViewInsets="NO" id="cQw-fh-ri0" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="0i7-Jh-7DK">
@@ -2574,6 +2584,7 @@
                         <segue destination="Dwe-hw-Q1t" kind="relationship" relationship="rootViewController" id="eWH-zb-uW1"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Id-In-xdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2173" y="-87"/>
         </scene>

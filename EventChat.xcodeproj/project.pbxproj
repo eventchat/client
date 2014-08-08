@@ -37,7 +37,6 @@
 		AB724E8919340A8000F29EC8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724E8819340A8000F29EC8 /* AppDelegate.m */; };
 		AB724E8C19340A8000F29EC8 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB724E8A19340A8000F29EC8 /* Main_iPhone.storyboard */; };
 		AB724E8F19340A8000F29EC8 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB724E8D19340A8000F29EC8 /* Main_iPad.storyboard */; };
-		AB724E9519340A8000F29EC8 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB724E9419340A8000F29EC8 /* CreateViewController.m */; };
 		AB724E9719340A8000F29EC8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB724E9619340A8000F29EC8 /* Images.xcassets */; };
 		AB724E9E19340A8100F29EC8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E9D19340A8100F29EC8 /* XCTest.framework */; };
 		AB724E9F19340A8100F29EC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB724E7819340A8000F29EC8 /* Foundation.framework */; };
@@ -130,8 +129,6 @@
 		AB724E8819340A8000F29EC8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AB724E8B19340A8000F29EC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		AB724E8E19340A8000F29EC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		AB724E9319340A8000F29EC8 /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
-		AB724E9419340A8000F29EC8 /* CreateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
 		AB724E9619340A8000F29EC8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AB724E9C19340A8100F29EC8 /* EventChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB724E9D19340A8100F29EC8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -357,8 +354,6 @@
 				E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */,
 				E87545B319947A3E00E1F01C /* CreatePostViewController.h */,
 				E87545B419947A3E00E1F01C /* CreatePostViewController.m */,
-				AB724E9319340A8000F29EC8 /* CreateViewController.h */,
-				AB724E9419340A8000F29EC8 /* CreateViewController.m */,
 				6CF75338198846030011A733 /* EventViewController.h */,
 				6CF75339198846030011A733 /* EventViewController.m */,
 				E846E91019864DF300154822 /* JoinViewController.h */,
@@ -523,7 +518,6 @@
 				ABCF7DD81937DEB400C49CA0 /* ApiUtil.m in Sources */,
 				ABDC7946193436E600607CE3 /* User.m in Sources */,
 				ABDC794F1934382100607CE3 /* Event.m in Sources */,
-				AB724E9519340A8000F29EC8 /* CreateViewController.m in Sources */,
 				AB724E8919340A8000F29EC8 /* AppDelegate.m in Sources */,
 				ABDC793F1934131100607CE3 /* JsonParser.m in Sources */,
 				6C551B1619832274003805B6 /* TempCell.m in Sources */,
