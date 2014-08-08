@@ -356,9 +356,7 @@ NSString *const ECAPILogin    = @"/oauth/token";
 
 + (NSString *) generateTimestamp{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:enUSPOSIXLocale];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    [dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'"];
     
     NSDate *now = [NSDate date];
     NSString *currentTimestamp = [dateFormatter stringFromDate:now];

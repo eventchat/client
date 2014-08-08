@@ -19,6 +19,7 @@
 @synthesize mComments = _mComments;
 @synthesize mType = _mType;
 @synthesize mLikes = _mLikes;
+@synthesize mEvent = _mEvent;
 
 - (NSDictionary *) toDictionary {
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
@@ -66,5 +67,7 @@
     }
     return self;
 }
-
+- (NSString *)description {
+    return [[self toDictionary] description];
+}
 @end
