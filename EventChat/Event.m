@@ -72,7 +72,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<Event: {mId: %@\n mName: %@\n mLocation: %@\n _mLongitude: %@\n _mLatitude: %@\n _mStartTime: %@\n _mEndTime: %@\n _mDesc: %@\n _mOrganizer: %@}>", _mId, _mName, _mLocation, _mLongitude, _mLatitude, _mStartTime, _mEndTime, _mDesc, _mOrganizer];
+    return [NSString stringWithFormat:@"<Event: {mId: %@\n mName: %@\n mLocation: %@\n _mLongitude: %@\n _mLatitude: %@\n _mStartTime: %@\n _mEndTime: %@\n _mDesc: %@\n _mOrganizer: %@\n number of attendees: %lu}>", _mId, _mName, _mLocation, _mLongitude, _mLatitude, _mStartTime, _mEndTime, _mDesc, _mOrganizer, (unsigned long)[_mAttendees count]];
 }
 
 @end
