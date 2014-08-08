@@ -18,5 +18,14 @@
 - (NSDictionary *) toDictionary {
     return @{@"body": mBody};
 }
-
+- (id) initWithId: (NSString *) userId withAuthor:(User *) author withBody:(NSString *)body withCreatedAt:(NSString *)createdAt{
+    self = [super init];
+    if (self) {
+        mId = userId;
+        mAuthor = author;
+        mBody = body;
+        mCreatedAt = createdAt;
+    }
+    return self;
+}
 @end
