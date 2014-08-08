@@ -69,12 +69,13 @@ NSMutableArray *mData;
     mAppUser = mAppDelegate.mData.mUser;
     mUserPostArray = [[NSMutableArray alloc] init];
     NSLog(@"the app user is :%@", mAppUser);
-    
+    NSLog(@"the request url is %@", [NSString stringWithFormat: GET_POST_BY_USER_ID, mAppUser.mId]);
     // api requeset    
     NSURLRequest *request = [NSURLRequest requestWithMethod:HTTP_GET url: [NSString stringWithFormat: GET_POST_BY_USER_ID, mAppUser.mId] parameters:nil];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"the response is %@", responseObject);
         NSArray *postListArray = (NSArray *)responseObject;
         for (NSDictionary *postData in postListArray) {
 //            User *author = [[User alloc] initWithId:[authorData objectForKey:@"id"] withEmail:[authorData objectForKey:@"email"] withInfo:[authorData objectForKey:@"info"] withName:[authorData objectForKey:@"name"] withAvatarUrl:[authorData objectForKey:@"avatar_url"] withCreatedAt:[authorData objectForKey:@"created_at"]];
@@ -114,7 +115,7 @@ NSMutableArray *mData;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [mData count];
+    return [mUserPostArray count];
 }
 
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,35 +170,40 @@ NSMutableArray *mData;
 
 - (void)configureBasicCell: (PostBasicCell *)cell forIndexPath: (NSIndexPath *)indexPath {
     // Configure the cell...
-    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
+    Post *currentPost = [mUserPostArray objectAtIndex:indexPath.row];
     
-    NSLog(@"%@", [postData valueForKey:@"author"]);
+    cell.authorLabel.text = currentPost.mAuthor.mName;
     
-    cell.authorLabel.text =[postData valueForKey:@"author"];
+    NSDateFormatter *dateFormat = [ApiUtil getDateFormatter];
+    NSDate *postDate = [ApiUtil dateFromISO8601String:currentPost.mCreatedAt];
+    cell.timeLabel.text = [dateFormat stringFromDate:postDate];
     
-    cell.timeLabel.text = [postData valueForKey:@"time"];
     
-    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[currentPost.mLikes count]];
     
-    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[currentPost.mComments count]];
     
-    cell.messageLabel.text = [postData valueForKey:@"message"];
+    cell.messageLabel.text = currentPost.mBody;
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
 }
 
 - (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
-    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
-    cell.authorLabel.text =[postData valueForKey:@"author"];
+    Post *currentPost = [mUserPostArray objectAtIndex:indexPath.row];
     
-    cell.timeLabel.text = [postData valueForKey:@"time"];
+    cell.authorLabel.text = currentPost.mAuthor.mName;
     
-    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
+    NSDateFormatter *dateFormat = [ApiUtil getDateFormatter];
+    NSDate *postDate = [ApiUtil dateFromISO8601String:currentPost.mCreatedAt];
+    cell.timeLabel.text = [dateFormat stringFromDate:postDate];
     
-    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
     
-    cell.messageLabel.text = [postData valueForKey:@"message"];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[currentPost.mLikes count]];
+    
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[currentPost.mComments count]];
+    
+    cell.messageLabel.text = currentPost.mBody;
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
@@ -207,9 +213,8 @@ NSMutableArray *mData;
 }
 
 - (BOOL)hasImageAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
-    NSString *postImageUrl = [postData valueForKey:@"image"];
-    return postImageUrl != nil;
+    Post *currentPost = [mUserPostArray objectAtIndex:indexPath.row];
+    return ![currentPost.mType isEqualToString:@"text"];
 }
 
 - (PostBasicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {

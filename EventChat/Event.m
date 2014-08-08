@@ -66,7 +66,7 @@
         _mDesc = desc;
         _mEventImageLink = eventImageLink;
         _mAttendees = [mAttendees copy];
-        _mOrganizer = [organizer copy];
+        _mOrganizer = organizer;
     }
     return self;
 }
