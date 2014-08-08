@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
-@interface CreatePostViewController : UIViewController
+@interface CreatePostViewController : UIViewController<UIActionSheetDelegate,
+UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+
 
 @property Post *toCreatePost;
 @property Event *currentEvent;

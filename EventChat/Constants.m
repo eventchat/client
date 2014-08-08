@@ -80,3 +80,9 @@ NSString *const READ_NOTIFICATION = @"/notifications";
 // Chat
 NSString *const CHAT = @"/chat";
 
+// Flickr API
+NSString *const FLICKR_KEY = @"f44636e161e3cf9c93ac1af0941eb96a";
+NSString *const FLICKR_SECRET = @"b8d09ea0195cfce6";
+NSString *const FLICKR_SIG_ORIGIN = @"b8d09ea0195cfce6api_keyf44636e161e3cf9c93ac1af0941eb96apermswrite";
+NSString *const FLICKR_SIG = @"1087ae0bf0ba24e28b7ac339dcb17568";
+

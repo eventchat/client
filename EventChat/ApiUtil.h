@@ -73,4 +73,7 @@
 + (NSString *)detectUrlInString:(NSString *)source;
 + (NSDateFormatter *)getDateFormatter;
 + (NSString *) generateTimestamp;
++ (NSString *)encodeToBase64String:(UIImage *)image;
++ (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData;
+
 @end

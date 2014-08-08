@@ -12,14 +12,21 @@
 #import "ECData.h"
 #import "ApiUtil.h"
 #import "AFNetworking.h"
+#import "AssetsLibrary/ALAsset.h"
+#import "FlickrKit.h"
+#import "Constants.h"
 
 @interface CreatePostViewController ()
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *addImageBarButton;
+
+@property (strong, nonatomic) IBOutlet UIToolbar *postToolbar;
+- (IBAction)addImageClicked:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet UIButton *addImageButton;
-- (IBAction)addImageClicked:(id)sender;
 
+@property BOOL newMedia;
 @end
 
 static NSString * const DEFAULT_TITLE = @"New Post";
@@ -30,6 +37,9 @@ static NSString * const DEFAULT_TITLE = @"New Post";
 }
 @synthesize toCreatePost;
 @synthesize currentEvent;
+@synthesize addImageBarButton;
+@synthesize postToolbar;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,7 +57,9 @@ static NSString * const DEFAULT_TITLE = @"New Post";
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appData = appDelegate.mData;
     
-    NSLog(@"in createPost: what is my event?%@", currentEvent);
+    
+    [[FlickrKit sharedFlickrKit] initializeWithAPIKey:FLICKR_KEY sharedSecret:FLICKR_SECRET];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,35 +116,100 @@ static NSString * const DEFAULT_TITLE = @"New Post";
     [operation start];
 }
 
-- (IBAction)addImageClicked:(id)sender {
+- (IBAction)addImageClicked:(id)sender{
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeSavedPhotosAlbum])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
+        imagePicker.allowsEditing = NO;
+        [self presentViewController:imagePicker
+                           animated:YES completion:nil];
+        _newMedia = NO;
+    }
+}
+#pragma mark -
+#pragma mark UIImagePickerControllerDelegate
+
+-(void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = info[UIImagePickerControllerMediaType];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        UIImage *selectedImage = info[UIImagePickerControllerOriginalImage];
+        
+        NSLog(@"image !!!!!! %@",selectedImage);
+        [self sendtoFlickr:selectedImage];
+        
+        if (_newMedia)
+            UIImageWriteToSavedPhotosAlbum(selectedImage,
+                                           self,
+                                           @selector(image:finishedSavingWithError:contextInfo:),
+                                           nil);
+    }
+    else if ([mediaType isEqualToString:(NSString *)kUTTypeMovie])
+    {
+        // Code here to support video if enabled
+    }
 }
 
-- (BOOL) startMediaBrowserFromViewController: (UIViewController*) controller
-                               usingDelegate: (id <UIImagePickerControllerDelegate,
-                                               UINavigationControllerDelegate>) delegate {
+-(void)image:(UIImage *)image
+finishedSavingWithError:(NSError *)error
+ contextInfo:(void *)contextInfo
+{
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Save failed"
+                              message: @"Failed to save image"
+                              delegate: nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) sendtoFlickr:(UIImage *)imageToPost{
     
-    if (([UIImagePickerController isSourceTypeAvailable:
-          UIImagePickerControllerSourceTypeSavedPhotosAlbum] == NO)
-        || (delegate == nil)
-        || (controller == nil))
-        return NO;
-    
-    UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
-    mediaUI.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-    
-    // Displays saved pictures and movies, if both are available, from the
-    // Camera Roll album.
-    mediaUI.mediaTypes =
-    [UIImagePickerController availableMediaTypesForSourceType:
-     UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-    
-    // Hides the controls for moving & scaling pictures, or for
-    // trimming movies. To instead show the controls, use YES.
-    mediaUI.allowsEditing = NO;
-    
-    mediaUI.delegate = delegate;
-    
-    [controller presentModalViewController: mediaUI animated: YES];
-    return YES;
+    FKImageUploadNetworkOperation *uploadOp = [[FlickrKit sharedFlickrKit] uploadImage:imageToPost args:@{} completion:^(NSString *imageID, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                // oops!
+                NSLog(@"upload to flickr err! %@", error);
+            } else {
+                // Image is now in flickr!
+                NSLog(@"flickr image id: %@", imageID);
+            }
+        });
+    }];
+}
+
+-(void) testFlickrExplore{
+    FlickrKit *fk = [FlickrKit sharedFlickrKit];
+    FKFlickrInterestingnessGetList *interesting = [[FKFlickrInterestingnessGetList alloc] init];
+    [fk call:interesting completion:^(NSDictionary *response, NSError *error) {
+        // Note this is not the main thread!
+        if (response) {
+            NSMutableArray *photoURLs = [NSMutableArray array];
+            for (NSDictionary *photoData in [response valueForKeyPath:@"photos.photo"]) {
+                NSURL *url = [fk photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoData];
+                [photoURLs addObject:url];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Any GUI related operations here
+            });
+        }   
+    }];
 }
 @end

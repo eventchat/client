@@ -42,18 +42,9 @@ static NSString * const  EventCellIdentifier = @"EventCell";
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appData = appDelegate.mData;
     
-	// Do any additional setup after loading the view.
-//    NSDictionary *event1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"The Foodies Restaurant Exploring Trip", @"EventName", @"Sept. 31, 2014", @"EventTime", @"Attended", @"EventRole", nil];
-//    NSDictionary *event2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"The Random Photography Meetup", @"EventName", @"Oct. 12, 2014", @"EventTime", @"Attended", @"EventRole", nil];
-//    NSDictionary *event3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Academic Conference", @"EventName", @"Oct. 18, 2014", @"EventTime", @"Attended", @"EventRole", nil];
-//    
-    // update all the events
+	// update all the events
     [self updateAllEvents];
     
-//    self.data = [[NSMutableArray alloc] init];
-//    [self.data addObject:event1];
-//    [self.data addObject:event2];
-//    [self.data addObject:event3];
     
 }
 
@@ -69,7 +60,7 @@ static NSString * const  EventCellIdentifier = @"EventCell";
         [appData clearAllEvents];
         
         for (NSDictionary *eDict in allEvents) {
-            Event *singleEvent = [[Event alloc] initWithId:eDict[@"id"] eventName:eDict[@"name"] eventLocation:eDict[@"address"] eventLongitude:eDict[@"longitude"] eventLatitude:eDict[@"latitude"] eventStartTime:eDict[@"start_time"] eventEndTime:eDict[@"end_time"] eventDescription:eDict[@"description"] eventImageLink:nil eventAttendees:[[NSArray alloc] init] eventOrganizer:eDict[@"organizer"]];
+            Event *singleEvent = [Event createEventwithDictionary:eDict];
             [appData.mEvents addObject:singleEvent];
         }
 

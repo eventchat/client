@@ -78,4 +78,6 @@ extern NSString *const READ_NOTIFICATION_BY_ID;
 extern NSString *const READ_NOTIFICATION;
 // Chat
 extern NSString *const CHAT;
-
+// Flickr API
+extern NSString *const FLICKR_KEY;
+extern NSString *const FLICKR_SECRET;

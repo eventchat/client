@@ -23,6 +23,11 @@ static NSString * const PostImageCellIdentifier = @"PostImageCell";
 static int const MAX_DISTANCE = 100;
 
 @interface EventViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *eventTitleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *hostLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
+@property (strong, nonatomic) IBOutlet UILabel *descLabel;
 
 @end
 
@@ -62,14 +67,29 @@ static int const MAX_DISTANCE = 100;
     [super viewDidLoad];
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appData = appDelegate.mData;
-
+    NSLog(@"hahah!!!!!!!!!!!\n");
+    
     // now update all the posts
     [self updateAllPosts:mEvent.mId];
+    
+    // now update the event detail
+    [self updateEventDetail];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     
+}
+
+-(void)updateEventDetail{
+    _eventTitleLabel.text = mEvent.mName;
+    _hostLabel.text = mEvent.mOrganizer.mName;
+   
+    NSDateFormatter *dateFormat = [ApiUtil getDateFormatter];
+    NSDate *eventDate = [ApiUtil dateFromISO8601String:mEvent.mStartTime];
+    _dateLabel.text = [dateFormat stringFromDate:eventDate];
+    _addressLabel.text = mEvent.mLocation;
+    _descLabel.text = mEvent.mDesc;
 }
 
 - (void)updateAllPosts:(NSString *)eventId{
