@@ -33,4 +33,10 @@
     }
     return self;
 }
+
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Comment: {mId: %@\n mAuthor: %@\n mBody: %@\n mCreatedAt: %@}>", mId, mAuthor, mBody, mCreatedAt];
+}
+
 @end
