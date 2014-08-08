@@ -186,7 +186,7 @@
     
     NSString *email = self.emailTextField.text;
     NSString *password = self.passwordTextField.text;
-    NSDictionary *param = @{@"name":email,
+    NSDictionary *param = @{@"email":email,
                             @"password":password};
     NSURLRequest *request = [NSURLRequest postRequest: SESSION parameters:param];
     
