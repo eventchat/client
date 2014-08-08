@@ -15,6 +15,7 @@
     NSString *mEmail;
     NSString *mInfo;
     NSString *mAvatarUrl;
+    NSString *mCreatedAt;
 }
 
 @property (nonatomic, readwrite) NSString *mId;
@@ -22,8 +23,13 @@
 @property (nonatomic, readwrite) NSString *mEmail;
 @property (nonatomic, readwrite) NSString *mInfo;
 @property (nonatomic, readwrite) NSString *mAvatarUrl;
+@property (nonatomic, readwrite) NSString *mCreatedAt;
 
 - (id) initWithId: (NSString *) userId withEmail: (NSString *) email withInfo: (NSString *) info withName: (NSString *)name withAvatarUrl: (NSString *) avatarUrl;
+
+- (id) initWithId: (NSString *) userId withEmail: (NSString *) email withInfo: (NSString *) info withName: (NSString *)name withAvatarUrl: (NSString *) avatarUrl withCreatedAt: (NSString *) createdAt;
+
++ (id) createUserWithDictionary: (NSDictionary *) userData;
 
 - (void) copy: (User *)user;
 

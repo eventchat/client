@@ -17,14 +17,17 @@
 @synthesize mCreatedAt;
 
 + (Message *) createMessageWithData: (NSDictionary *) messageData {
-    NSDictionary *authorData = [messageData objectForKey:@"from"];
-    NSDictionary *receiverData = [messageData objectForKey:@"to"];
+//    NSDictionary *authorData = [messageData objectForKey:@"from"];
+//    NSDictionary *receiverData = [messageData objectForKey:@"to"];
     NSString *messageBody = [messageData objectForKey:@"message"];
     NSString *messageTime = [messageData objectForKey:@"created_at"];
 
-    User *author = [[User alloc] initWithId:[authorData objectForKey:@"id"] withEmail:[authorData objectForKey:@"email"] withInfo:[authorData objectForKey:@"info"] withName:[authorData objectForKey:@"name"] withAvatarUrl:[authorData objectForKey:@"avatar_url"]];
-
-    User *receiver = [[User alloc] initWithId:[receiverData objectForKey:@"id"] withEmail:[receiverData objectForKey:@"email"] withInfo:[receiverData objectForKey:@"info"] withName:[receiverData objectForKey:@"name"] withAvatarUrl:[receiverData objectForKey:@"avatar_url"]];
+//    User *author = [[User alloc] initWithId:[authorData objectForKey:@"id"] withEmail:[authorData objectForKey:@"email"] withInfo:[authorData objectForKey:@"info"] withName:[authorData objectForKey:@"name"] withAvatarUrl:[authorData objectForKey:@"avatar_url"]];
+    
+    User *author = [User createUserWithDictionary:[messageData objectForKey:@"from"]];
+    User *receiver = [User createUserWithDictionary:[messageData objectForKey:@"to"]];
+    
+//    User *receiver = [[User alloc] initWithId:[receiverData objectForKey:@"id"] withEmail:[receiverData objectForKey:@"email"] withInfo:[receiverData objectForKey:@"info"] withName:[receiverData objectForKey:@"name"] withAvatarUrl:[receiverData objectForKey:@"avatar_url"]];
 
     Message  *newMessage = [[Message alloc] initWithAuthor:author withReceiver:receiver withBody:messageBody withCreatedAt:messageTime];
 

@@ -59,7 +59,6 @@
 		E89E5F98197F3094002CA342 /* MeProfileViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */; };
 		E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E5F99197F309C002CA342 /* Profile.storyboard */; };
 		E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CCAB74197F59FC005B0DA7 /* Join.storyboard */; };
-		E8CD0BC7199436B900AA005B /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CD0BC6199436B900AA005B /* CreatePostViewController.m */; };
 		F8347A7DD6FE44ACBC61644C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15338296C6334C938CB2FA3F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -167,8 +166,6 @@
 		E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeProfileViewControllerTest.m; sourceTree = "<group>"; };
 		E89E5F99197F309C002CA342 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		E8CCAB73197F59FC005B0DA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Join.storyboard; sourceTree = "<group>"; };
-		E8CD0BC5199436B900AA005B /* CreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePostViewController.h; sourceTree = "<group>"; };
-		E8CD0BC6199436B900AA005B /* CreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePostViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,24 +196,24 @@
 		6C4E635B196CA7540009505F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6CBCB7491942F8860031895F /* ItemCell.h */,
-				6CBCB74A1942F8860031895F /* ItemCell.m */,
-				6C4E6358196C81260009505F /* ChatterCell.h */,
-				6C4E6359196C81260009505F /* ChatterCell.m */,
+				6C51689D19938C83002E7A29 /* AttendeeCell.h */,
+				6C51689E19938C83002E7A29 /* AttendeeCell.m */,
 				6C4E635C196CA8970009505F /* ChatMessageCell.h */,
 				6C4E635D196CA8970009505F /* ChatMessageCell.m */,
-				6C551B1419832274003805B6 /* TempCell.h */,
-				6C551B1519832274003805B6 /* TempCell.m */,
+				6C4E6358196C81260009505F /* ChatterCell.h */,
+				6C4E6359196C81260009505F /* ChatterCell.m */,
 				6CF8B5BD197CA2F3002D5950 /* ConversationCell.h */,
 				6CF8B5BE197CA2F3002D5950 /* ConversationCell.m */,
 				6C53D14A1980A9EB0061DC2A /* EventCell.h */,
 				6C53D14B1980A9EB0061DC2A /* EventCell.m */,
+				6CBCB7491942F8860031895F /* ItemCell.h */,
+				6CBCB74A1942F8860031895F /* ItemCell.m */,
 				6CB2743919878005009E6375 /* PostBasicCell.h */,
 				6CB2743A19878005009E6375 /* PostBasicCell.m */,
 				6CB2743C19879265009E6375 /* PostImageCell.h */,
 				6CB2743D19879265009E6375 /* PostImageCell.m */,
-				6C51689D19938C83002E7A29 /* AttendeeCell.h */,
-				6C51689E19938C83002E7A29 /* AttendeeCell.m */,
+				6C551B1419832274003805B6 /* TempCell.h */,
+				6C551B1519832274003805B6 /* TempCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -345,34 +342,32 @@
 		E88DF218193FBD8A004FECFC /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6C551B171985A75D003805B6 /* TestTableViewController.h */,
-				6C551B181985A75D003805B6 /* TestTableViewController.m */,
+				6C51689A19938AB1002E7A29 /* AttendeeListViewController.h */,
+				6C51689B19938AB1002E7A29 /* AttendeeListViewController.m */,
+				6C4E6362196D1A590009505F /* ChatMessageViewController.h */,
+				6C4E6363196D1A590009505F /* ChatMessageViewController.m */,
+				E8377FA9194BBF2B00E33C6D /* CommentsTableViewController.h */,
+				E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */,
+				6C4E635F196CACC90009505F /* ConversationViewController.h */,
+				6C4E6360196CACC90009505F /* ConversationViewController.m */,
+				E8377FAC194BBF4E00E33C6D /* CreateCommentViewController.h */,
+				E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */,
+				AB724E9319340A8000F29EC8 /* CreateViewController.h */,
+				AB724E9419340A8000F29EC8 /* CreateViewController.m */,
+				6CF75338198846030011A733 /* EventViewController.h */,
+				6CF75339198846030011A733 /* EventViewController.m */,
 				E846E91019864DF300154822 /* JoinViewController.h */,
 				E846E91119864DF300154822 /* JoinViewController.m */,
+				6CC01A30199358470060EE10 /* MeProfileViewController.h */,
+				6CC01A31199358470060EE10 /* MeProfileViewController.m */,
 				E89E5F96197F3094002CA342 /* MeProfileViewControllerTest.h */,
 				E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */,
 				6C53D14D1980AB770061DC2A /* MyEventsViewController.h */,
 				6C53D14E1980AB770061DC2A /* MyEventsViewController.m */,
-				6C4E635F196CACC90009505F /* ConversationViewController.h */,
-				6C4E6360196CACC90009505F /* ConversationViewController.m */,
-				E8377FA9194BBF2B00E33C6D /* CommentsTableViewController.h */,
-				E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */,
-				AB724E9319340A8000F29EC8 /* CreateViewController.h */,
-				AB724E9419340A8000F29EC8 /* CreateViewController.m */,
-				E8377FAC194BBF4E00E33C6D /* CreateCommentViewController.h */,
-				E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */,
-				6C4E6362196D1A590009505F /* ChatMessageViewController.h */,
-				6C4E6363196D1A590009505F /* ChatMessageViewController.m */,
+				6C551B171985A75D003805B6 /* TestTableViewController.h */,
+				6C551B181985A75D003805B6 /* TestTableViewController.m */,
 				6C19C13E197CCAD0003CB295 /* ViewController.h */,
 				6C19C13F197CCAD0003CB295 /* ViewController.m */,
-				6CF75338198846030011A733 /* EventViewController.h */,
-				6CF75339198846030011A733 /* EventViewController.m */,
-				E8CD0BC5199436B900AA005B /* CreatePostViewController.h */,
-				E8CD0BC6199436B900AA005B /* CreatePostViewController.m */,
-				6CC01A30199358470060EE10 /* MeProfileViewController.h */,
-				6CC01A31199358470060EE10 /* MeProfileViewController.m */,
-				6C51689A19938AB1002E7A29 /* AttendeeListViewController.h */,
-				6C51689B19938AB1002E7A29 /* AttendeeListViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -539,7 +534,6 @@
 				6CB2743E19879265009E6375 /* PostImageCell.m in Sources */,
 				6CF7533A198846030011A733 /* EventViewController.m in Sources */,
 				6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */,
-				E8CD0BC7199436B900AA005B /* CreatePostViewController.m in Sources */,
 				6CC288C8198F3D95007F9817 /* Comment.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				6CB2743B19878005009E6375 /* PostBasicCell.m in Sources */,

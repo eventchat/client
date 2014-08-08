@@ -11,5 +11,6 @@
 
 @interface MeProfileViewController : UITableViewController
 @property AppDelegate *mAppDelegate;
-@property ECData *mAppData;
+@property User *mAppUser;
+@property NSMutableArray *mUserPostArray;
 @end

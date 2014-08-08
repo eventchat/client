@@ -8,14 +8,24 @@
 
 #import "MeProfileViewController.h"
 #import "ApiUtil.h"
+#import "PostBasicCell.h"
+#import "PostImageCell.h"
+#import "AFNetworking.h"
+#import "Constants.h"
+
+static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
+static NSString * const PostImageCellIdentifier = @"PostImageCell";
 
 @interface MeProfileViewController ()
 
 @end
 
+NSMutableArray *mData;
+
 @implementation MeProfileViewController
-@synthesize mAppData;
 @synthesize mAppDelegate;
+@synthesize mAppUser;
+@synthesize mUserPostArray;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -30,6 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    NSLog(@"the current user is %@", )
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -41,6 +52,47 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // status bar style
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
+    
+    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
+    
+    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
+    
+    mData = [[NSMutableArray alloc] init];
+    [mData addObject:data1];
+    [mData addObject:data2];
+    [mData addObject:data3];
+    
+    // initialization
+    mAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    mAppUser = mAppDelegate.mData.mUser;
+    mUserPostArray = [[NSMutableArray alloc] init];
+    NSLog(@"the app user is :%@", mAppUser);
+    
+    // api requeset    
+    NSURLRequest *request = [NSURLRequest requestWithMethod:HTTP_GET url: [NSString stringWithFormat: GET_POST_BY_USER_ID, mAppUser.mId] parameters:nil];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *postListArray = (NSArray *)responseObject;
+        for (NSDictionary *postData in postListArray) {
+            NSDictionary *authorData = [postData objectForKey:@"author"];
+            User *author = [[User alloc] initWithId:[authorData objectForKey:@"id"] withEmail:[authorData objectForKey:@"email"] withInfo:[authorData objectForKey:@"info"] withName:[authorData objectForKey:@"name"] withAvatarUrl:[authorData objectForKey:@"avatar_url"] withCreatedAt:[authorData objectForKey:@"created_at"]];
+            
+            Post *userPost = [[Post alloc] initWithId:[postData objectForKey:@"id"] withTitle:[postData objectForKey:@"title"] withAuthor:[postData objectForKey:@"author"] withBody:[postData objectForKey:@"body"] withPic:Nil withCreatedAt:[postData objectForKey:@"created_at"] withComments:[postData objectForKey:@"comments"] withLikes:[postData objectForKey:@"likes"] withType:[postData objectForKey:@"type"] withEvent:[postData objectForKey:@"event"]];
+            
+            [mUserPostArray addObject:postData];
+            NSLog(@"successfully get attendee: %@", userPost);
+        }
+        [self.tableView reloadData];
+        
+    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"HTTP request error: %@", error);
+    }];
+    
+    
+    [operation start];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,31 +105,166 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [mData count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    
+//    // Configure the cell...
+//    
+//    return cell;
+//}
 
 #pragma mark - setting status bar style
 -(UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self hasImageAtIndexPath:indexPath]) {
+        return [self imageCellAtIndexPath:indexPath];
+    } else {
+        NSLog(@"the index path for cell is :%ld", (long)indexPath.row);
+        return [self basicCellAtIndexPath:indexPath];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self hasImageAtIndexPath:indexPath]) {
+        return [self heightForImageCellAtIndexPath:indexPath];
+    } else {
+        return [self heightForBasicCellAtIndexPath:indexPath];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![self hasImageAtIndexPath:indexPath]) {
+        return 160.0f;
+    } else {
+        return 400.0f;
+    }
+}
+
+#pragma mark - private methods
+- (void)deselectAllRows {
+    for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
+}
+
+- (void)configureBasicCell: (PostBasicCell *)cell forIndexPath: (NSIndexPath *)indexPath {
+    // Configure the cell...
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
+    
+    NSLog(@"%@", [postData valueForKey:@"author"]);
+    
+    cell.authorLabel.text =[postData valueForKey:@"author"];
+    
+    cell.timeLabel.text = [postData valueForKey:@"time"];
+    
+    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
+    
+    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
+    
+    cell.messageLabel.text = [postData valueForKey:@"message"];
+    
+    cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
+    
+}
+
+- (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
+    cell.authorLabel.text =[postData valueForKey:@"author"];
+    
+    cell.timeLabel.text = [postData valueForKey:@"time"];
+    
+    cell.likeCountLabel.text = [postData valueForKey:@"likeCnt"];
+    
+    cell.commentCountLabel.text = [postData valueForKey:@"commentCnt"];
+    
+    cell.messageLabel.text = [postData valueForKey:@"message"];
+    
+    cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
+    
+    [cell.messageImageView setImage:nil];
+    [cell.messageImageView setImage:[UIImage imageNamed:@"food"]];
+    
+}
+
+- (BOOL)hasImageAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *postData = [mData objectAtIndex:indexPath.row];
+    NSString *postImageUrl = [postData valueForKey:@"image"];
+    return postImageUrl != nil;
+}
+
+- (PostBasicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {
+    PostBasicCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[PostBasicCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PostBasicCellIdentifier];
+        
+        cell.backgroundColor = self.tableView.backgroundColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        //        cell.dataSource = self.mUserPostTableView;
+        //        cell.delegate = self.mUserPostTableView;
+    }
+    [self configureBasicCell:cell forIndexPath:indexPath];
+    return cell;
+}
+
+- (PostImageCell *)imageCellAtIndexPath:(NSIndexPath *)indexPath {
+    PostImageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PostImageCellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[PostImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PostImageCellIdentifier];
+        
+        cell.backgroundColor = self.tableView.backgroundColor;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    [self configureImageCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+- (CGFloat)heightForBasicCellAtIndexPath:(NSIndexPath *)indexPath {
+    static PostBasicCell *sizingCell = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier];
+    });
+    
+    [self configureBasicCell:sizingCell forIndexPath:indexPath];
+    return [self calculateHeightForConfiguredSizingCell:sizingCell] + 1;
+}
+
+- (CGFloat)heightForImageCellAtIndexPath:(NSIndexPath *)indexPath {
+    static PostImageCell *sizingCell = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:PostImageCellIdentifier];
+    });
+    
+    [self configureImageCell:sizingCell atIndexPath:indexPath];
+    return [self calculateHeightForConfiguredSizingCell:sizingCell] + 1;
+}
+
+- (CGFloat) calculateHeightForConfiguredSizingCell: (UITableViewCell *)sizingCell {
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height;
 }
 
 /*
