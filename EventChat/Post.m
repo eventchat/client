@@ -67,6 +67,7 @@
     }
     return self;
 }
+
 - (NSString *)description {
     return [[self toDictionary] description];
 }

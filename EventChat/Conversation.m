@@ -45,4 +45,9 @@
     return mostRecentMessage.mBody;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Conversation: {mResponder: %@\n Number of Messages: %lu}>", mResponder, (unsigned long)[mMessagesArray count]];
+}
+
+
 @end
