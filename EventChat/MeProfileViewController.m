@@ -77,15 +77,17 @@ NSMutableArray *mData;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *postListArray = (NSArray *)responseObject;
         for (NSDictionary *postData in postListArray) {
-            NSDictionary *authorData = [postData objectForKey:@"author"];
-            User *author = [[User alloc] initWithId:[authorData objectForKey:@"id"] withEmail:[authorData objectForKey:@"email"] withInfo:[authorData objectForKey:@"info"] withName:[authorData objectForKey:@"name"] withAvatarUrl:[authorData objectForKey:@"avatar_url"] withCreatedAt:[authorData objectForKey:@"created_at"]];
+//            User *author = [[User alloc] initWithId:[authorData objectForKey:@"id"] withEmail:[authorData objectForKey:@"email"] withInfo:[authorData objectForKey:@"info"] withName:[authorData objectForKey:@"name"] withAvatarUrl:[authorData objectForKey:@"avatar_url"] withCreatedAt:[authorData objectForKey:@"created_at"]];
+//            
+//            Post *userPost = [[Post alloc] initWithId:[postData objectForKey:@"id"] withTitle:[postData objectForKey:@"title"] withAuthor:[postData objectForKey:@"author"] withBody:[postData objectForKey:@"body"] withPic:Nil withCreatedAt:[postData objectForKey:@"created_at"] withComments:[postData objectForKey:@"comments"] withLikes:[postData objectForKey:@"likes"] withType:[postData objectForKey:@"type"] withEvent:[postData objectForKey:@"event"]];
             
-            Post *userPost = [[Post alloc] initWithId:[postData objectForKey:@"id"] withTitle:[postData objectForKey:@"title"] withAuthor:[postData objectForKey:@"author"] withBody:[postData objectForKey:@"body"] withPic:Nil withCreatedAt:[postData objectForKey:@"created_at"] withComments:[postData objectForKey:@"comments"] withLikes:[postData objectForKey:@"likes"] withType:[postData objectForKey:@"type"] withEvent:[postData objectForKey:@"event"]];
-            
-            [mUserPostArray addObject:postData];
-            NSLog(@"successfully get attendee: %@", userPost);
+            Post *receivedPost = [Post createPostWithData:postData];
+            NSLog(@"successfully get post: %@", receivedPost);
+            [mUserPostArray addObject:receivedPost];
+
         }
         [self.tableView reloadData];
+
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"HTTP request error: %@", error);

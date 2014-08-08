@@ -67,4 +67,8 @@
     return self;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Post: {mId: %@\n mTitle: %@\n mAuthor: %@\n mBody: %@\n mPic: %@\n mCreatedAt: %@\n mComments: %@\n mLikes: %@\n mType: %@\n mEvent: %@\n}>", _mId, _mTitle, _mAuthor, _mBody, _mPic, _mCreatedAt, _mComments, _mLikes, _mType, _mEvent];
+}
+
 @end
