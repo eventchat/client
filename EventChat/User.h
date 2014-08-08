@@ -29,6 +29,8 @@
 
 - (id) initWithId: (NSString *) userId withEmail: (NSString *) email withInfo: (NSString *) info withName: (NSString *)name withAvatarUrl: (NSString *) avatarUrl withCreatedAt: (NSString *) createdAt;
 
++ (id) createUserWithDictionary: (NSDictionary *) userData;
+
 - (void) copy: (User *)user;
 
 

@@ -24,6 +24,10 @@
     return self;
 }
 
++ (id) createUserWithDictionary: (NSDictionary *) userData {
+    return [[User alloc] initWithId:[userData objectForKey:@"id"] withEmail:[userData objectForKey:@"email"] withInfo:[userData objectForKey:@"info"] withName:[userData objectForKey:@"name"] withAvatarUrl:[userData objectForKey:@"avatar_url"] withCreatedAt:[userData objectForKey:@"created_at"]];
+}
+
 - (id) initWithId: (NSString *) userId withEmail: (NSString *) email withInfo: (NSString *) info withName: (NSString *)name withAvatarUrl: (NSString *) avatarUrl {
     self = [self init];
     if (userId) {
