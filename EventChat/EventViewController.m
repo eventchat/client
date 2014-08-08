@@ -13,7 +13,9 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "ApiUtil.h"
+#import "CreatePostViewController.h"
 #import "AttendeeListViewController.h"
+
 
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
@@ -31,6 +33,21 @@ static int const MAX_DISTANCE = 100;
 
 @synthesize mEvent;
 @synthesize mPosts;
+
+
+// called when a new comment is created
+- (IBAction)unwindToEventPosts:(UIStoryboardSegue *)segue;
+{
+    CreatePostViewController *source = [segue sourceViewController];
+    Post *item = source.toCreatePost;
+    if (item != nil) {
+        NSLog(@"%@ created!", item.mBody);
+        [self.mPosts addObject:item];
+        [self.tableView reloadData];
+    }else{
+        NSLog(@"Comment is nil");
+    }
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -76,12 +93,48 @@ static int const MAX_DISTANCE = 100;
     NSLog(@"get all posts url: %@", getAllPostsUrl);
     NSURLRequest *allPostsRequest = [NSURLRequest requestWithMethod:@"GET" url:getAllPostsUrl parameters:nil];
 
-    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:allPostsRequest];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *allPosts = (NSArray *)responseObject;
-        mPosts = allPosts;
+        NSArray *allPostsDict = (NSArray *)responseObject;
+        // init mPosts
+        mPosts = [[NSMutableArray alloc] init];
+        
+//        NSLog(@"\n\n!!!!!!!!! all posts dicts: %@", allPostsDict);
+        for(NSDictionary *singlePostDict in allPostsDict){
+            NSLog(@"\n\n!!!!!!!!! single post dicts: %@", singlePostDict);
+            
+            // create post author
+            NSDictionary *authorDict = singlePostDict[@"author"];
+            User *author = [[User alloc] initWithId:authorDict[@"id"] withEmail:authorDict[@"email"] withInfo:authorDict[@"info"] withName:authorDict[@"name"] withAvatarUrl:authorDict[@"avatar_url"]];
+            
+            // create post comments
+            NSArray *commentsDict = singlePostDict[@"comments"];
+            NSMutableArray *comments = [[NSMutableArray alloc] init];
+            for (NSDictionary *singleCommentDict in commentsDict) {
+                // create the comment author
+                NSDictionary *commentAuthorDict = singleCommentDict[@"author"];
+                User *commentAuthor = [[User alloc] initWithId:commentAuthorDict[@"id"] withEmail:commentAuthorDict[@"email"] withInfo:commentAuthorDict[@"info"] withName:commentAuthorDict[@"name"] withAvatarUrl:commentAuthorDict[@"avatar_url"]];
+                
+                // add each comment object
+                [comments addObject: [[Comment alloc]initWithId:singleCommentDict[@"id"] withAuthor: commentAuthor withBody:singleCommentDict[@"body"] withCreatedAt:singleCommentDict[@"created_at"]]];
+            }
+            
+            // create post likes
+            NSArray *likedByDict = singlePostDict[@"liked_by"];
+            NSMutableArray *likedBys = [[NSMutableArray alloc] init];
+            for (NSDictionary *singleLikeByDict in likedByDict){
+                // create each likeby user
+                User *likeByAuthor = [[User alloc] initWithId:singleLikeByDict[@"id"] withEmail:singleLikeByDict[@"email"] withInfo:singleLikeByDict[@"info"] withName:singleLikeByDict[@"name"] withAvatarUrl:singleLikeByDict[@"avatar_url"]];
+
+                // add the new user to the list
+                [likedBys addObject:likeByAuthor];
+            }
+            
+            // now add it to mPosts
+            [mPosts addObject: [[Post alloc] initWithId:singlePostDict[@"id"] withTitle:singlePostDict[@"title"] withAuthor:author withBody:singlePostDict[@"body"] withPic: [ApiUtil detectUrlInString:singlePostDict[@"body"]] withCreatedAt:singlePostDict[@"created_at"] withComments:comments withLikes:likedBys withType:singlePostDict[@"type"] withEvent:mEvent]];
+
+        }
         NSLog(@"all posts: %@", mPosts);
         
         [self.postsTableView reloadData];
@@ -157,35 +210,37 @@ static int const MAX_DISTANCE = 100;
 
 - (void)configureBasicCell: (PostBasicCell *)cell forIndexPath: (NSIndexPath *)indexPath {
     // Configure the cell...
-    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
-
+    Post *currentPost = [mPosts objectAtIndex:indexPath.row];
     
-    cell.authorLabel.text =postData[@"author"][@"name"];
+    cell.authorLabel.text = currentPost.mAuthor.mName;
     
-    cell.timeLabel.text = [postData valueForKey:@"created_at"];
+    NSDateFormatter *dateFormat = [ApiUtil getDateFormatter];
+    NSDate *postDate = [ApiUtil dateFromISO8601String:currentPost.mCreatedAt];
+    cell.timeLabel.text = [dateFormat stringFromDate:postDate];
     
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[((NSArray *)postData[@"liked_by"]) count]];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu", [currentPost.mLikes count]];
     
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[((NSArray *)postData[@"comments"]) count]];
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu", [currentPost.mComments count]];
     
-    cell.messageLabel.text = [postData valueForKey:@"body"];
+    cell.messageLabel.text = currentPost.mBody;
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
-    
 }
 
 - (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
-    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
-    cell.authorLabel.text =postData[@"author"][@"name"];
-
+    Post *currentPost = [mPosts objectAtIndex:indexPath.row];
+    cell.authorLabel.text = currentPost.mAuthor.mName;
     
-    cell.timeLabel.text = [postData valueForKey:@"created_at"];
+    NSDateFormatter *dateFormat = [ApiUtil getDateFormatter];
+    NSDate *postDate = [ApiUtil dateFromISO8601String:currentPost.mCreatedAt];
+    cell.timeLabel.text = [dateFormat stringFromDate:postDate];
     
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[((NSArray *)postData[@"liked_by"]) count]];
     
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)[((NSArray *)postData[@"comments"]) count]];
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu", [currentPost.mLikes count]];
     
-    cell.messageLabel.text = postData[@"body"];
+    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu", [currentPost.mComments count]];
+    
+    cell.messageLabel.text = currentPost.mBody;
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
@@ -195,8 +250,8 @@ static int const MAX_DISTANCE = 100;
 }
 
 - (BOOL)hasImageAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *postData = [mPosts objectAtIndex:indexPath.row];
-    return ![postData[@"type"] isEqualToString:@"text"];
+    Post *currentPost = [mPosts objectAtIndex:indexPath.row];
+    return ![currentPost.mType isEqualToString:@"text"];
 
 }
 

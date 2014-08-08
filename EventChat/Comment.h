@@ -22,4 +22,5 @@
 @property (nonatomic, readwrite) NSString *mBody;
 @property (nonatomic, readwrite) NSString *mCreatedAt;
 
+- (id) initWithId: (NSString *) userId withAuthor:(User *) author withBody:(NSString *)body withCreatedAt:(NSString *)createdAt;
 @end

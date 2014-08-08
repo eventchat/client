@@ -333,4 +333,24 @@ NSString *const ECAPILogin    = @"/oauth/token";
                             blue:((float) b / 255.0f)
                            alpha:1.0f];
 }
+
+
++ (NSString *)detectUrlInString:(NSString *)source{
+    NSDataDetector* detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+    NSArray* matches = [detector matchesInString:source options:0 range:NSMakeRange(0, [source length])];
+    for (NSTextCheckingResult *match in matches) {
+        if ([match resultType] == NSTextCheckingTypeLink) {
+            NSString *url = [[match URL] absoluteString];
+            return url;
+        }
+    }
+    return nil;
+}
+
++(NSDateFormatter *)getDateFormatter{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM'-'dd'-'yyyy"];
+    [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
+    return dateFormat;
+}
 @end

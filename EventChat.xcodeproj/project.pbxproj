@@ -59,6 +59,7 @@
 		E89E5F98197F3094002CA342 /* MeProfileViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */; };
 		E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E5F99197F309C002CA342 /* Profile.storyboard */; };
 		E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CCAB74197F59FC005B0DA7 /* Join.storyboard */; };
+		E8CD0BC7199436B900AA005B /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CD0BC6199436B900AA005B /* CreatePostViewController.m */; };
 		F8347A7DD6FE44ACBC61644C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15338296C6334C938CB2FA3F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -166,6 +167,8 @@
 		E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeProfileViewControllerTest.m; sourceTree = "<group>"; };
 		E89E5F99197F309C002CA342 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		E8CCAB73197F59FC005B0DA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Join.storyboard; sourceTree = "<group>"; };
+		E8CD0BC5199436B900AA005B /* CreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePostViewController.h; sourceTree = "<group>"; };
+		E8CD0BC6199436B900AA005B /* CreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePostViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +367,8 @@
 				6C19C13F197CCAD0003CB295 /* ViewController.m */,
 				6CF75338198846030011A733 /* EventViewController.h */,
 				6CF75339198846030011A733 /* EventViewController.m */,
+				E8CD0BC5199436B900AA005B /* CreatePostViewController.h */,
+				E8CD0BC6199436B900AA005B /* CreatePostViewController.m */,
 				6CC01A30199358470060EE10 /* MeProfileViewController.h */,
 				6CC01A31199358470060EE10 /* MeProfileViewController.m */,
 				6C51689A19938AB1002E7A29 /* AttendeeListViewController.h */,
@@ -534,6 +539,7 @@
 				6CB2743E19879265009E6375 /* PostImageCell.m in Sources */,
 				6CF7533A198846030011A733 /* EventViewController.m in Sources */,
 				6C53D14C1980A9EB0061DC2A /* EventCell.m in Sources */,
+				E8CD0BC7199436B900AA005B /* CreatePostViewController.m in Sources */,
 				6CC288C8198F3D95007F9817 /* Comment.m in Sources */,
 				ABDC79491934380900607CE3 /* Post.m in Sources */,
 				6CB2743B19878005009E6375 /* PostBasicCell.m in Sources */,

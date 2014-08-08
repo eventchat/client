@@ -12,7 +12,8 @@
 @interface EventViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *postsTableView;
+- (IBAction)unwindToEventPosts:(UIStoryboardSegue *)segue;
 
-@property NSArray *mPosts;
+@property NSMutableArray *mPosts;
 @property Event *mEvent;
 @end

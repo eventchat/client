@@ -99,9 +99,7 @@ static NSString * const  EventCellIdentifier = @"EventCell";
     Event *cellData = [appData.mEvents objectAtIndex:indexPath.row];
     cell.eventTitleLabel.text = cellData.mName;
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM'-'dd'-'yyyy"];
-    [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
+    NSDateFormatter *dateFormat = [ApiUtil getDateFormatter];
     
     NSDate *eventDate = [ApiUtil dateFromISO8601String:cellData.mStartTime];
     cell.eventTimeLabel.text = [dateFormat stringFromDate:eventDate];

@@ -70,4 +70,6 @@
 + (NSDate *)dateFromISO8601String:(NSString *)dateString;
 + (NSString *)ISO8601StringFromDate: (NSDate *)date;
 + (UIColor*)colorWithHexString:(NSString*)hex;
++ (NSString *)detectUrlInString:(NSString *)source;
++ (NSDateFormatter *)getDateFormatter;
 @end
