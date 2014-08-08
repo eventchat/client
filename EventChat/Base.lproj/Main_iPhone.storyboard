@@ -1732,7 +1732,7 @@
         <!--User Profile View Controller - UserProfileViewController-->
         <scene sceneID="FBP-Zn-75N">
             <objects>
-                <tableViewController title="UserProfileViewController" id="PLu-CQ-Jnn" customClass="UserProfileViewController" sceneMemberID="viewController">
+                <tableViewController title="UserProfileViewController" modalTransitionStyle="flipHorizontal" id="PLu-CQ-Jnn" customClass="UserProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kpa-Gf-azQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2185,6 +2185,7 @@
                             <outlet property="delegate" destination="PLu-CQ-Jnn" id="kXC-80-Wf0"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="ME2-Bg-Gz4"/>
                     <nil key="simulatedTopBarMetrics"/>
                 </tableViewController>
@@ -2252,7 +2253,7 @@
                                 <connections>
                                     <outlet property="mAvatarImageView" destination="K1k-q2-o40" id="w75-fr-FIy"/>
                                     <outlet property="mNameLabel" destination="C4J-0h-Oy7" id="7WR-Um-wia"/>
-                                    <segue destination="PLu-CQ-Jnn" kind="push" id="ltc-oi-EJk"/>
+                                    <segue destination="PLu-CQ-Jnn" kind="push" identifier="showUserProfilePage" id="ltc-oi-EJk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3189,49 +3190,10 @@
         <image name="ico_chat_gray" width="32" height="32"/>
         <image name="ico_chat_orange" width="32" height="32"/>
         <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
         <image name="ico_event_gray" width="32" height="32"/>
         <image name="ico_join_gray" width="32" height="32"/>
         <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
         <image name="ico_location" width="16" height="16"/>
-        <image name="ico_me_gray" width="32" height="32"/>
         <image name="ico_me_gray" width="32" height="32"/>
         <image name="ico_time" width="16" height="16"/>
         <image name="icon-camera" width="29" height="29"/>
@@ -3240,21 +3202,7 @@
         <image name="image_bg" width="640" height="1136"/>
         <image name="image_seperator" width="640" height="2"/>
         <image name="input-outline" width="250" height="44"/>
-        <image name="input-outline" width="250" height="44"/>
         <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
         <image name="testImage" width="1024" height="768"/>
     </resources>
     <color key="tintColor" red="0.99215686274509807" green="0.63137254901960782" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "User.h"
 
 @interface UserProfileViewController : UITableViewController
-
+@property User *mUser;
+@property NSMutableArray *mUserPostArray;
 @end
