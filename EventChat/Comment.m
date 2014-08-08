@@ -18,6 +18,11 @@
 - (NSDictionary *) toDictionary {
     return @{@"body": mBody};
 }
+
++ (id) createCommentWithDictionary: (NSDictionary *)commentData {
+    return [[Comment alloc] initWithId:[commentData objectForKey:@"id"] withAuthor:[User createUserWithDictionary:[commentData objectForKey:@"author"]] withBody:[commentData objectForKey:@"body"] withCreatedAt:[commentData objectForKey:@"created_at"]];
+}
+
 - (id) initWithId: (NSString *) userId withAuthor:(User *) author withBody:(NSString *)body withCreatedAt:(NSString *)createdAt{
     self = [super init];
     if (self) {

@@ -16,7 +16,7 @@
 @synthesize mBody;
 @synthesize mCreatedAt;
 
-+ (Message *) createMessageWithData: (NSDictionary *) messageData {
++ (Message *) createMessageWithDictionary: (NSDictionary *) messageData {
 //    NSDictionary *authorData = [messageData objectForKey:@"from"];
 //    NSDictionary *receiverData = [messageData objectForKey:@"to"];
     NSString *messageBody = [messageData objectForKey:@"message"];
