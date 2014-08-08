@@ -30,6 +30,21 @@
     return [result copy];
 }
 
++ (instancetype) createPostWithData: (NSDictionary *) postData {
+    NSMutableArray *comments = [[NSMutableArray alloc] init];
+    for (NSDictionary *commentData in [postData objectForKey:@"comments"]) {
+        [comments addObject:[Comment createCommentWithDictionary:commentData]];
+    }
+    
+    NSMutableArray *liked_by = [[NSMutableArray alloc] init];
+    for (NSDictionary *likedUserData in [postData objectForKey:@"liked_by"]) {
+        [liked_by addObject:[User createUserWithDictionary:likedUserData]];
+    }
+    
+    
+    return [[Post alloc] initWithId:[postData objectForKey:@"id"] withTitle:[postData objectForKey:@"title"] withAuthor:[User createUserWithDictionary:[postData objectForKey:@"author"]] withBody:[postData objectForKey:@"body"] withPic:nil withCreatedAt:[postData objectForKey:@"created_at"] withComments:comments withLikes:liked_by withType:[postData objectForKey:@"type"] withEvent:[Event createEventwithDictionary:[postData objectForKey:@"event"]]];
+}
+
 + (instancetype) postWithId: (NSString *)postId withTitle:(NSString *)title withAuthor:(User *)author withBody:(NSString *)body withPic: (NSString *) pic withCreatedAt: (NSString *)createdAt withComments:(NSMutableArray *) comments withLikes:(NSMutableArray *) likes withType:(NSString *)type withEvent:(Event *)event{
     
     return [[Post alloc] initWithId:postId withTitle:title withAuthor:author withBody:body withPic:pic withCreatedAt:createdAt withComments:comments withLikes:(NSMutableArray *) likes withType:type withEvent:event];

@@ -249,7 +249,7 @@
         // package received messageArray
         NSMutableArray *messageArray = [[NSMutableArray alloc] init];
         for (NSDictionary *data in dataArray) {
-            Message *newMessage = [Message createMessageWithData:data];
+            Message *newMessage = [Message createMessageWithDictionary:data];
             [messageArray addObject:newMessage];
             NSLog(@"the newly added message is %@", newMessage);
         }

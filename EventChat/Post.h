@@ -27,6 +27,7 @@
 @property (nonatomic, readonly) NSString *mType;
 @property (nonatomic, readonly) Event *mEvent;
 
++ (instancetype) createPostWithData: (NSDictionary *) postData;
 
 + (instancetype) postWithId: (NSString *)postId withTitle:(NSString *)title withAuthor:(User *)author withBody:(NSString *)body withPic: (NSString *) pic withCreatedAt: (NSString *)createdAt withComments:(NSMutableArray *) comments withLikes:(NSMutableArray *) likes withType:(NSString *)type withEvent:(Event *)event;
 

@@ -34,6 +34,21 @@
     return [result copy];
 }
 
++ (instancetype) createEventwithDictionary: (NSDictionary *) eventData {
+    NSArray *attendeeListData = [eventData objectForKey:@"attendees"];
+    NSMutableArray *attendeeList = [[NSMutableArray alloc] init];
+    
+    // incase api for event is not implemented with attendees
+    if (attendeeListData) {
+        for (NSDictionary *attendeeData in attendeeListData) {
+            [attendeeList addObject:[User createUserWithDictionary:attendeeData]];
+        }
+        
+    }
+    
+    return [[Event alloc] initWithId:[eventData objectForKey:@"id"] eventName:[eventData objectForKey:@"name"] eventLocation:[eventData objectForKey:@"address"] eventLongitude:[eventData objectForKey:@"longitude"] eventLatitude:[eventData objectForKey:@"latitude"] eventStartTime:[eventData objectForKey:@"start_time"] eventEndTime:[eventData objectForKey:@"end_time"] eventDescription:[eventData objectForKey:@"description"] eventImageLink:nil eventAttendees:attendeeList eventOrganizer:[User createUserWithDictionary:[eventData objectForKey:@"organizer"]]];
+}
+
 + (instancetype) createEventWithId: (NSString *)eventId eventName:(NSString *)name eventLocation:(NSString *)location eventLongitude:(NSNumber *)longitude eventLatitude:(NSNumber *)latitude eventStartTime:(NSString *)startTime eventEndTime:(NSString *)endTime eventDescription:(NSString *)desc eventImageLink:(NSString *)eventImageLink eventAttendees:(NSArray *)mAttendees eventOrganizer: (User *)organizer {
     return [[Event alloc] initWithId:eventId eventName:name eventLocation:location eventLongitude:longitude eventLatitude:latitude eventStartTime:startTime eventEndTime:endTime eventDescription:desc eventImageLink:eventImageLink eventAttendees:mAttendees eventOrganizer:organizer];
 }
