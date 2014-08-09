@@ -45,8 +45,7 @@ static int const MAX_DISTANCE = 100;
     CreatePostViewController *source = [segue sourceViewController];
     Post *item = source.toCreatePost;
     if (item != nil) {
-        [mPosts addObject:item];
-        [self.tableView reloadData];
+        [self updateAllPosts:mEvent.mId];
     }else{
         NSLog(@"Post is nil");
     }

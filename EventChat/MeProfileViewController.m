@@ -244,8 +244,9 @@ NSMutableArray *mData;
     [self configureBasicCell:cell forIndexPath:indexPath];
     
     Post *currentPost = [mUserPostArray objectAtIndex:indexPath.row];
+    cell.messageImageView.image = [UIImage imageNamed:@"food"];
     
-    NSURL *imageURL = [NSURL URLWithString:currentPost.mAuthor.mAvatarUrl];
+    NSURL *imageURL = [NSURL URLWithString:[ApiUtil detectUrlInString:currentPost.mBody]];
     if (imageURL) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];

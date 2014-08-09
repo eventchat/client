@@ -36,6 +36,7 @@ static double const ROW_HEIGHT = 75.0;
     if (item) {
         NSLog(@"%@ created!", item.mBody);
         [self sendComment:item];
+        
     }else{
         NSLog(@"Comment is nil");
     }
