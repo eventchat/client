@@ -28,6 +28,8 @@ NSMutableArray *mData;
 @synthesize mUserPostArray;
 @synthesize mAppUser;
 @synthesize mAppData;
+@synthesize nameLabel;
+@synthesize userInfoLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,16 +50,16 @@ NSMutableArray *mData;
     // status bar style
     [self setNeedsStatusBarAppearanceUpdate];
     
-    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
-    
-    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
-    
-    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
-    
-    mData = [[NSMutableArray alloc] init];
-    [mData addObject:data1];
-    [mData addObject:data2];
-    [mData addObject:data3];
+//    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
+//    
+//    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
+//    
+//    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
+//    
+//    mData = [[NSMutableArray alloc] init];
+//    [mData addObject:data1];
+//    [mData addObject:data2];
+//    [mData addObject:data3];
 
     // button observer registration
 //    [self.mChatButton addTarget:self action:@selector(chatButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -66,6 +68,8 @@ NSMutableArray *mData;
     NSLog(@"The passed in user is %@", mUser);
     mUserPostArray = [[NSMutableArray alloc] init];
     
+    nameLabel.text = mUser.mName;
+    userInfoLabel.text = mUser.mInfo;
     
     // api requeset
     NSURLRequest *request = [NSURLRequest requestWithMethod:HTTP_GET url: [NSString stringWithFormat: GET_POST_BY_USER_ID, mUser.mId] parameters:nil];
@@ -309,12 +313,14 @@ NSMutableArray *mData;
              [mAppData.mConversationsDict setObject:userConversation forKey:mUser.mId];
              destViewController.mConversation = userConversation;
              NSLog(@"created new conversation");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NewMessageNotification" object:Nil];
          } else {
              // there is existing conversation with this user
              destViewController.mConversation = userConversation;
              NSLog(@"forward to existing conversation");
          }
-         
+         // update chat window title
+         destViewController.navigationItem.title = destViewController.mConversation.mResponder.mName;
          // hide the bottom bar
          destViewController.hidesBottomBarWhenPushed = YES;
      }

@@ -26,7 +26,8 @@ NSMutableArray *mData;
 @synthesize mAppDelegate;
 @synthesize mAppUser;
 @synthesize mUserPostArray;
-
+@synthesize nameLabel;
+@synthesize meInfoLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -53,21 +54,25 @@ NSMutableArray *mData;
     // status bar style
     [self setNeedsStatusBarAppearanceUpdate];
     
-    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
-    
-    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
-    
-    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
-    
-    mData = [[NSMutableArray alloc] init];
-    [mData addObject:data1];
-    [mData addObject:data2];
-    [mData addObject:data3];
+//    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
+//    
+//    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
+//    
+//    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
+//    
+//    mData = [[NSMutableArray alloc] init];
+//    [mData addObject:data1];
+//    [mData addObject:data2];
+//    [mData addObject:data3];
     
     // initialization
     mAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     mAppUser = mAppDelegate.mData.mUser;
     mUserPostArray = [[NSMutableArray alloc] init];
+    nameLabel.text = mAppUser.mName;
+    meInfoLabel.text = mAppUser.mInfo;
+    
+    
     NSLog(@"the app user is :%@", mAppUser);
     NSLog(@"the request url is %@", [NSString stringWithFormat: GET_POST_BY_USER_ID, mAppUser.mId]);
     // api requeset    

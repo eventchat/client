@@ -13,4 +13,6 @@
 @property AppDelegate *mAppDelegate;
 @property User *mAppUser;
 @property NSMutableArray *mUserPostArray;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *meInfoLabel;
 @end

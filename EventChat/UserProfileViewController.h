@@ -15,4 +15,6 @@
 @property User *mAppUser;
 @property ECData *mAppData;
 @property NSMutableArray *mUserPostArray;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userInfoLabel;
 @end

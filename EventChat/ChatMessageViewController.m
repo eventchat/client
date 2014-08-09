@@ -265,7 +265,8 @@ bool keyboardIsShown;
     
     // refresh message table
     [self refreshDisplay:self.mMessageTable atLastRow:[mConversation.mMessagesArray count]];
-
+    // refresh conversation table
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"NewMessageNotification" object:Nil];
 //    [self.messages addObject:newMessage];
 //    [self refreshDisplay:self.messageTable atLastRow:[self.messages count]];
 }

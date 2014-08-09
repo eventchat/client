@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9Iw-Rj-gl8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9Iw-Rj-gl8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -1063,6 +1063,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="W26-5G-dxv"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="meInfoLabel" destination="S8P-eC-Wai" id="U3Z-xB-RAi"/>
+                        <outlet property="nameLabel" destination="NuH-Px-0en" id="Opv-xp-2TW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDj-Z9-fFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1590,7 +1594,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Q9u-Ai-XE0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SOZ-RV-WHp">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zne-NN-CoH">
@@ -1612,7 +1616,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hch-6S-QG2" userLabel="Interact View">
-                                <rect key="frame" x="0.0" y="454" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfh-7s-rKj">
                                         <rect key="frame" x="55" y="10" width="211" height="30"/>
@@ -2121,6 +2125,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="mChatButton" destination="OVT-G8-Ujq" id="vyZ-di-wxh"/>
+                        <outlet property="nameLabel" destination="Bue-9c-Z4p" id="h5U-xF-quV"/>
+                        <outlet property="userInfoLabel" destination="xhS-PI-wS1" id="htt-Lw-cQ8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekS-Fs-A8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3244,10 +3250,49 @@
         <image name="ico_chat_gray" width="32" height="32"/>
         <image name="ico_chat_orange" width="32" height="32"/>
         <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
+        <image name="ico_comment" width="16" height="16"/>
         <image name="ico_event_gray" width="32" height="32"/>
         <image name="ico_join_gray" width="32" height="32"/>
         <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
+        <image name="ico_like" width="16" height="16"/>
         <image name="ico_location" width="16" height="16"/>
+        <image name="ico_me_gray" width="32" height="32"/>
         <image name="ico_me_gray" width="32" height="32"/>
         <image name="ico_time" width="16" height="16"/>
         <image name="icon-camera" width="29" height="29"/>
@@ -3256,7 +3301,21 @@
         <image name="image_bg" width="640" height="1136"/>
         <image name="image_seperator" width="640" height="2"/>
         <image name="input-outline" width="250" height="44"/>
+        <image name="input-outline" width="250" height="44"/>
         <image name="placeholder" width="48" height="48"/>
+        <image name="placeholder" width="48" height="48"/>
+        <image name="placeholder" width="48" height="48"/>
+        <image name="placeholder" width="48" height="48"/>
+        <image name="placeholder" width="48" height="48"/>
+        <image name="testImage" width="1024" height="768"/>
+        <image name="testImage" width="1024" height="768"/>
+        <image name="testImage" width="1024" height="768"/>
+        <image name="testImage" width="1024" height="768"/>
+        <image name="testImage" width="1024" height="768"/>
+        <image name="testImage" width="1024" height="768"/>
+        <image name="testImage" width="1024" height="768"/>
+        <image name="testImage" width="1024" height="768"/>
+        <image name="testImage" width="1024" height="768"/>
         <image name="testImage" width="1024" height="768"/>
     </resources>
     <color key="tintColor" red="0.99215686274509807" green="0.63137254901960782" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
@@ -3266,6 +3325,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="J7b-4M-Mc2"/>
+        <segue reference="N6s-je-ixJ"/>
     </inferredMetricsTieBreakers>
 </document>
