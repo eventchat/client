@@ -119,6 +119,26 @@ NSMutableArray *mAttendeeList;
 - (void) configureCell: (AttendeeCell *) cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     User *attendee = [mAttendeeList objectAtIndex:indexPath.row];
     cell.mNameLabel.text = attendee.mName;
+    
+    cell.mAvatarImageView.image = [UIImage imageNamed:@"placeholder"];
+    
+    NSURL *imageURL = [NSURL URLWithString:attendee.mAvatarUrl];
+    
+    if (imageURL != (id)[NSNull null]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                UIImage *newImage = [UIImage imageWithData:imageData];
+                if (newImage) {
+                    cell.mAvatarImageView.image = newImage;
+                }
+                
+            });
+        });
+    }
+
 }
 
 /*

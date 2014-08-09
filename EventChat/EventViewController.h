@@ -20,7 +20,6 @@
 @property Event *mEvent;
 
 
-
 - (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 

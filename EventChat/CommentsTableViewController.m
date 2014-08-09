@@ -36,6 +36,7 @@ static double const ROW_HEIGHT = 75.0;
     if (item) {
         NSLog(@"%@ created!", item.mBody);
         [self sendComment:item];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NewCommentNotification" object:Nil];
         
     }else{
         NSLog(@"Comment is nil");
@@ -121,6 +122,25 @@ static double const ROW_HEIGHT = 75.0;
     cell.timeLabel.text = [dateFormat stringFromDate:eventDate];
     
     cell.previewLabel.text = commentItem.mBody;
+    
+    cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
+    
+    NSURL *imageURL = [NSURL URLWithString:commentItem.mAuthor.mAvatarUrl];
+    
+    if (imageURL != (id)[NSNull null]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                UIImage *newImage = [UIImage imageWithData:imageData];
+                if (newImage) {
+                    cell.avatarImageView.image = newImage;
+                }                
+            });
+        });
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

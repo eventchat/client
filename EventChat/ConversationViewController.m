@@ -99,6 +99,25 @@ NSArray *timelyOrderedConversationArray;
     cell.timeLabel.text = [conversation getMostRecentMessageTime];
     cell.previewLabel.text = [conversation getMostRecentMessageBody];
     
+    cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
+    
+    NSURL *imageURL = [NSURL URLWithString:responder.mAvatarUrl];
+    
+    if (imageURL != (id)[NSNull null]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                UIImage *newImage = [UIImage imageWithData:imageData];
+                if (newImage) {
+                    cell.avatarImageView.image = newImage;
+                }
+                
+            });
+        });
+    }
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
