@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
+#import "User.h"
 
 @interface CommentsTableViewController : UITableViewController
 
 @property NSMutableArray *allComments;
+@property Post *currentPost;
+@property User *currentUser;
+@property NSString *mId;
+@property (weak, nonatomic) IBOutlet UITableView *commentsTableView;
 
 - (IBAction)unwindToComments:(UIStoryboardSegue *)segue;
 

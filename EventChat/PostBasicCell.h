@@ -31,5 +31,5 @@
 
 @protocol PostCellDelegate <NSObject>
 - (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath likeStatus:(BOOL)liked;
 @end

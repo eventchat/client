@@ -30,15 +30,6 @@
 }
 
 - (IBAction)likeButtonClicked:(id)sender {
-    id<PostCellDelegate> strongDelegate = self.delegate;
-    
-    if ([strongDelegate respondsToSelector:@selector(likeLabelTapOfCell:atIndexPath:)]) {
-        NSLog(@"in like button delegate");
-        [strongDelegate likeLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
-    }else{
-        NSLog(@"like delegate failed");
-    }
-    
     // modify the like cnt
     if (liked) {
         _likeCountLabel.text = [NSString stringWithFormat:@"%li", _likeCountLabel.text.integerValue-1 ];
@@ -49,9 +40,15 @@
         
     }
     
+    id<PostCellDelegate> strongDelegate = self.delegate;
+    if ([strongDelegate respondsToSelector:@selector(likeLabelTapOfCell:atIndexPath:likeStatus:)]) {
+        [strongDelegate likeLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self] likeStatus:liked];
+    }else{
+        NSLog(@"like delegate failed");
+    }
     
-//    [self.delegate commentLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
-    NSLog(@"I am in basic cell like button!");
+    
+
 }
 
 - (IBAction)commentButtonClicked:(id)sender {
@@ -59,8 +56,6 @@
     id<PostCellDelegate> strongDelegate = self.delegate;
     
     if ([strongDelegate respondsToSelector:@selector(commentLabelTapOfCell:atIndexPath:)]) {
-        NSLog(@"in comment button delegate");
-        
         [strongDelegate commentLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
     }else{
         NSLog(@"comment delegate failed");

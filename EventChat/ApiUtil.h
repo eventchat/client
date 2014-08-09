@@ -72,6 +72,7 @@
 + (UIColor*)colorWithHexString:(NSString*)hex;
 + (NSString *)detectUrlInString:(NSString *)source;
 + (NSDateFormatter *)getDateFormatter;
++ (NSDateFormatter *)setDateFormatter:(NSString *)dateFormatString;
 + (NSString *) generateTimestamp;
 + (NSString *)encodeToBase64String:(UIImage *)image;
 + (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData;

@@ -353,6 +353,12 @@ NSString *const ECAPILogin    = @"/oauth/token";
     [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
     return dateFormat;
 }
++(NSDateFormatter *)setDateFormatter:(NSString *)dateFormatString{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM'-'dd'-'yyyy"];
+    [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
+    return dateFormat;
+}
 
 + (NSString *) generateTimestamp{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

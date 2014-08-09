@@ -61,6 +61,7 @@ extern NSString *const CREATE_POST;
 extern NSString *const DELETE_POST_BY_POST_ID;
 extern NSString *const GET_POST_BY_USER_ID;
 extern NSString *const GET_POST_BY_SEARCH;
+extern NSString *const LIKE_POST;
 // Comment
 extern NSString *const CREATE_COMMENT_TO_POST;
 // Event

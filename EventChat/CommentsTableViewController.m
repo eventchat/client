@@ -8,28 +8,55 @@
 
 #import "CommentsTableViewController.h"
 #import "CreateCommentViewController.h"
-//#import "FeedsTableViewController.h"
+#import "Comment.h"
+#import "Constants.h"
+#import "AFNetworking.h"
+#import "ApiUtil.h"
+#import "ConversationCell.h"
 
 @interface CommentsTableViewController ()
 
 @end
 
+static double const ROW_HEIGHT = 75.0;
+
 @implementation CommentsTableViewController
+
+@synthesize allComments;
+@synthesize commentsTableView;
+@synthesize currentPost;
+@synthesize mId;
 
 // called when a new comment is created
 - (IBAction)unwindToComments:(UIStoryboardSegue *)segue;
 {
+    
     CreateCommentViewController *source = [segue sourceViewController];
     Comment *item = source.toCreateComment;
-    if (item != nil) {
+    if (item) {
         NSLog(@"%@ created!", item.mBody);
-        [self.allComments addObject:item];
-        [self.tableView reloadData];
+        [self sendComment:item];
     }else{
         NSLog(@"Comment is nil");
     }
 }
-
+- (void)sendComment:(Comment *)toCreateComment{
+    NSString *commentUrl = [NSString stringWithFormat:CREATE_COMMENT_TO_POST, currentPost.mId];
+    NSURLRequest *commentRequest = [NSURLRequest requestWithMethod:@"POST" url:commentUrl parameters:@{@"body":toCreateComment.mBody}];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:commentRequest];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // update
+        currentPost = [Post createPostWithData:responseObject];
+        allComments = currentPost.mComments;
+        
+        [self.commentsTableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"create comment error %@",error);
+    }];
+    [operation start];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,8 +70,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.allComments = [[NSMutableArray alloc] init];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -70,22 +95,36 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.allComments count];
+    return [allComments count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (ConversationCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentPrototypeCell" forIndexPath:indexPath];
+    ConversationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ConversationCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    Comment *commentItem = [self.allComments objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", commentItem.mAuthor.mName, commentItem.mBody];
+    [self configureCell:cell cellForRowAtIndexPath:indexPath];
     
     return cell;
 }
 
+- (void) configureCell: (ConversationCell *) cell cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Comment *commentItem = [allComments objectAtIndex:indexPath.row];
+    cell.nameLabel.text = commentItem.mAuthor.mName;
+    
+    
+    NSDateFormatter *dateFormat = [ApiUtil setDateFormatter:@"yyyy'-'MM'-'dd HH':'mm"];
+    
+    NSDate *eventDate = [ApiUtil dateFromISO8601String:commentItem.mCreatedAt];
+    cell.timeLabel.text = [dateFormat stringFromDate:eventDate];
+    
+    cell.previewLabel.text = commentItem.mBody;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return ROW_HEIGHT;
+}
 
 /*
  // Override to support conditional editing of the table view.

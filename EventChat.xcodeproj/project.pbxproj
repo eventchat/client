@@ -53,10 +53,10 @@
 		ABDC79521934382F00607CE3 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79511934382F00607CE3 /* Message.m */; };
 		ABDC79551934384900607CE3 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = ABDC79541934384900607CE3 /* Notification.m */; };
 		E8377FA8194A786600E33C6D /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8377FA7194A786600E33C6D /* Comments.storyboard */; };
-		E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */; };
 		E8377FAE194BBF4E00E33C6D /* CreateCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */; };
 		E846E91219864DF300154822 /* JoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E846E91119864DF300154822 /* JoinViewController.m */; };
 		E87545B519947A3E00E1F01C /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87545B419947A3E00E1F01C /* CreatePostViewController.m */; };
+		E87D72AF1995E8520024BC7C /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87D72AE1995E8520024BC7C /* CommentsTableViewController.m */; };
 		E89E5F98197F3094002CA342 /* MeProfileViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */; };
 		E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E5F99197F309C002CA342 /* Profile.storyboard */; };
 		E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CCAB74197F59FC005B0DA7 /* Join.storyboard */; };
@@ -157,14 +157,14 @@
 		ABDC79531934384900607CE3 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		ABDC79541934384900607CE3 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		E8377FA7194A786600E33C6D /* Comments.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
-		E8377FA9194BBF2B00E33C6D /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableViewController.h; sourceTree = "<group>"; };
-		E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewController.m; sourceTree = "<group>"; };
 		E8377FAC194BBF4E00E33C6D /* CreateCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateCommentViewController.h; sourceTree = "<group>"; };
 		E8377FAD194BBF4E00E33C6D /* CreateCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCommentViewController.m; sourceTree = "<group>"; };
 		E846E91019864DF300154822 /* JoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinViewController.h; sourceTree = "<group>"; };
 		E846E91119864DF300154822 /* JoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinViewController.m; sourceTree = "<group>"; };
 		E87545B319947A3E00E1F01C /* CreatePostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePostViewController.h; sourceTree = "<group>"; };
 		E87545B419947A3E00E1F01C /* CreatePostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePostViewController.m; sourceTree = "<group>"; };
+		E87D72AD1995E8520024BC7C /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableViewController.h; sourceTree = "<group>"; };
+		E87D72AE1995E8520024BC7C /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewController.m; sourceTree = "<group>"; };
 		E89E5F96197F3094002CA342 /* MeProfileViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeProfileViewControllerTest.h; sourceTree = "<group>"; };
 		E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeProfileViewControllerTest.m; sourceTree = "<group>"; };
 		E89E5F99197F309C002CA342 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -349,8 +349,8 @@
 				6C51689B19938AB1002E7A29 /* AttendeeListViewController.m */,
 				6C4E6362196D1A590009505F /* ChatMessageViewController.h */,
 				6C4E6363196D1A590009505F /* ChatMessageViewController.m */,
-				E8377FA9194BBF2B00E33C6D /* CommentsTableViewController.h */,
-				E8377FAA194BBF2B00E33C6D /* CommentsTableViewController.m */,
+				E87D72AD1995E8520024BC7C /* CommentsTableViewController.h */,
+				E87D72AE1995E8520024BC7C /* CommentsTableViewController.m */,
 				6C4E635F196CACC90009505F /* ConversationViewController.h */,
 				6C4E6360196CACC90009505F /* ConversationViewController.m */,
 				E8377FAC194BBF4E00E33C6D /* CreateCommentViewController.h */,
@@ -531,7 +531,6 @@
 				6C51689C19938AB1002E7A29 /* AttendeeListViewController.m in Sources */,
 				AB724E8519340A8000F29EC8 /* main.m in Sources */,
 				E89E5F98197F3094002CA342 /* MeProfileViewControllerTest.m in Sources */,
-				E8377FAB194BBF2B00E33C6D /* CommentsTableViewController.m in Sources */,
 				6C4E635A196C81260009505F /* ChatterCell.m in Sources */,
 				ABDC79521934382F00607CE3 /* Message.m in Sources */,
 				6CF8B5BF197CA2F3002D5950 /* ConversationCell.m in Sources */,
@@ -547,6 +546,7 @@
 				6CC01A32199358470060EE10 /* MeProfileViewController.m in Sources */,
 				6CC288C3198EF87F007F9817 /* ECData.m in Sources */,
 				E846E91219864DF300154822 /* JoinViewController.m in Sources */,
+				E87D72AF1995E8520024BC7C /* CommentsTableViewController.m in Sources */,
 				ABB5E1161937D16A008113C6 /* Constants.m in Sources */,
 				E8377FAE194BBF4E00E33C6D /* CreateCommentViewController.m in Sources */,
 				6CCF3419196E0987001DEA77 /* ChatMessage.m in Sources */,
@@ -703,7 +703,7 @@
 				INFOPLIST_FILE = "EventChat/EventChat-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "995B4196-8A4A-41AE-B16D-A39DC35B8C75";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -721,7 +721,7 @@
 				INFOPLIST_FILE = "EventChat/EventChat-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "995B4196-8A4A-41AE-B16D-A39DC35B8C75";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

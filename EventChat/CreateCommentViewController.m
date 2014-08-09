@@ -46,8 +46,7 @@
     }
     if (self.textView.text.length > 0) {
         self.toCreateComment = [[Comment alloc] init];
-        self.toCreateComment.mBody = self.textView.text;
-        NSLog(@"%@", self.toCreateComment.mBody);
+        self.toCreateComment.mBody = self.textView.text;     
     }
     
 }

@@ -15,7 +15,7 @@
 #import "ApiUtil.h"
 #import "CreatePostViewController.h"
 #import "AttendeeListViewController.h"
-
+#import "CommentsTableViewController.h"
 
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
@@ -45,7 +45,7 @@ static int const MAX_DISTANCE = 100;
     CreatePostViewController *source = [segue sourceViewController];
     Post *item = source.toCreatePost;
     if (item != nil) {
-        [self.mPosts addObject:item];
+        [mPosts addObject:item];
         [self.tableView reloadData];
     }else{
         NSLog(@"Post is nil");
@@ -334,12 +334,38 @@ static int const MAX_DISTANCE = 100;
 }
 
 
-//#pragma mark - PostBasicCellDelegate methods
+#pragma mark - PostBasicCellDelegate methods
 - (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-
-}
-- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Post *currentPost = [mPosts objectAtIndex:indexPath.row];
     
+    UIStoryboard *commentStoryboard = [UIStoryboard storyboardWithName:@"Comments" bundle:nil];
+    CommentsTableViewController *commentsViewController = [commentStoryboard instantiateViewControllerWithIdentifier:@"myComments"];
+    commentsViewController.allComments = currentPost.mComments;
+    commentsViewController.currentPost = currentPost;
+    commentsViewController.currentUser = appData.mUser;
+    
+    [(UINavigationController *)self.parentViewController pushViewController: commentsViewController animated:YES];
+    // because the navigation controller for comments is needed
+    
+}
+- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath  likeStatus:(BOOL)liked{
+    Post *currentPost = [mPosts objectAtIndex:indexPath.row];
+    NSString *likeUrl = [NSString stringWithFormat:LIKE_POST, currentPost.mId];
+    NSURLRequest *likeRequest;
+    if (liked) {
+        likeRequest = [NSURLRequest requestWithMethod:@"DELETE" url:likeUrl parameters:nil];
+    }else{
+        likeRequest = [NSURLRequest requestWithMethod:@"POST" url:likeUrl parameters:nil];
+    }
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:likeRequest];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"like succeed!");
+        [self.postsTableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"like error %@",error);
+    }];
+    [operation start];
 }
 
 @end
