@@ -603,7 +603,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKa-lE-G2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1187" y="1297"/>
+            <point key="canvasLocation" x="168" y="2033"/>
         </scene>
         <!--Me Profile View Controller-->
         <scene sceneID="3Qx-kQ-HDk">
@@ -3003,7 +3003,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W25-i8-dm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="736" y="1297"/>
+            <point key="canvasLocation" x="-283" y="2033"/>
         </scene>
         <!--Navigation Controller - Chat-->
         <scene sceneID="Gav-S1-fRd">
