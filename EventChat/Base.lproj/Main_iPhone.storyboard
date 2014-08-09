@@ -3142,49 +3142,10 @@
         <image name="ico_chat_gray" width="32" height="32"/>
         <image name="ico_chat_orange" width="32" height="32"/>
         <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
-        <image name="ico_comment" width="16" height="16"/>
         <image name="ico_event_gray" width="32" height="32"/>
         <image name="ico_join_gray" width="32" height="32"/>
         <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
-        <image name="ico_like" width="16" height="16"/>
         <image name="ico_location" width="16" height="16"/>
-        <image name="ico_me_gray" width="32" height="32"/>
         <image name="ico_me_gray" width="32" height="32"/>
         <image name="ico_time" width="16" height="16"/>
         <image name="icon-camera" width="29" height="29"/>
@@ -3193,22 +3154,8 @@
         <image name="image_bg" width="640" height="1136"/>
         <image name="image_seperator" width="640" height="2"/>
         <image name="input-outline" width="250" height="44"/>
-        <image name="input-outline" width="250" height="44"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
-        <image name="placeholder" width="48" height="48"/>
         <image name="placeholder" width="48" height="48"/>
         <image name="sep_conv_cell" width="496" height="2"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
-        <image name="testImage" width="1024" height="768"/>
         <image name="testImage" width="1024" height="768"/>
     </resources>
     <color key="tintColor" red="0.99215686274509807" green="0.63137254901960782" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
