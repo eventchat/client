@@ -1615,7 +1615,7 @@
                                     <outlet property="delegate" destination="1TU-iT-wNT" id="Cgb-Jv-fCA"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hch-6S-QG2" userLabel="Interact View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hch-6S-QG2" userLabel="Interact View">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfh-7s-rKj">
@@ -1637,9 +1637,17 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xaH-De-cOa"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hch-6S-QG2" secondAttribute="trailing" id="B7Z-Na-Gcb"/>
+                            <constraint firstItem="hch-6S-QG2" firstAttribute="leading" secondItem="SOZ-RV-WHp" secondAttribute="leading" id="NtZ-cU-gxk"/>
+                            <constraint firstItem="Q9u-Ai-XE0" firstAttribute="top" secondItem="hch-6S-QG2" secondAttribute="bottom" id="rnC-hf-nnX"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hf3-H2-U0y"/>
                     <nil key="simulatedBottomBarMetrics"/>
