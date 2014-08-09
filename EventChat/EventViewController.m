@@ -317,6 +317,8 @@ static int const MAX_DISTANCE = 100;
     if ([segue.identifier isEqualToString:@"showEventAttendeeList"]) {
         AttendeeListViewController *destViewController = segue.destinationViewController;
         destViewController.mEvent = self.mEvent;
+        destViewController.mAppUser = appData.mUser;
+        destViewController.mAppData = appData;
     }else if([segue.identifier isEqualToString:@"composePost"]){
         
         CreatePostViewController *createPostViewController = (CreatePostViewController *)[[segue destinationViewController] topViewController];

@@ -11,11 +11,13 @@
 #import "PostBasicCell.h"
 #import "PostImageCell.h"
 #import "AFNetworking.h"
+#import "ChatMessageViewController.h"
 
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
 
 @interface UserProfileViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *mChatButton;
 
 @end
 
@@ -24,6 +26,8 @@ NSMutableArray *mData;
 @implementation UserProfileViewController
 @synthesize mUser;
 @synthesize mUserPostArray;
+@synthesize mAppUser;
+@synthesize mAppData;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,6 +59,9 @@ NSMutableArray *mData;
     [mData addObject:data2];
     [mData addObject:data3];
 
+    // button observer registration
+//    [self.mChatButton addTarget:self action:@selector(chatButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
     // initialization
     NSLog(@"The passed in user is %@", mUser);
     mUserPostArray = [[NSMutableArray alloc] init];
@@ -241,6 +248,8 @@ NSMutableArray *mData;
 }
 
 
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -280,16 +289,35 @@ NSMutableArray *mData;
 }
 */
 
-/*
+
 #pragma mark - Navigation
+ -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if ([segue.identifier isEqualToString:@"createNewConversation"]) {
+         
 
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+         ChatMessageViewController *destViewController = segue.destinationViewController;
+ 
+         // update the title of destination view controller to be chatter's name
+         NSLog(@"the current app user is :%@", mAppUser);
+         destViewController.mAppUser = mAppUser;
+         
+         // need to check if the target user has already in the conversation dict
+         Conversation *userConversation = [mAppData.mConversationsDict objectForKey:mUser.mId];
+         if (userConversation == nil) {
+             // if there is no previous conversation with this user
+             userConversation = [[Conversation alloc] initWithResponder:mUser];
+             [mAppData.mConversationsDict setObject:userConversation forKey:mUser.mId];
+             destViewController.mConversation = userConversation;
+             NSLog(@"created new conversation");
+         } else {
+             // there is existing conversation with this user
+             destViewController.mConversation = userConversation;
+             NSLog(@"forward to existing conversation");
+         }
+         
+         // hide the bottom bar
+         destViewController.hidesBottomBarWhenPushed = YES;
+     }
 }
-
- */
 
 @end

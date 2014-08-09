@@ -12,5 +12,7 @@
 
 @interface UserProfileViewController : UITableViewController
 @property User *mUser;
+@property User *mAppUser;
+@property ECData *mAppData;
 @property NSMutableArray *mUserPostArray;
 @end

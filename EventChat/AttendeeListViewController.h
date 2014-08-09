@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "ECData.h"
 
 @interface AttendeeListViewController : UITableViewController
 @property Event* mEvent;
+@property User *mAppUser;
+@property ECData *mAppData;
 @end

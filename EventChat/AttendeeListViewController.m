@@ -22,6 +22,8 @@ NSMutableArray *mAttendeeList;
 
 @implementation AttendeeListViewController
 @synthesize mEvent;
+@synthesize mAppUser;
+@synthesize mAppData;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -171,6 +173,8 @@ NSMutableArray *mAttendeeList;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         UserProfileViewController *destViewController = segue.destinationViewController;
         destViewController.mUser = [mAttendeeList objectAtIndex:indexPath.row];
+        destViewController.mAppUser = mAppUser;
+        destViewController.mAppData = mAppData;
     }
 }
 
