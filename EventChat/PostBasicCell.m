@@ -15,6 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.userInteractionEnabled = NO;
     }
     return self;
 }
@@ -26,4 +27,13 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)likeButtonClicked:(id)sender {
+    [self.delegate commentLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
+    NSLog(@"I am in basic cell like button!");
+}
+
+- (IBAction)commentButtonClicked:(id)sender {
+    [self.delegate likeLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
+        NSLog(@"I am in basic cell comment button!");
+}
 @end

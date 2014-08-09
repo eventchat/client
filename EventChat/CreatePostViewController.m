@@ -13,7 +13,7 @@
 #import "ApiUtil.h"
 #import "AFNetworking.h"
 #import "AssetsLibrary/ALAsset.h"
-#import "FlickrKit.h"
+
 #import "Constants.h"
 
 @interface CreatePostViewController ()
@@ -58,7 +58,7 @@ static NSString * const DEFAULT_TITLE = @"New Post";
     appData = appDelegate.mData;
     
     
-    [[FlickrKit sharedFlickrKit] initializeWithAPIKey:FLICKR_KEY sharedSecret:FLICKR_SECRET];
+//    [[FlickrKit sharedFlickrKit] initializeWithAPIKey:FLICKR_KEY sharedSecret:FLICKR_SECRET];
     
 }
 
@@ -146,7 +146,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         UIImage *selectedImage = info[UIImagePickerControllerOriginalImage];
         
         NSLog(@"image !!!!!! %@",selectedImage);
-        [self sendtoFlickr:selectedImage];
+//        [self sendtoFlickr:selectedImage];
         
         if (_newMedia)
             UIImageWriteToSavedPhotosAlbum(selectedImage,
@@ -180,36 +180,36 @@ finishedSavingWithError:(NSError *)error
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) sendtoFlickr:(UIImage *)imageToPost{
-    
-    FKImageUploadNetworkOperation *uploadOp = [[FlickrKit sharedFlickrKit] uploadImage:imageToPost args:@{} completion:^(NSString *imageID, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error) {
-                // oops!
-                NSLog(@"upload to flickr err! %@", error);
-            } else {
-                // Image is now in flickr!
-                NSLog(@"flickr image id: %@", imageID);
-            }
-        });
-    }];
-}
-
--(void) testFlickrExplore{
-    FlickrKit *fk = [FlickrKit sharedFlickrKit];
-    FKFlickrInterestingnessGetList *interesting = [[FKFlickrInterestingnessGetList alloc] init];
-    [fk call:interesting completion:^(NSDictionary *response, NSError *error) {
-        // Note this is not the main thread!
-        if (response) {
-            NSMutableArray *photoURLs = [NSMutableArray array];
-            for (NSDictionary *photoData in [response valueForKeyPath:@"photos.photo"]) {
-                NSURL *url = [fk photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoData];
-                [photoURLs addObject:url];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // Any GUI related operations here
-            });
-        }   
-    }];
-}
+//- (void) sendtoFlickr:(UIImage *)imageToPost{
+//    
+//    FKImageUploadNetworkOperation *uploadOp = [[FlickrKit sharedFlickrKit] uploadImage:imageToPost args:@{} completion:^(NSString *imageID, NSError *error) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (error) {
+//                // oops!
+//                NSLog(@"upload to flickr err! %@", error);
+//            } else {
+//                // Image is now in flickr!
+//                NSLog(@"flickr image id: %@", imageID);
+//            }
+//        });
+//    }];
+//}
+//
+//-(void) testFlickrExplore{
+//    FlickrKit *fk = [FlickrKit sharedFlickrKit];
+//    FKFlickrInterestingnessGetList *interesting = [[FKFlickrInterestingnessGetList alloc] init];
+//    [fk call:interesting completion:^(NSDictionary *response, NSError *error) {
+//        // Note this is not the main thread!
+//        if (response) {
+//            NSMutableArray *photoURLs = [NSMutableArray array];
+//            for (NSDictionary *photoData in [response valueForKeyPath:@"photos.photo"]) {
+//                NSURL *url = [fk photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoData];
+//                [photoURLs addObject:url];
+//            }
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                // Any GUI related operations here
+//            });
+//        }   
+//    }];
+//}
 @end

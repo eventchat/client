@@ -39,7 +39,6 @@ static int const MAX_DISTANCE = 100;
 @synthesize mEvent;
 @synthesize mPosts;
 
-
 // called when a new comment is created
 - (IBAction)unwindToEventPosts:(UIStoryboardSegue *)segue;
 {
@@ -49,7 +48,7 @@ static int const MAX_DISTANCE = 100;
         [self.mPosts addObject:item];
         [self.tableView reloadData];
     }else{
-        NSLog(@"Comment is nil");
+        NSLog(@"Post is nil");
     }
 }
 
@@ -67,7 +66,6 @@ static int const MAX_DISTANCE = 100;
     [super viewDidLoad];
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appData = appDelegate.mData;
-    NSLog(@"hahah!!!!!!!!!!!\n");
     
     // now update all the posts
     [self updateAllPosts:mEvent.mId];
@@ -104,7 +102,7 @@ static int const MAX_DISTANCE = 100;
         // init mPosts
         mPosts = [[NSMutableArray alloc] init];
         
-        for(NSDictionary *singlePostDict in allPostsDict){
+        for(NSDictionary *singlePostDict in [allPostsDict reverseObjectEnumerator]){
 
             
             // create post author
@@ -177,7 +175,6 @@ static int const MAX_DISTANCE = 100;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if ([self hasImageAtIndexPath:indexPath]) {
         return [self imageCellAtIndexPath:indexPath];
     } else {
@@ -201,6 +198,7 @@ static int const MAX_DISTANCE = 100;
         return 400.0f;
     }
 }
+
 
 #pragma mark - private methods
 
@@ -246,9 +244,23 @@ static int const MAX_DISTANCE = 100;
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
-    [cell.messageImageView setImage:nil];
     [cell.messageImageView setImage:[UIImage imageNamed:@"food"]];
     
+    NSURL *imageURL = [NSURL URLWithString:[ApiUtil detectUrlInString:currentPost.mBody]];
+    if (imageURL) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                UIImage *newImage = [UIImage imageWithData:imageData];
+                if (newImage) {
+                    cell.messageImageView.image = newImage;
+                }
+
+            });
+        });
+    }
 }
 
 - (BOOL)hasImageAtIndexPath:(NSIndexPath *)indexPath {
@@ -259,6 +271,8 @@ static int const MAX_DISTANCE = 100;
 
 - (PostBasicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {
     PostBasicCell *cell = [self.postsTableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier forIndexPath:indexPath];
+//    cell.delegate = self.postsTableView;
+    
     [self configureBasicCell:cell forIndexPath:indexPath];
     return cell;
 }
@@ -308,6 +322,15 @@ static int const MAX_DISTANCE = 100;
         CreatePostViewController *createPostViewController = (CreatePostViewController *)[[segue destinationViewController] topViewController];
         createPostViewController.currentEvent = self.mEvent;
     }
+}
+
+
+#pragma mark - PostBasicCellDelegate methods
+- (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"in view controller comment !!!!!#######");
+}
+- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"in view controller like !!!!!#######");
 }
 
 @end

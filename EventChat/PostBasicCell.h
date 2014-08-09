@@ -18,9 +18,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *likeButtonImageView;
-@property (weak, nonatomic) IBOutlet UILabel *likeButtonLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *commentButtonImageView;
-@property (weak, nonatomic) IBOutlet UILabel *commentButtonLabel;
+
+- (IBAction)likeButtonClicked:(id)sender;
+- (IBAction)commentButtonClicked:(id)sender;
+
+
 @property (nonatomic, weak) id <PostCellDataSource> dataSource;
 @property (nonatomic, weak) id <PostCellDelegate> delegate;
+
+@end
+
+@protocol PostCellDelegate <NSObject>
+@optional
+- (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
