@@ -1063,6 +1063,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="W26-5G-dxv"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="userAvatar" destination="Bdl-Pg-oo0" id="y5t-v0-7Tx"/>
+                        <outlet property="userInfoLabel" destination="S8P-eC-Wai" id="toQ-UG-Txp"/>
+                        <outlet property="userNameLabel" destination="NuH-Px-0en" id="cF6-fR-981"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDj-Z9-fFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1590,7 +1595,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Q9u-Ai-XE0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SOZ-RV-WHp">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zne-NN-CoH">
@@ -1612,7 +1617,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hch-6S-QG2" userLabel="Interact View">
-                                <rect key="frame" x="0.0" y="454" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfh-7s-rKj">
                                         <rect key="frame" x="55" y="10" width="211" height="30"/>
@@ -1704,8 +1709,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pYd-eX-eJY" userLabel="postHeaderView">
-                                            <rect key="frame" x="0.0" y="15" width="320" height="32"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYd-eX-eJY" userLabel="postHeaderView">
+                                            <rect key="frame" x="0.0" y="16" width="320" height="32"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="32" image="testImage" translatesAutoresizingMaskIntoConstraints="NO" id="hsD-kz-5kJ" userLabel="avatarImage">
                                                     <rect key="frame" x="16" y="0.0" width="32" height="32"/>
@@ -1788,8 +1793,8 @@
                                                 <constraint firstItem="ee4-ws-ZGZ" firstAttribute="leading" secondItem="Ap1-du-IFR" secondAttribute="trailing" constant="15" id="y0D-ry-1fG"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="109" translatesAutoresizingMaskIntoConstraints="NO" id="f1j-jE-mh0" userLabel="postBodyView">
-                                            <rect key="frame" x="8" y="50" width="304" height="109"/>
+                                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="109" translatesAutoresizingMaskIntoConstraints="NO" id="f1j-jE-mh0" userLabel="postBodyView">
+                                            <rect key="frame" x="8" y="51" width="304" height="109"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="106" translatesAutoresizingMaskIntoConstraints="NO" id="h3g-zA-mae" userLabel="postBgView">
                                                     <rect key="frame" x="8" y="0.0" width="288" height="106"/>
@@ -1908,8 +1913,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="398"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N3w-ex-hk2" userLabel="postHeaderView">
-                                            <rect key="frame" x="0.0" y="15" width="320" height="32"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N3w-ex-hk2" userLabel="postHeaderView">
+                                            <rect key="frame" x="0.0" y="16" width="320" height="32"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="32" image="testImage" translatesAutoresizingMaskIntoConstraints="NO" id="E2x-iT-dr0" userLabel="avatarImage">
                                                     <rect key="frame" x="16" y="0.0" width="32" height="32"/>
@@ -1992,8 +1997,8 @@
                                                 <constraint firstItem="W6D-ug-9cF" firstAttribute="top" secondItem="wDF-c8-ddd" secondAttribute="bottom" id="xy2-aX-zyz"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="109" translatesAutoresizingMaskIntoConstraints="NO" id="Nhw-ec-9HX" userLabel="postBodyView">
-                                            <rect key="frame" x="8" y="50" width="304" height="345"/>
+                                        <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="109" translatesAutoresizingMaskIntoConstraints="NO" id="Nhw-ec-9HX" userLabel="postBodyView">
+                                            <rect key="frame" x="8" y="51" width="304" height="345"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="288" placeholderIntrinsicHeight="106" translatesAutoresizingMaskIntoConstraints="NO" id="Zki-YE-Kms" userLabel="postBgView">
                                                     <rect key="frame" x="8" y="0.0" width="288" height="342"/>
@@ -2121,6 +2126,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="mChatButton" destination="OVT-G8-Ujq" id="vyZ-di-wxh"/>
+                        <outlet property="userAvatar" destination="XI3-bO-63H" id="QYa-xU-iVR"/>
+                        <outlet property="userInfoLabel" destination="xhS-PI-wS1" id="TgN-1D-9Kp"/>
+                        <outlet property="userNameLabel" destination="Bue-9c-Z4p" id="0Of-iD-JYV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekS-Fs-A8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3113,128 +3121,6 @@
             </objects>
             <point key="canvasLocation" x="714" y="1289"/>
         </scene>
-        <!--Comments Table View Controller - Comment-->
-        <scene sceneID="hj7-iO-YQA">
-            <objects>
-                <tableViewController storyboardIdentifier="myComments" title="Comment" id="elG-g8-cWK" customClass="CommentsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="g7S-2c-Gjr">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CommentPrototypeCell" id="ctm-WC-mJx">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ctm-WC-mJx" id="MT5-yC-evg">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="elG-g8-cWK" id="mcx-Em-ffW"/>
-                            <outlet property="delegate" destination="elG-g8-cWK" id="mql-8e-0nP"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Comments" id="lmm-AO-eQK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KCW-XU-EO5">
-                            <connections>
-                                <segue destination="6mb-eC-xdd" kind="modal" id="SgE-4B-dJG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="commentsTableView" destination="g7S-2c-Gjr" id="Sf7-Kr-0lE"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Net-Uv-Vw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2694" y="1484"/>
-        </scene>
-        <!--Create Comment View Controller - CreateComment-->
-        <scene sceneID="6I2-MG-YrY">
-            <objects>
-                <viewController title="CreateComment" id="i5e-VW-RAm" customClass="CreateCommentViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4wn-uX-nOE"/>
-                        <viewControllerLayoutGuide type="bottom" id="5b7-eg-aki"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tXm-HK-Ddb">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="test comment" translatesAutoresizingMaskIntoConstraints="NO" id="keo-W9-Q1L">
-                                <rect key="frame" x="0.0" y="-32" width="320" height="568"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="New Comment" id="99s-rS-PEe">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PAh-3j-O3P">
-                            <connections>
-                                <segue destination="BnB-IF-Ifp" kind="unwind" unwindAction="unwindToComments:" id="1ro-Ji-RrA"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="hci-o3-shb">
-                            <connections>
-                                <action selector="doneButton:" destination="i5e-VW-RAm" id="Ms2-qF-Ngd"/>
-                                <segue destination="BnB-IF-Ifp" kind="unwind" unwindAction="unwindToComments:" id="sbn-kw-KFA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="doneButton" destination="hci-o3-shb" id="yT8-My-TGb"/>
-                        <outlet property="textView" destination="keo-W9-Q1L" id="OVs-GV-IZ3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VA9-7S-2hw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="BnB-IF-Ifp" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="4044" y="1441"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xbn-dE-LrU">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cVd-Sh-Y4r" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="6vL-zT-Sty"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="G6a-ch-aWY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="elG-g8-cWK" kind="relationship" relationship="rootViewController" id="ueg-8Z-caZ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d4G-mc-edI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2009" y="1400"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="QUV-Eb-0rL">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6mb-eC-xdd" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Ai5-Aa-7Hh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.59999999999999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="i5e-VW-RAm" kind="relationship" relationship="rootViewController" id="GBs-Cz-CMy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fve-8F-fAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3384" y="1470"/>
-        </scene>
     </scenes>
     <resources>
         <image name="button-blue" width="250" height="44"/>
@@ -3266,6 +3152,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="J7b-4M-Mc2"/>
+        <segue reference="N6s-je-ixJ"/>
     </inferredMetricsTieBreakers>
 </document>

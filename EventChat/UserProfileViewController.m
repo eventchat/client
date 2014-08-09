@@ -18,6 +18,9 @@ static NSString * const PostImageCellIdentifier = @"PostImageCell";
 
 @interface UserProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *mChatButton;
+@property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *userInfoLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *userAvatar;
 
 @end
 
@@ -48,19 +51,8 @@ NSMutableArray *mData;
     // status bar style
     [self setNeedsStatusBarAppearanceUpdate];
     
-    NSDictionary *data1 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Jason Tao", @"author", @"avatar link", @"avatar", @"9:33pm, June 10, 2014", @"time", @"5", @"likeCnt", @"4", @"commentCnt", @"This meetup is awesome! So many interesting people here. Learnt a lot from them!", @"message", nil];
-    
-    NSDictionary *data2 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Lyman Cao", @"author", @"avatar link", @"avatar", @"00:13pm, June 09, 2014", @"time", @"3", @"likeCnt", @"2", @"commentCnt", @"blahblahblah blahblahblah, la la la", @"message", @"random link to an image", @"image", nil];
-    
-    NSDictionary *data3 = [[NSDictionary alloc] initWithObjectsAndKeys:@"Xiaolei Jin", @"author", @"avatar link", @"avatar", @"02:00am, June 05, 2014", @"time", @"8", @"likeCnt", @"7", @"commentCnt", @"what is the result for this test?", @"message", @"random image link", @"image", nil];
-    
-    mData = [[NSMutableArray alloc] init];
-    [mData addObject:data1];
-    [mData addObject:data2];
-    [mData addObject:data3];
-
-    // button observer registration
-//    [self.mChatButton addTarget:self action:@selector(chatButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    // set the user profile title and info
+    [self updateUserProfile];
     
     // initialization
     NSLog(@"The passed in user is %@", mUser);
@@ -100,7 +92,26 @@ NSMutableArray *mData;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+- (void)updateUserProfile{
+    self.userNameLabel.text = mUser.mName != (id)[NSNull null] ? mUser.mName:@"";
+    self.userInfoLabel.text = mUser.mInfo != (id)[NSNull null] ? mUser.mInfo:@"";
 
+    NSURL *imageURL = [NSURL URLWithString:mUser.mAvatarUrl];
+    if (imageURL) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                UIImage *newImage = [UIImage imageWithData:imageData];
+                if (newImage) {
+                    self.userAvatar.image = newImage;
+                }
+                
+            });
+        });
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -175,28 +186,47 @@ NSMutableArray *mData;
     
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
     
+    NSURL *imageURL = [NSURL URLWithString:currentPost.mAuthor.mAvatarUrl];
+    if (imageURL != (id)[NSNull null]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                UIImage *newImage = [UIImage imageWithData:imageData];
+                if (newImage) {
+                    cell.avatarImageView.image = newImage;
+                }
+                
+            });
+        });
+    }
+    
 }
 
 - (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
+    [self configureBasicCell:cell forIndexPath:indexPath];
+    
     Post *currentPost = [mUserPostArray objectAtIndex:indexPath.row];
     
-    cell.authorLabel.text = currentPost.mAuthor.mName;
-    
-    NSDateFormatter *dateFormat = [ApiUtil getDateFormatter];
-    NSDate *postDate = [ApiUtil dateFromISO8601String:currentPost.mCreatedAt];
-    cell.timeLabel.text = [dateFormat stringFromDate:postDate];
-    
-    
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[currentPost.mLikes count]];
-    
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)[currentPost.mComments count]];
-    
-    cell.messageLabel.text = currentPost.mBody;
-    
-    cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
-    
-    [cell.messageImageView setImage:nil];
-    [cell.messageImageView setImage:[UIImage imageNamed:@"food"]];
+    NSURL *imageURL = [NSURL URLWithString:[ApiUtil detectUrlInString:currentPost.mBody]];
+    if (imageURL) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                UIImage *newImage = [UIImage imageWithData:imageData];
+                if (newImage) {
+                    cell.messageImageView.image = newImage;
+                }
+                
+            });
+        });
+    }else{
+        // default image
+        cell.messageImageView.image = [UIImage imageNamed:@"food"];
+    }
     
 }
 

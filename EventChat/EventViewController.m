@@ -224,31 +224,34 @@ static int const MAX_DISTANCE = 100;
     cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu", [currentPost.mComments count]];
     
     cell.messageLabel.text = currentPost.mBody;
-    
     cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
+    
+    NSURL *imageURL = [NSURL URLWithString:[ApiUtil detectUrlInString:currentPost.mAuthor.mAvatarUrl]];
+    
+    if (imageURL != (id)[NSNull null]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                UIImage *newImage = [UIImage imageWithData:imageData];
+                if (newImage) {
+                    cell.avatarImageView.image = newImage;
+                }
+                
+            });
+        });
+    }
 }
 
 - (void)configureImageCell:(PostImageCell *)cell atIndexPath: (NSIndexPath *)indexPath {
+    [self configureBasicCell:cell forIndexPath:indexPath];
+    
     Post *currentPost = [mPosts objectAtIndex:indexPath.row];
-    cell.authorLabel.text = currentPost.mAuthor.mName;
-    
-    NSDateFormatter *dateFormat = [ApiUtil getDateFormatter];
-    NSDate *postDate = [ApiUtil dateFromISO8601String:currentPost.mCreatedAt];
-    cell.timeLabel.text = [dateFormat stringFromDate:postDate];
-    
-    
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%lu", [currentPost.mLikes count]];
-    
-    cell.commentCountLabel.text = [NSString stringWithFormat:@"%lu", [currentPost.mComments count]];
-    
-    cell.messageLabel.text = currentPost.mBody;
-    
-    cell.avatarImageView.image = [UIImage imageNamed:@"placeholder"];
-    
-    [cell.messageImageView setImage:[UIImage imageNamed:@"food"]];
+    cell.messageImageView.image = [UIImage imageNamed:@"food"];
     
     NSURL *imageURL = [NSURL URLWithString:[ApiUtil detectUrlInString:currentPost.mBody]];
-    if (imageURL) {
+    if (imageURL != (id)[NSNull null]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             

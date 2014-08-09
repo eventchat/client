@@ -58,8 +58,6 @@
 		E87545B519947A3E00E1F01C /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87545B419947A3E00E1F01C /* CreatePostViewController.m */; };
 		E87D72AF1995E8520024BC7C /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87D72AE1995E8520024BC7C /* CommentsTableViewController.m */; };
 		E89E5F98197F3094002CA342 /* MeProfileViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */; };
-		E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E5F99197F309C002CA342 /* Profile.storyboard */; };
-		E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8CCAB74197F59FC005B0DA7 /* Join.storyboard */; };
 		F8347A7DD6FE44ACBC61644C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15338296C6334C938CB2FA3F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -167,8 +165,6 @@
 		E87D72AE1995E8520024BC7C /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewController.m; sourceTree = "<group>"; };
 		E89E5F96197F3094002CA342 /* MeProfileViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeProfileViewControllerTest.h; sourceTree = "<group>"; };
 		E89E5F97197F3094002CA342 /* MeProfileViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeProfileViewControllerTest.m; sourceTree = "<group>"; };
-		E89E5F99197F309C002CA342 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		E8CCAB73197F59FC005B0DA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Join.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,8 +260,6 @@
 				AB724E8719340A8000F29EC8 /* AppDelegate.h */,
 				AB724E8819340A8000F29EC8 /* AppDelegate.m */,
 				AB724E8A19340A8000F29EC8 /* Main_iPhone.storyboard */,
-				E89E5F99197F309C002CA342 /* Profile.storyboard */,
-				E8CCAB74197F59FC005B0DA7 /* Join.storyboard */,
 				E8377FA7194A786600E33C6D /* Comments.storyboard */,
 				AB724E8D19340A8000F29EC8 /* Main_iPad.storyboard */,
 				AB724E9619340A8000F29EC8 /* Images.xcassets */,
@@ -463,8 +457,6 @@
 				AB724E9719340A8000F29EC8 /* Images.xcassets in Resources */,
 				E8377FA8194A786600E33C6D /* Comments.storyboard in Resources */,
 				AB724E8C19340A8000F29EC8 /* Main_iPhone.storyboard in Resources */,
-				E89E5F9A197F309C002CA342 /* Profile.storyboard in Resources */,
-				E8CCAB72197F59FC005B0DA7 /* Join.storyboard in Resources */,
 				AB724E8319340A8000F29EC8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,14 +598,6 @@
 				AB724EA719340A8100F29EC8 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E8CCAB74197F59FC005B0DA7 /* Join.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E8CCAB73197F59FC005B0DA7 /* Base */,
-			);
-			name = Join.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
