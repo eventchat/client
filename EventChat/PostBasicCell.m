@@ -46,9 +46,6 @@
     }else{
         NSLog(@"like delegate failed");
     }
-    
-    
-
 }
 
 - (IBAction)commentButtonClicked:(id)sender {

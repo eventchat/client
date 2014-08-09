@@ -12,6 +12,8 @@
 #import "PostImageCell.h"
 #import "AFNetworking.h"
 #import "Constants.h"
+#import "ChatMessageViewController.h"
+#import "CommentsTableViewController.h"
 
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
@@ -62,11 +64,12 @@ NSMutableArray *mData;
     [self setNeedsStatusBarAppearanceUpdate];
     
     // set user profile info and name
-    [self updateUserPostsAndProfile];
+    [self updateUserPosts];
+    [self updateUserProfile];
 
 }
 
--(void)updateUserPostsAndProfile{
+- (void)updateUserPosts{
     // update posts requeset
     NSURLRequest *allPostsRequest = [NSURLRequest requestWithMethod:HTTP_GET url: [NSString stringWithFormat: GET_POST_BY_USER_ID, mAppUser.mId] parameters:nil];
     AFHTTPRequestOperation *allPostsOperation = [[AFHTTPRequestOperation alloc] initWithRequest:allPostsRequest];
@@ -89,7 +92,9 @@ NSMutableArray *mData;
     
     
     [allPostsOperation start];
-    
+}
+
+-(void)updateUserProfile{
     // update profile requeset
     NSURLRequest *profileRequest = [NSURLRequest requestWithMethod:HTTP_GET url: [NSString stringWithFormat: GET_USER , mAppUser.mId] parameters:nil];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:profileRequest];
@@ -379,6 +384,39 @@ NSMutableArray *mData;
  }
  
  */
+#pragma mark - PostBasicCellDelegate methods
+- (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Post *currentPost = [mData objectAtIndex:indexPath.row];
+    
+    UIStoryboard *commentStoryboard = [UIStoryboard storyboardWithName:@"Comments" bundle:nil];
+    CommentsTableViewController *commentsViewController = [commentStoryboard instantiateViewControllerWithIdentifier:@"myComments"];
+    commentsViewController.allComments = currentPost.mComments;
+    commentsViewController.currentPost = currentPost;
+    commentsViewController.currentUser = mAppDelegate.mData.mUser;
+    
+    [(UINavigationController *)self.parentViewController pushViewController: commentsViewController animated:YES];
+    // because the navigation controller for comments is needed
+    
+}
+- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath  likeStatus:(BOOL)liked{
+    Post *currentPost = [mData objectAtIndex:indexPath.row];
+    NSString *likeUrl = [NSString stringWithFormat:LIKE_POST, currentPost.mId];
+    NSURLRequest *likeRequest;
+    if (liked) {
+        likeRequest = [NSURLRequest requestWithMethod:@"DELETE" url:likeUrl parameters:nil];
+    }else{
+        likeRequest = [NSURLRequest requestWithMethod:@"POST" url:likeUrl parameters:nil];
+    }
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:likeRequest];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"like succeed!");
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"like error %@",error);
+    }];
+    [operation start];
+}
 
 
 

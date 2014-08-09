@@ -10,6 +10,8 @@
 #import "AFNetworking.h"
 #import "Constants.h"
 #import "ApiUtil.h"
+#import "EventViewController.h"
+#import "Event.h"
 
 @interface JoinViewController ()
 
@@ -159,9 +161,11 @@ static NSString * const EVENT_B = @"53d6d749da0e0f0200e69de7";
         UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
         UITabBarController *nextViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"myTabs"];
         nextViewController.selectedViewController = [nextViewController.viewControllers objectAtIndex:1];
-        
         [[[[UIApplication sharedApplication] delegate] window] setRootViewController:nextViewController];
         
+        // the jump to event
+
+        [self getSingleEvent:eventId currentViewController:[[[[UIApplication sharedApplication] delegate] window] rootViewController]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"join event failed");
                 
@@ -169,5 +173,27 @@ static NSString * const EVENT_B = @"53d6d749da0e0f0200e69de7";
     }];
     [operation start];
 }
+- (void)getSingleEvent:(NSString *)eventId currentViewController:(UIViewController*)currentViewController{
 
+    NSURLRequest *request = [NSURLRequest getRequest:[NSString stringWithFormat: GET_EVENT_BY_EVENT_ID, eventId]  parameters:nil];
+    
+    NSLog(@"single event request %@", request);
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        // begin the jump
+        UIStoryboard *nextStoryboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        EventViewController *singleEventViewController = [nextStoryboard instantiateViewControllerWithIdentifier:@"singleEvent"];
+        singleEventViewController.mEvent = [Event createEventwithDictionary:(NSDictionary *)responseObject];
+        
+        [(UINavigationController *)((UITabBarController *)currentViewController).selectedViewController pushViewController: singleEventViewController animated:YES];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"failed %@",error );
+    }];
+    [operation start];
+}
 @end

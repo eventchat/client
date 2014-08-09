@@ -92,7 +92,6 @@ static int const MAX_DISTANCE = 100;
 
 - (void)updateAllPosts:(NSString *)eventId{
     NSString *getAllPostsUrl = [NSString stringWithFormat: GET_POSTS_BY_EVENT_ID, eventId];
-    NSLog(@"get all posts url: %@", getAllPostsUrl);
     NSURLRequest *allPostsRequest = [NSURLRequest requestWithMethod:@"GET" url:getAllPostsUrl parameters:nil];
 
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:allPostsRequest];
@@ -351,6 +350,7 @@ static int const MAX_DISTANCE = 100;
     
 }
 - (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath  likeStatus:(BOOL)liked{
+    
     Post *currentPost = [mPosts objectAtIndex:indexPath.row];
     NSString *likeUrl = [NSString stringWithFormat:LIKE_POST, currentPost.mId];
     NSURLRequest *likeRequest;
@@ -359,13 +359,15 @@ static int const MAX_DISTANCE = 100;
     }else{
         likeRequest = [NSURLRequest requestWithMethod:@"POST" url:likeUrl parameters:nil];
     }
+    NSLog(@"####### show likeRequest %@", likeRequest);
+    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:likeRequest];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"like succeed!");
-        [self.postsTableView reloadData];
+        NSLog(@"##### like succeed!%@", (NSDictionary *)responseObject);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"like error %@",error);
+        NSLog(@"##### like error %@",error);
     }];
     [operation start];
 }

@@ -12,6 +12,7 @@
 #import "PostImageCell.h"
 #import "AFNetworking.h"
 #import "ChatMessageViewController.h"
+#import "CommentsTableViewController.h"
 
 static NSString * const PostBasicCellIdentifier = @"PostBasicCell";
 static NSString * const PostImageCellIdentifier = @"PostImageCell";
@@ -68,10 +69,6 @@ NSMutableArray *mData;
         NSLog(@"the response is %@", responseObject);
         NSArray *postListArray = (NSArray *)responseObject;
         for (NSDictionary *postData in postListArray) {
-            //            User *author = [[User alloc] initWithId:[authorData objectForKey:@"id"] withEmail:[authorData objectForKey:@"email"] withInfo:[authorData objectForKey:@"info"] withName:[authorData objectForKey:@"name"] withAvatarUrl:[authorData objectForKey:@"avatar_url"] withCreatedAt:[authorData objectForKey:@"created_at"]];
-            //
-            //            Post *userPost = [[Post alloc] initWithId:[postData objectForKey:@"id"] withTitle:[postData objectForKey:@"title"] withAuthor:[postData objectForKey:@"author"] withBody:[postData objectForKey:@"body"] withPic:Nil withCreatedAt:[postData objectForKey:@"created_at"] withComments:[postData objectForKey:@"comments"] withLikes:[postData objectForKey:@"likes"] withType:[postData objectForKey:@"type"] withEvent:[postData objectForKey:@"event"]];
-            
             Post *receivedPost = [Post createPostWithData:postData];
             NSLog(@"successfully get post: %@", receivedPost);
             [mUserPostArray addObject:receivedPost];
@@ -352,5 +349,41 @@ NSMutableArray *mData;
          destViewController.hidesBottomBarWhenPushed = YES;
      }
 }
+
+#pragma mark - PostBasicCellDelegate methods
+- (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Post *currentPost = [mData objectAtIndex:indexPath.row];
+    
+    UIStoryboard *commentStoryboard = [UIStoryboard storyboardWithName:@"Comments" bundle:nil];
+    CommentsTableViewController *commentsViewController = [commentStoryboard instantiateViewControllerWithIdentifier:@"myComments"];
+    commentsViewController.allComments = currentPost.mComments;
+    commentsViewController.currentPost = currentPost;
+    commentsViewController.currentUser = mUser;
+    
+    [(UINavigationController *)self.parentViewController pushViewController: commentsViewController animated:YES];
+    // because the navigation controller for comments is needed
+    
+}
+- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath  likeStatus:(BOOL)liked{
+    Post *currentPost = [mData objectAtIndex:indexPath.row];
+    NSString *likeUrl = [NSString stringWithFormat:LIKE_POST, currentPost.mId];
+    NSURLRequest *likeRequest;
+    if (liked) {
+        likeRequest = [NSURLRequest requestWithMethod:@"DELETE" url:likeUrl parameters:nil];
+    }else{
+        likeRequest = [NSURLRequest requestWithMethod:@"POST" url:likeUrl parameters:nil];
+    }
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:likeRequest];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"like succeed!");
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"like error %@",error);
+    }];
+    [operation start];
+}
+
+
 
 @end
