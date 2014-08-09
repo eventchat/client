@@ -29,8 +29,9 @@
 
 @end
 
-@protocol PostCellDelegate <NSObject>
-@optional
-- (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-@end
+//@protocol PostCellDelegate <NSObject>
+//@optional
+//- (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+//@optional
+//- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+//@end

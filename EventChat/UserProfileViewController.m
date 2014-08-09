@@ -134,7 +134,7 @@ NSMutableArray *mData;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self hasImageAtIndexPath:indexPath]) {
+    if (![self hasImageAtIndexPath:indexPath]) {
         return 160.0f;
     } else {
         return 400.0f;

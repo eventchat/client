@@ -28,12 +28,12 @@
 }
 
 - (IBAction)likeButtonClicked:(id)sender {
-    [self.delegate commentLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
+//    [self.delegate commentLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
     NSLog(@"I am in basic cell like button!");
 }
 
 - (IBAction)commentButtonClicked:(id)sender {
-    [self.delegate likeLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
+//    [self.delegate likeLabelTapOfCell:self atIndexPath:[(UITableView *)self.superview.superview indexPathForCell:self]];
         NSLog(@"I am in basic cell comment button!");
 }
 @end
