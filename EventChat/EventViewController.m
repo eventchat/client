@@ -73,6 +73,7 @@ static int const MAX_DISTANCE = 100;
     // now update the event detail
     [self updateEventDetail];
     
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -271,7 +272,9 @@ static int const MAX_DISTANCE = 100;
 
 - (PostBasicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath {
     PostBasicCell *cell = [self.postsTableView dequeueReusableCellWithIdentifier:PostBasicCellIdentifier forIndexPath:indexPath];
-//    cell.delegate = self.postsTableView;
+    
+    // add delegate
+    cell.delegate = self;
     
     [self configureBasicCell:cell forIndexPath:indexPath];
     return cell;
@@ -279,6 +282,10 @@ static int const MAX_DISTANCE = 100;
 
 - (PostImageCell *)imageCellAtIndexPath:(NSIndexPath *)indexPath {
     PostImageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:PostImageCellIdentifier forIndexPath:indexPath];
+
+    // add delegate
+    cell.delegate = self;
+    
     [self configureImageCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -327,12 +334,12 @@ static int const MAX_DISTANCE = 100;
 }
 
 
-#pragma mark - PostBasicCellDelegate methods
+//#pragma mark - PostBasicCellDelegate methods
 - (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"in view controller comment !!!!!#######");
+
 }
 - (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"in view controller like !!!!!#######");
+    
 }
 
 @end

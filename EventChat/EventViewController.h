@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "Event.h"
+#import "PostBasicCell.h"
 
-@interface EventViewController : UITableViewController
+
+@interface EventViewController : UITableViewController <PostCellDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *postsTableView;
 - (IBAction)unwindToEventPosts:(UIStoryboardSegue *)segue;
 
 @property NSMutableArray *mPosts;
 @property Event *mEvent;
+
+
+
+- (void)commentLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)likeLabelTapOfCell:(PostBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 @end
