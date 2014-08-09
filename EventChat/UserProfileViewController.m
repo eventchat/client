@@ -32,6 +32,7 @@ NSMutableArray *mData;
 @synthesize mAppUser;
 @synthesize mAppData;
 
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -53,7 +54,7 @@ NSMutableArray *mData;
     
     // set the user profile title and info
     [self updateUserProfile];
-    
+
     // initialization
     NSLog(@"The passed in user is %@", mUser);
     mUserPostArray = [[NSMutableArray alloc] init];
@@ -339,12 +340,14 @@ NSMutableArray *mData;
              [mAppData.mConversationsDict setObject:userConversation forKey:mUser.mId];
              destViewController.mConversation = userConversation;
              NSLog(@"created new conversation");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NewMessageNotification" object:Nil];
          } else {
              // there is existing conversation with this user
              destViewController.mConversation = userConversation;
              NSLog(@"forward to existing conversation");
          }
-         
+         // update chat window title
+         destViewController.navigationItem.title = destViewController.mConversation.mResponder.mName;
          // hide the bottom bar
          destViewController.hidesBottomBarWhenPushed = YES;
      }
